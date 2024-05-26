@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import AccordionItem from '../../component/AccordionItem/index';
 import styles from './style.module.css';
 import Footer from  '../../component/Footer/index'
@@ -10,7 +10,7 @@ const WhyChooseUs = () => {
 
                    <div className='row'>
                     <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                        <h2 className={styles.mainTitle}>  How it’s work?</h2>
+                        <h2 className={styles.mainTitle}>  How it works?</h2>
 
                     </div>
                    </div>
