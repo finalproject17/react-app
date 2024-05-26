@@ -13,10 +13,10 @@ function App() {
 
   return (
     <>
-   <JobSeeker></JobSeeker>
-   <Login />
-   </>
-  )
+      <Login />
+      {/* <JobSeeker></JobSeeker> */}
+    </>
+  );
 }
 
 export default App
