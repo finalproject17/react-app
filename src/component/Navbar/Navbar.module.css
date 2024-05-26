@@ -1,0 +1,126 @@
+/* Navbar.module.css */
+.nav {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+    position: relative;
+}
+
+.nav img {
+    width: 148.7px;
+    height: 55px;
+}
+
+.menuIcon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.rightBar {
+    display: flex;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.list li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.list li a:hover {
+    text-decoration: underline;
+}
+
+.listItems {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.listItems a {
+    text-decoration: underline;
+    color: #27ae60;
+}
+
+.listItems button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #27ae60;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.list li a:not(.register-link) {
+    text-decoration: none;
+}
+
+a .active {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menuIcon {
+        display: block;
+    }
+
+    .rightBar {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+        background-color: #fff;
+    }
+
+    .rightBar.open {
+        height: 100vh;
+    }
+
+    .list {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .listItems {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: auto;
+        margin-top: 20px;
+    }
+
+    .register-link, button {
+        width: auto;
+        text-align: center;
+        margin: 0 5px;
+    }
+
+    button {
+        width: auto;
+        margin: 0 5px;
+    }
+}

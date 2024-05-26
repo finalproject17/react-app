@@ -1,15 +1,24 @@
-
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// import Navbar from './component/Navbar/index';
+import Home from '../src/pages/JobSeeker/index'
 
 function App() {
-  
-
-  return (
-    <>
-   </>
-  )
+    return (
+        <Router>
+            {/* <Navbar /> */}
+            <Routes>
+                {/* Define your routes here */}
+                <Route path="/JobSeeker" element={<Home />} />
+                {/* <Route path="/find-jobs" element={<FindJobs />} />
+                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/register" element={<Register />} /> */}
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
