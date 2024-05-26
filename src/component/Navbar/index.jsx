@@ -1,9 +1,9 @@
-import React from 'react';
+//import React from 'react';
 
 const Navbar = () => {
     return (
         <div>
-             hello from navbar
+             hello from navbar   i am khgoloud 
         </div>
     );
 }
