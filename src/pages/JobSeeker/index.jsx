@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
 import Navbar from '../../component/Navbar/index';
