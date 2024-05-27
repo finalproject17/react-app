@@ -1,12 +1,13 @@
 import React from "react";
 import loginImage from "../../assets/images/loginSvg.svg";
 import styles from "./login.module.css";
+import { NavLink } from "react-router-dom";
 export default function Login() {
   return (
     <section className={styles.register}>
-      <div className="container d-flex justify-content-between bg-body">
+      <div className={`container ${styles.loginContain}`}>
         <div className={`row ${styles.registerForm}`}>
-          <div className={`${styles.sectionLeft} col-7   p-4`}>
+          <div className={`${styles.sectionLeft} col-7  p-4`}>
             <div className="leftTitle text-center mb-5">
               <h2>Create Account</h2>
               <p>
@@ -17,7 +18,9 @@ export default function Login() {
             </div>
             <form action="">
               <div className="nameInputs d-flex align-items-center justify-content-between ">
-                <div className={`form-group position-relative input-component w-50 ${styles.inputWrapper}`}>
+                <div
+                  className={`form-group position-relative input-component w-50 ${styles.inputWrapper}`}
+                >
                   <label
                     htmlFor="f-name"
                     className={`position-absolute bg-white ${styles.label}`}
@@ -31,7 +34,9 @@ export default function Login() {
                     className="mb-4 form-control"
                   />
                 </div>
-                <div className={`form-group position-relative input-component w-50 `}>
+                <div
+                  className={`form-group position-relative input-component w-50 `}
+                >
                   <label
                     htmlFor="l-name"
                     className={`position-absolute bg-white ${styles.label}`}
@@ -108,7 +113,12 @@ export default function Login() {
             </form>
             <p>
               Already have an account?
-              <span className="text-success">Sign in</span>
+              <NavLink
+                to="/signup"
+                className="text-success text-decoration-none"
+              >
+                <span >Sign in</span>
+              </NavLink>
             </p>
             <div className="d-flex justify-content-center align-items-center">
               <div className={styles.line}></div>
@@ -128,7 +138,7 @@ export default function Login() {
               <h2>Get The Right Job You Deserve</h2>
             </div>
             <div className="rigth-img">
-              <img src={loginImage} alt="login Imge" />
+              <img src={loginImage} alt="login Imge" width="100%" />
             </div>
           </div>
         </div>

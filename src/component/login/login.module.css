@@ -5,13 +5,38 @@
     height: 889px;
     position: relative;
 }
+.register .loginContain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.registerForm {
-    border: 1px solid var(--secondary);
+.register .loginContain .registerForm {
+    border: 1px solid var(--main-color);
     border-radius: 12.43px;
 }
 
-.sectionRigth {
+.register .loginContain .registerForm  .inputWrapper  {
+    margin-right: 10px; 
+    }
+
+.register .loginContain .registerForm .nameInputs .inputWrapper:last-child {
+    margin-right: 0;
+    }
+
+.register .loginContain .registerForm .nameInputs .label {
+    padding: 0 7px;
+    bottom: 50px;
+    left: 11px;
+}
+
+.register .loginContain .registerForm .nameInputs .label_1 {
+    padding: 0 7px;
+    bottom: 27px;
+    left: 11px;
+}
+
+.register .loginContain .registerForm  .sectionRigth {
     background-color: var(--background);
     display: flex;
     border-top-right-radius: 12.43px;
@@ -23,53 +48,42 @@
     align-content: center;
 }
 
-.sectionRigth h2 {
+.register .loginContain .registerForm .sectionRigth h2 {
     margin-bottom: 100px;
     text-align: center;
     font-size: 20px;
 }
 
-.sectionRigth .rigth-img img {
+.sectionRigth .rigth-img {
     width: 444px;
 }
-@media (max-width: 990px) { 
-    .sectionRigth {
-        display: none;
+
+@media (max-width: 790px) { 
+    
+    .register .loginContain{
+        justify-content: center;
     }
-    .sectionLeft{
-        width: 100%;
+    .register .registerForm .sectionRigth{
+        display: none !important;
     }
-}
-@media (max-width: 769px) { 
-  
-    .registerForm{
-        width: 95%;
-        flex-direction: column;
+    .register .loginContain .registerForm{
+        justify-content: center;
         align-items: center;
     }
-}
+    .register .loginContain .registerForm .sectionLeft{
+        width: 95%;
+    }
+} 
+@media (max-width: 712px) { 
+        .register .loginContain .registerForm{
+            width: 95%;
+        
+        }
+    } 
 
 
-.sectionLeft .line {
+.register .loginContain .registerForm .sectionLeft .line {
     width: 300px;
     height: 1px;
-    background: #cacaca;
-}
-.inputWrapper {
-  margin-right: 10px; 
-}
-
-.nameInputs .inputWrapper:last-child {
-  margin-right: 0;
-}
-.label {
-    padding: 0 7px;
-    bottom: 50px;
-    left: 11px;
-}
-
-.label_1 {
-    padding: 0 7px;
-    bottom: 27px;
-    left: 11px;
+    background: rgb(119 119 119 / 24%);
 }
