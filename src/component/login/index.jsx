@@ -4,7 +4,7 @@ import styles from "./login.module.css";
 export default function Login() {
   return (
     <section className={styles.register}>
-      <div className="container d-flex justify-content-between bg-body">
+      <div className={`container ${styles.loginConain}`}>
         <div className={`row ${styles.registerForm}`}>
           <div className={`${styles.sectionLeft} col-7   p-4`}>
             <div className="leftTitle text-center mb-5">
