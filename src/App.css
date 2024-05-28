@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  
+}
+
+
+
 :root {
     --primary: #275C45;
     --secondary: #01A84D;
