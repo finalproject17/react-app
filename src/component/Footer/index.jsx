@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //import React from 'react';
 import styles from './footer.module.css';
 import { Link } from 'react-router-dom';
@@ -79,3 +80,17 @@ const Footer = () => {
 }
 
 export default Footer;
+=======
+import React from 'react';
+
+const Footer= () => {
+    return (
+        <div>
+            
+            
+        </div>
+    );
+}
+
+export default Footer;
+>>>>>>> Mary
