@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import JobSeekerProfileCard from '../../component/jobSeekerProfileCard'
 
-const  JobSeekerProfile= () => {
+ const JobSeekerProfile = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+        <JobSeekerProfileCard/>
+        </>
     );
 }
 
 export default JobSeekerProfile;
+
