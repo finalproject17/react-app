@@ -1,0 +1,31 @@
+ .sideMenuItem{
+    padding-left:30px;
+    text-align: center;
+    padding-top:25px ;
+    gap:0 10px;
+    }
+
+
+    .sideMenuItem .sideMenuItem__link {
+      display: flex;
+      text-decoration: none;
+      color: var(--black);
+      gap: 0 10px;
+      margin-bottom: 15px;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    
+   .sideMenuItem:hover{
+      background-color:var(--background);
+      border-left: 2px solid var( --secondary);
+      color: var( --secondary);
+  }
+
+
+
+  
