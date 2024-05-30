@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
 import Navbar from '../../component/Navbar/index';
+import JobCategories from '../../component/JobCategories/JobCategories';
 
 const JobSeeker = () => {
     return (
@@ -50,6 +51,7 @@ const JobSeeker = () => {
                     <Card number="20k+" title="Company" description="We always provide people a complete <br /> solution upon focused of any business" />
                 </div>
             </div>
+            <JobCategories />
         </>
     );
 }
