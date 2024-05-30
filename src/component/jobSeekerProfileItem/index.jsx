@@ -1,5 +1,5 @@
 // JobSeekerProfileItem.jsx
-import React from 'react';
+//import React from 'react';
 import styles from './style.module.css';
 
 const JobSeekerProfileItem = ({ width, height, content, icon: Icon,backgroundColor }) => {

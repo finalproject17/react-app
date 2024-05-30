@@ -19,3 +19,12 @@
     --gradient02: linear-gradient(#F9FFFE, #E7FFE0);
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  
+}
