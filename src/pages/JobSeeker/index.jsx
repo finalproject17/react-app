@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+import React from 'react';
+
+const JobSeeker = () => {
+    return (
+        <div>
+            
+        </div>
+    );
+}
+
+export default JobSeeker;
+
+=======
 // import React from 'react';
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
@@ -55,3 +69,4 @@ const JobSeeker = () => {
 }
 
 export default JobSeeker;
+>>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba

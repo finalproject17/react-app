@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 // Navbar.jsx
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -44,3 +46,4 @@ const Navbar = () => {
 }
 
 export default Navbar;
+>>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba
