@@ -5,9 +5,10 @@ import Footer from "../../component/Footer/index";
 const WhyChooseUs = () => {
   return (
     <>
+    
       <div className={styles.glassy}>
         <div className={styles.container}>
-          <div className="row">
+          <div className="row mt-4">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h2 className={styles.mainTitle}> How it works?</h2>
             </div>

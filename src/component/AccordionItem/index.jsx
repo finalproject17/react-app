@@ -12,11 +12,11 @@ function AccordionItem() {
                 <div className={styles['accordion-item']}>
                 <div className={styles['accordion-header']} onClick={() => setIsActive(!isActive)}>
                     {/* {title} */}
-                    <span>{isActive ?  <IoIosArrowUp />: <IoIosArrowDown />}</span>
+                    Our founders Dustin Moskovitz and Justin Rosenstein met.  <span>{isActive ?  <IoIosArrowUp />: <IoIosArrowDown />}</span>
                 </div>
                 {isActive && <div className={styles['accordion-content']}><p>
                   {/* {content} */}
-                  </p></div>}
+                  Our founders Dustin Moskovitz and Justin Rosenstein met. </p></div>}
                 </div>
                 
        

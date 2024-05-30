@@ -2,7 +2,7 @@
 // import React from 'react';
 import styles from './style.module.css';
 import classNames from 'classnames';
-// import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
 import SideMenuItem from '../../component/SideMenuItem';
 import PrimaryButton from '../../component/primaryButton';
 import SecondaryButton from '../../component/SecondayButton';

@@ -5,17 +5,17 @@ import styles from './style.module.css';
 
 
 const SideMenuItem = (
-    // { icon, label, to }
+    { icon, label, to }
 ) => {
     return (
         <div className={styles.sideMenuItem}>
             <Link  className={styles.sideMenuItem__link}>
                 <FontAwesomeIcon 
-                // icon={icon} 
+                icon={icon} 
                 />
                 
                 <div className={styles.sideMenuItem__text}>
-                    {/* {label} */}
+                    {label}
                     </div>
             </Link>
         </div>

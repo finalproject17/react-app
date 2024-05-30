@@ -1,9 +1,4 @@
-
-
-// Navbar.jsx
-// import React, { useState } from 'react';
 import {useState} from 'react';
-
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import styles from './Navbar.module.css';

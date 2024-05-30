@@ -49,6 +49,7 @@
   background-image: url('/public/back.svg');
   text-align:  center;
   padding: 60px;
+  margin-top: 40px;
  }
 
  .mainTitle{
