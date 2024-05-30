@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import loginImage from "../../assets/images/loginSvg.svg";
 import styles from "./login.module.css";
 export default function Login() {

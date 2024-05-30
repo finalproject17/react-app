@@ -3,7 +3,7 @@
 const Navbar = () => {
     return (
         <div>
-             hello from navbar   i am khgoloud 
+             hello from navbar
         </div>
     );
 }

@@ -4,15 +4,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from 'react';
 
+// eslint-disable-next-line react/prop-types
 function AccordionItem({ title, content }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <>
-
-    
-                
-
                 <div className={styles['accordion-item']}>
                 <div className={styles['accordion-header']} onClick={() => setIsActive(!isActive)}>
                     {title}
