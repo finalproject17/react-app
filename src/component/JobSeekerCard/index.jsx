@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import styles from "./JobSeekerCard.module.css";
 import Skills from "../Skills";
 import "bootstrap/dist/css/bootstrap.min.css";

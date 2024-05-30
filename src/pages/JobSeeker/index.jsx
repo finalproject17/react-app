@@ -1,21 +1,8 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const JobSeeker = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default JobSeeker;
-
-=======
 // import React from 'react';
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
 import Navbar from '../../component/Navbar/index';
+import JobCategories from '../../component/JobCategories/JobCategories';
 
 const JobSeeker = () => {
     return (
@@ -64,9 +51,9 @@ const JobSeeker = () => {
                     <Card number="20k+" title="Company" description="We always provide people a complete <br /> solution upon focused of any business" />
                 </div>
             </div>
+            <JobCategories />
         </>
     );
 }
 
 export default JobSeeker;
->>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba

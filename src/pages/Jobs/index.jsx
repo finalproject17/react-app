@@ -1,8 +1,8 @@
-<<<<<<< HEAD
-import React from 'react';
+
+// import React from 'react';
 import styles from './style.module.css';
 import classNames from 'classnames';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import SideMenuItem from '../../component/SideMenuItem';
 import PrimaryButton from '../../component/primaryButton';
 import SecondaryButton from '../../component/SecondayButton';
@@ -131,30 +131,6 @@ const Jobs = () => {
   };
   
   export default Jobs;
-=======
-<<<<<<< HEAD
-import React from 'react';
 
-const Jobs = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
 
-export default Jobs ;
-=======
-import React from 'react';
 
-const Jobs = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default Jobs ;
->>>>>>> ca4f8ff9d106ff93e8d3cdca3bf03da361da06e2
->>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba

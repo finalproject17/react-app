@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba
 :root {
     --primary: #275C45;
     --secondary: #01A84D;
@@ -24,8 +20,7 @@
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
 
-<<<<<<< HEAD
-=======
+
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +28,3 @@
   font-family: 'Roboto', sans-serif;
   
 }
-
-
-
->>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba

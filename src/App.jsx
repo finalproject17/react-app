@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,16 +21,6 @@ function App() {
   </BrowserRouter>
    </>
   )
-=======
-import React from "react";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
-
-function App() {
-  return <></>;
->>>>>>> e032bf6204847b17c1415ac6b22183ef17071bba
 }
 
 export default App;
