@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import styles from './Style.module.css';
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { useState } from 'react';
 
 function AccordionItem({ title, content }) {
   const [isActive, setIsActive] = useState(false);
