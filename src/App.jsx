@@ -7,6 +7,7 @@ import JobCard from './component/JobCard';
 import EduCard from './component/EduCard';
 
 
+
 function App() {
   
 
@@ -15,6 +16,7 @@ function App() {
       <JobSeekerCard></JobSeekerCard>
       <JobCard></JobCard>
       <EduCard></EduCard>
+ 
     </>
   );
 }
