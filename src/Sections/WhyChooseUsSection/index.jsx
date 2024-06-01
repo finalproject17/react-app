@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AccordionItem from '../../component/AccordionItem/index';
 import styles from './style.module.css';
 import Footer from  '../../component/Footer/index'
+
 const WhyChooseUs = () => {
+
+  
     return (<><div className={styles.glassy}>
             
                  
