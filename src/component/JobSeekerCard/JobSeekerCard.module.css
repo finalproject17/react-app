@@ -1,10 +1,9 @@
-
 .jobSeekerContainer {
   background-color: var(--white);
   height: 22.1875rem; /* 355px */
   width: 16.5rem; /* 264px */
   border-radius: 1rem; /* 16px */
-  border: solid 1px var(--border01); 
+  border: solid 1px var(--border01);
   margin-top: 0.9375rem; /* 15px */
   display: flex;
   align-items: center;
@@ -83,6 +82,10 @@
   background-color: var(--secondary);
   color: var(--white);
   width: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0;
 }
 
 .viewProfileButton:hover {
