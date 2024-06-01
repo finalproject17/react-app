@@ -4,19 +4,21 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from 'react';
 
-function AccordionItem() {
+function AccordionItem({ title, content }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <>
+
+    
+                
+
                 <div className={styles['accordion-item']}>
                 <div className={styles['accordion-header']} onClick={() => setIsActive(!isActive)}>
-                    {/* {title} */}
-                    Our founders Dustin Moskovitz and Justin Rosenstein met.  <span>{isActive ?  <IoIosArrowUp />: <IoIosArrowDown />}</span>
+                    {title}
+                    <span>{isActive ?  <IoIosArrowUp />: <IoIosArrowDown />}</span>
                 </div>
-                {isActive && <div className={styles['accordion-content']}><p>
-                  {/* {content} */}
-                  Our founders Dustin Moskovitz and Justin Rosenstein met. </p></div>}
+                {isActive && <div className={styles['accordion-content']}><p>{content}</p></div>}
                 </div>
                 
        

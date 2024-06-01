@@ -9,7 +9,8 @@
 }
 
 .nav img {
-    height: 100px;
+    width: 148.7px;
+    height: 55px;
 }
 
 .menuIcon {
@@ -86,7 +87,10 @@ a .active {
         overflow: hidden;
         transition: height 0.3s ease-in-out;
         background-color: #fff;
+<<<<<<< HEAD
         z-index: 999 ;
+=======
+>>>>>>> Mary
     }
 
     .rightBar.open {

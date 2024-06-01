@@ -1,8 +1,8 @@
-import {useState} from 'react';
+// Navbar.jsx
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import styles from './Navbar.module.css';
-import logo from '../../../assets/careers-logo[1].svg'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <div className={styles.nav}>
             <div className={styles.logo}>
-            <img src={logo} alt="Logo" />
+                <img src="../../../assets/careers-logo[1].svg" alt="Logo" />
             </div>
             <div className={styles.menuIcon} onClick={toggleMenu}>
                 {isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -44,4 +44,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
