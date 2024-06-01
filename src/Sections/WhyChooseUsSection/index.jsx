@@ -1,64 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect } from 'react';
-import AccordionItem from '../../component/AccordionItem/index';
-import styles from './style.module.css';
-import Footer from  '../../component/Footer/index'
 
-const WhyChooseUs = () => {
-
-  
-    return (<><div className={styles.glassy}>
-            
-                 
-                   <div className={styles.container }>
-
-                   <div className='row'>
-                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                        <h2 className={styles.mainTitle}>  How it’s work?</h2>
-
-                    </div>
-                   </div>
-                    < div className='row'>
-                    <div className='col-lg-4 col-md-4 col-sm-3 col-xs-3'>
-                         <img src='account.svg' alt='icons'></img>
-                          <h6  className={styles.subTitle}>Create Account</h6>
-                          <p  className={styles.paragraph}>It’s very easy to open an account and  start <br></br>your 
-                          journey.</p>
-
-                        </div> 
-
-
-                        <div className='col-lg-4 col-md-4 col-sm-3 col-xs-3'>
-                         <img src='editFile.svg' alt='icons'></img>
-                          <h6  className={styles.subTitle} >Complete your profile</h6>
-                          <p className={styles.paragraph} >Complete your profile with all the info to get <br></br>  attention of client.</p>
-
-                        </div> 
-
-
-
-                        <div className='col-lg-4 col-md-4 col-sm-3 col-xs-3'>
-                         <img src='Edit.svg' alt='icons'></img>
-                          <h6 className={styles.subTitle} >Apply job or hire</h6>
-                          <p className={styles.paragraph} >Apply & get your preferable jobs with all   the <br></br>  requirements and get it.</p>
-
-                        </div> 
-
-
-                    </div>
-
-                     
-                   </div>
-
-
-
-                 
-            </div>
-         
-
-
-=======
-//import React from 'react';
 import AccordionItem from "../../component/AccordionItem/index";
 import styles from "./style.module.css";
 import Footer from "../../component/Footer/index";
@@ -67,7 +7,6 @@ const WhyChooseUs = () => {
     <>
     
       <div className={styles.glassy}>
->>>>>>> 1bafa587feed4e2213e1ea98426baba11e5dbcac
         <div className={styles.container}>
           <div className="row mt-4">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
