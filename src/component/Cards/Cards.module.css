@@ -1,0 +1,28 @@
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    /* width: 200px; */
+   
+  }
+  
+  .card h2 {
+    color: #28a745;
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .card p {
+    font-size: 14px;
+    color: #666;
+  }
+  

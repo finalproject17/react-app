@@ -69,11 +69,10 @@
 .separator {
   width: 13.25rem; /* 212px */
   margin: auto;
-  margin-bottom: 0.875rem; /* 14px */
-  margin-top: 0.875rem; /* 14px */
-  border: solid 0.0625rem var(--border01); /* 1px */
+  margin-bottom: 14px; /* 14px */
+  margin-top: 14px; /* 14px */
+  border: solid 1px var(--border01); /* 1px */
 }
-
 .skillsContainer {
   width: 13.25rem; /* 212px */
   margin: auto;
