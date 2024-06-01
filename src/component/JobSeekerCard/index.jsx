@@ -1,9 +1,16 @@
-// import React from "react";
+
+
+import React, { useEffect } from "react";
+
 import styles from "./JobSeekerCard.module.css";
 import Skills from "../Skills";
 import "bootstrap/dist/css/bootstrap.min.css";
+import  axios  from 'axios';
 
 const JobSeekerCard = () => {
+
+
+
   return (
     <div className={` ${styles.jobSeekerContainer}`}>
       <div className={`${styles.contentContainer}`}>
@@ -23,10 +30,15 @@ const JobSeekerCard = () => {
             <p className={`${styles.salary}`}>$3k-$4k/mo</p>
           </div>
 
+
           <div className={styles.locationContainer}>
             <img src="location.svg" alt="Location Icon" />
             <p className={`m-0 ${styles.locationText}`}>Egypt, Alex</p>
           </div>
+          
+
+
+
           <hr className={styles.separator} />
           <div className={styles.skillsContainer}>
             <div
