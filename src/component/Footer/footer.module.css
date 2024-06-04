@@ -67,7 +67,27 @@
   bottom: 45px;
   left: 192px;
 }
+ /* @media ipad */
+    
+@media screen  and (max-width:992px){
 
+  .SendBtn {
+    padding: 8px 10px;
+    position: relative;
+    bottom: 1px;
+    left: -60px;
+    font-size: 12px;
+}
+.logo{
+  width: 50%;
+}
+
+}
+
+
+
+
+/* @media mobile */ 
 @media screen and (max-width: 768px) {
   .container {
       padding-left: 25px;

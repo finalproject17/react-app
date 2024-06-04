@@ -1,25 +1,13 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const  JobSeekerProfile= () => {
+// import React from "react";
+import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
+import JobSeekerProfileCardPartTwo from '../../component/jobSeekerProfileCardPartTwo';
+ const JobSeekerProfile = () => {
     return (
-        <div>
-            
-        </div>
-    );
-}
+        <>
+        <JobSeekerProfileCard/>
+        <JobSeekerProfileCardPartTwo/>
+        </>
+
+)}
 
 export default JobSeekerProfile;
-=======
-import React from 'react';
-
-const  JobSeekerProfile= () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default JobSeekerProfile;
->>>>>>> ca4f8ff9d106ff93e8d3cdca3bf03da361da06e2
