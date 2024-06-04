@@ -1,0 +1,40 @@
+.container{
+    margin-top: 2.375rem;
+    width:17.813rem;
+    height: 29.688rem;
+    border: 1px solid var(--secondary);
+    border-radius: 1rem;
+    margin-left: 10rem;
+    position: relative;
+}
+
+
+.container .otherCandidates{
+    background-color: var(--background);
+    padding: 0.625rem;
+    position: absolute;
+    top: -0.75rem;
+    margin-top: -10px;
+    left: 1.375rem;
+}
+
+.container .fProfile ,.container .firstProfile {
+    margin-bottom: 0.938rem;
+}
+
+
+
+
+.container .firstProfile{
+    margin-top:2.125rem !important;
+
+}
+
+
+.btnContainer{
+   text-align: center;
+}
+.btn{
+    width: 14.563rem;
+    
+}
