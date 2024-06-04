@@ -47,7 +47,7 @@ const Navbar = () => {
           </ul>
           <div className={styles.listItems}>
             <NavLink
-              to="/Login"
+              to="/signUp"
               className={styles.registerLink}
               onClick={toggleMenu}
             >
