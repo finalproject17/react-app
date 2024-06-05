@@ -13,9 +13,9 @@ function App() {
 
   return (
     <>
-      <JobSeekerCard></JobSeekerCard>
-      <JobCard></JobCard>
-      <EduCard></EduCard>
+  
+  
+  
  
     </>
   );
