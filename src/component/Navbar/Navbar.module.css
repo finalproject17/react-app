@@ -87,9 +87,7 @@ a .active {
         overflow: hidden;
         transition: height 0.3s ease-in-out;
         background-color: #fff;
-
         z-index: 999 ;
-
     }
 
     .rightBar.open {

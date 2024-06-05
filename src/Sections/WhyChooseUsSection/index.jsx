@@ -1,4 +1,3 @@
-//import React from 'react';
 import AccordionItem from "../../component/AccordionItem/index";
 import styles from "./style.module.css";
 import Footer from "../../component/Footer/index";
@@ -7,7 +6,6 @@ const WhyChooseUs = () => {
     <>
     
       <div className={styles.glassy}>
-
         <div className={styles.container}>
           <div className="row mt-4">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
