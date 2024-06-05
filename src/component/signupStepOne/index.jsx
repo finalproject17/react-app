@@ -5,10 +5,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
+
+  
 
   const [isSinUp, setIsSinUp] = useState("false");
 

@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   MDBBtn,
   MDBModal,
@@ -20,13 +20,13 @@ import {
 
 export default function SignUpStepTwo() {
   const { formData, updateFormData, nextStep, prevStep } = useFormContext();
+
   const navigate = useNavigate();
   const [isErorr, setIsErorr] = useState("false");
 
 
   async function signUp(val) {
     try {
-      console.log("gdfgfhfh");
       updateFormData(val);
       nextStep();
       const User = { ...formData, ...val };
