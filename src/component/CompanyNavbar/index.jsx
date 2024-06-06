@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const JobSeekerNavbar = () => {
+const CompanyNavbar = () => {
   return (
     <Navbar
       collapseOnSelect
@@ -49,4 +49,4 @@ const JobSeekerNavbar = () => {
   );
 };
 
-export default JobSeekerNavbar;
+export default CompanyNavbar;
