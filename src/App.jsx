@@ -6,6 +6,10 @@ import Candidates from "./pages/Candidates";
 import Navbar from './component/Navbar';
 import CompanyNavbar from "./component/CompanyNavbar";
 import JobSeekerNavbar from "./component/Navbar";
+import SideMenuItem from './component/JobSeekerSidebar';
+import  AccordionItem  from "./component/AccordionItem";
+import CompanySidebar from "./component/CompanySidebar";
+
 
 
 function App() {
@@ -13,8 +17,10 @@ function App() {
     <>
       <CompanyNavbar></CompanyNavbar>
       {/* <JobSeekerNavbar></JobSeekerNavbar> */}
+      <CompanySidebar></CompanySidebar>
+      
 
-      <Candidates></Candidates>
+      {/* <Candidates></Candidates> */}
     </>
   );
 }
