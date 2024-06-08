@@ -1,30 +1,41 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../axioseConfig/instance";
 
-export const registerUser = createAsyncThunk('/users/registerUser', async (user) => {
-    const res = await axiosInstance.post('/users/post', user);
+// Register user
+export const registerUser = createAsyncThunk(
+  "/users/registerUser",
+  async (user) => {
+    const res = await axiosInstance.post("/users/register", user);
     return res.data;
-});
-
-export const loginUser = createAsyncThunk('/users/loginUser', async (userData) => {
-    const res = await axiosInstance.post('/users/login', userData);
-    return res.data;
-});
-
-export const updateUser = createAsyncThunk('/users/updateUser', async (updatedUser) => {
-    const res = await axiosInstance.put('/users', updatedUser);
-    return res.data;
-});
-// Get all users
-export const getAllUsersAction = createAsyncThunk(
-    "/users/getAllUsers",
-    async () => {
-        const res = await axiosInstance.get("/users");
-        return res.data;
-    }
+  }
 );
 
+// Login user
+export const loginUser = createAsyncThunk(
+  "/users/loginUser",
+  async (userData) => {
+    const res = await axiosInstance.post("/users/login", userData);
+    return res.data;
+  }
+);
 
+// Update user
+export const updateUser = createAsyncThunk(
+  "/users/updateUser",
+  async (updatedUser) => {
+    const res = await axiosInstance.put("/users", updatedUser);
+    return res.data;
+  }
+);
+
+// Get all users
+export const getAllUsersAction = createAsyncThunk(
+  "/users/getAllUsers",
+  async () => {
+    const res = await axiosInstance.get("/users");
+    return res.data;
+  }
+);
 
 const userSlice = createSlice({
   name: "users",

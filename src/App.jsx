@@ -13,6 +13,16 @@ import Navbar from "./component/Navbar/index";
 import Footer from "./component/Footer";
 import SignUp from "./pages/signup/index";
 import SignUpStepTwo from "./component/signupStepTow";
+import JobCard from './component/JobCard/index';
+import Candidates from "./pages/Candidates";
+import Navbar from './component/Navbar';
+import CompanyNavbar from "./component/CompanyNavbar";
+import JobSeekerNavbar from "./component/Navbar";
+import SideMenuItem from './component/JobSeekerSidebar';
+import  AccordionItem  from "./component/AccordionItem";
+import CompanySidebar from "./component/CompanySidebar";
+
+
 
 import Protected from "./component/Protected/index";
 import { useState } from "react";
