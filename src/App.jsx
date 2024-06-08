@@ -1,28 +1,35 @@
 // import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  BrowserRouter,
+} from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './component/Navbar/index';
-// import Home from '../src/pages/JobSeeker/index'
+import Navbar from "./component/Navbar/index";
+// import Home from '../src/pages/JobSeeker/index';
 // import JobSeeker from "../src/pages/JobSeeker";
 import Footer from "./component/Footer";
-import SignUp from "./component/signup/index";
+import SignUp from "./pages/signup/index";
 import SignUpStepTwo from "./component/signupStepTow";
-import { RegisterFormProvider, useFormContext } from "./contexts/RegisterFormContext.jsx";
+
 import Protected from "./component/Protected/index";
 import { useState } from "react";
-
-
+import { RegisterFormProvider } from "./contexts/RegisterFormContext";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleRegister from "./component/GoogleRegister";
+import { ToastContainer } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 function App() {
-
-  const [isSinUp, setIsSinUp] = useState('false');
-  
+  const [isSinUp, setIsSinUp] = useState("false");
+   
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <RegisterFormProvider>
+        <ToastContainer theme="colored"/>
         <Routes>
-          {/* Define your routes here */}
           {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
 
           {/* <Route path="/find-jobs" element={<FindJobs />} />
@@ -30,15 +37,12 @@ function App() {
                 <Route path="/contact" element={<Contact />} />*/}
 
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/step-two" element={<Protected isSinUp={isSinUp} >
-                <SignUpStepTwo/>
-            </Protected>} />
+          <Route path="/step-two" element={<SignUpStepTwo />} />
         </Routes>
       </RegisterFormProvider>
 
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 }
-
 export default App;

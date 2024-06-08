@@ -6,11 +6,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import GoogleRegister from "../GoogleRegister";
 
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
 
   const [isSinUp, setIsSinUp] = useState("false");
+  const [comfirmPassVal, setComfirmPassword] = useState('');
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
@@ -34,9 +37,7 @@ export default function SignUpStepOne() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
       ),
-    // userConfirmPassword: Yup.string()
-    //   .required("The confirm password is required")
-    //   .oneOf([Yup.ref("userPassword"), null], "Passwords must match"),
+    
   });
 
   const formik = useFormik({
@@ -46,14 +47,17 @@ export default function SignUpStepOne() {
       email: formData.email || "",
       phone: formData.phone || "",
       password: formData.password || "",
-      // userConfirmPassword: formData.userConfirmPassword || "",
     },
     validationSchema: validationSchema,
     onSubmit: (val) => {
+      if (formik.values.password != comfirmPassVal) 
+        return;
+    
       updateFormData(val);
       nextStep();
     },
   });
+
 
   return (
     <section className={styles.register}>
@@ -216,7 +220,7 @@ export default function SignUpStepOne() {
                 </div>
               </div>
 
-              {/* <div className="form-group input-component mt-4">
+              <div className="form-group input-component mt-4">
                 <div className="position-relative">
                   <label
                     htmlFor="confirmPassword"
@@ -229,23 +233,22 @@ export default function SignUpStepOne() {
                     name="userConfirmPassword"
                     id="confirmPassword"
                     className="mt-4 form-control"
-                    onChange={formik.handleChange}
-                    value={formik.values.userConfirmPassword}
-                    onBlur={formik.handleBlur}
+                    onChange={(e) => setComfirmPassword(e.target.value)}
+                    value={comfirmPassVal}
                   />
                 </div>
 
                 <div>
-                  {formik.errors.userConfirmPassword &&
-                  formik.touched.userConfirmPassword ? (
+                  {formik.values.password !== comfirmPassVal &&
+                  comfirmPassVal ? (
                     <span className="text-danger p-0 m-0">
-                      {formik.errors.userConfirmPassword}
+                      Passwords do not match
                     </span>
                   ) : (
-                    <span className=" opacity-0">. </span>
+                    <span className="opacity-0">. </span>
                   )}
                 </div>
-              </div> */}
+              </div>
               <button
                 type="submit"
                 className="btn btn-success w-100 m-auto mb-3 mt-3 d-flex align-items-center justify-content-center"
@@ -264,12 +267,13 @@ export default function SignUpStepOne() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
+            {/* <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
               Github
             </div>
             <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
               Google
-            </div>
+            </div> */}
+            <GoogleRegister></GoogleRegister>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

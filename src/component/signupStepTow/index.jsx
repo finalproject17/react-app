@@ -1,53 +1,52 @@
 // import React from "react";
 import loginImage from "../../assets/images/loginSvg.svg";
 import styles from "./signupStepTow.module.css";
-import { NavLink, json, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
-import axios from "axios";
-import { useState } from "react";
-import {
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
-} from "mdb-react-ui-kit";
-
+import { useEffect } from "react";
+import { getAllUsersAction, registerUser } from "../../store/Slices/usersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import GoogleRegister from "../GoogleRegister/index";
+import { toast } from "react-toastify";
+ 
 export default function SignUpStepTwo() {
+  const allUsers = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsersAction());
+  }, [dispatch]);
+
   const { formData, updateFormData, nextStep, prevStep } = useFormContext();
   const navigate = useNavigate();
-  const [isErorr, setIsErorr] = useState("false");
-
 
   async function signUp(val) {
     try {
       console.log("gdfgfhfh");
       updateFormData(val);
-      nextStep();
+      
       const User = { ...formData, ...val };
       const Value = JSON.stringify(User);
-      console.log( Value);
-
-      const response = await axios.post("http://localhost:1232/users/post", User)
-      console.log(response);
-      if (response.statusText == "Created") {
-      navigate("/home");
+      console.log(Value);
+      const isEmailExist = allUsers.find((user) => user.email === User.email);
+      const isPhoneExist = allUsers.find((user) => user.phone === User.phone);
+        console.log(isEmailExist)
+      if (isEmailExist) {
+        toast.error("Email already exists");
+        return;
+      } else if(isPhoneExist) {
+       toast.error("phone already exists");
+       return;
+      } else {
+         dispatch(registerUser(User));
+         nextStep();
+         navigate("/home");
+      }
+    } catch (err) {
+      console.log(err);
     }
-    } catch (error) {
-      // setErrorMessage(error.response ? statusText || '');
-        setIsErorr(true);
-    }
-    
-    console.log(response.statusText);
   }
-
-
-
 
   const validationSchema = Yup.object({
     city: Yup.string().required("The city is required"),
@@ -71,6 +70,7 @@ export default function SignUpStepTwo() {
     onSubmit: signUp,
   });
 
+  
   return (
     <section className={styles.register}>
       <div className={`container ${styles.loginContain}`}>
@@ -85,6 +85,7 @@ export default function SignUpStepTwo() {
               </p>
             </div>
             <form onSubmit={formik.handleSubmit}>
+              
               <div className="nameInputs d-flex align-items-center  ">
                 <div
                   className={`form-group position-relative input-component w-50 me-2`}
@@ -347,31 +348,6 @@ export default function SignUpStepTwo() {
                 </button>
               </div>
             </form>
-            {isErorr ? (
-              <div class="modal" tabindex="-1" role="dialog">
-                <MDBModal
-                 
-                  onClose={() => setBasicModal(false)}
-                  tabIndex="-1"
-                >
-                  <MDBModalDialog>
-                    <MDBModalContent>
-                      <MDBModalHeader>
-                        <MDBModalTitle>Modal title</MDBModalTitle>
-                    
-                      </MDBModalHeader>
-                      <MDBModalBody>...</MDBModalBody>
-
-                      <MDBModalFooter>
-                   
-                      </MDBModalFooter>
-                    </MDBModalContent>
-                  </MDBModalDialog>
-                </MDBModal>
-              </div>
-            ) : (
-              ""
-            )}
             <p>
               Already have an account?
               <NavLink to="" className="text-success text-decoration-none">
@@ -383,12 +359,13 @@ export default function SignUpStepTwo() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
+            {/* <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
               Github
-            </div>
-            <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
+            </div> */}
+            {/* <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
               Google
-            </div>
+            </div> */}
+            <GoogleRegister></GoogleRegister>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">
