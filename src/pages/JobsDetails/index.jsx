@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJobs, getJobById } from './../../store/Slices/FetchJobsSlice';
 import styles from './jobsDetails.module.css';
 import PrimaryButton from '../../component/primaryButton';
 import SecondaryButton from '../../component/SecondayButton';
-import JobInfoCard from '../../component/JobInfoCard';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 const JobsDetails = () => {

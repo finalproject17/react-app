@@ -1,57 +1,57 @@
+// import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  BrowserRouter,
+} from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import JobSeeker from "./pages/JobSeeker";
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from "./component/login";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Jobs from "../src/pages/Jobs";
-import JobSeekerProfile from "./pages/JobSeekerProfile";
-import Footer from "./component/Footer/index";
 import Navbar from "./component/Navbar/index";
-import JobInfoCard from "./component/JobInfoCard/index"
-import "./App.css";
-import JobCard from "./component/JobCard";
-import EduCard from "./component/EduCard";
-import JobCategories from "./component/JobCategories/JobCategories";
-import JobSeekerProfileCard from "./component/jobSeekerProfileCard";
-import JobsDetails from "./pages/JobsDetails";
+// import Home from '../src/pages/JobSeeker/index';
+// import JobSeeker from "../src/pages/JobSeeker";
+import Footer from "./component/Footer";
+import SignUp from "./pages/signup/index";
+import SignUpStepTwo from "./component/signupStepTow";
+import JobCard from './component/JobCard/index';
+import Candidates from "./pages/Candidates";
+import CompanyNavbar from "./component/CompanyNavbar";
+import JobSeekerNavbar from "./component/Navbar";
+import SideMenuItem from './component/JobSeekerSidebar';
+import  AccordionItem  from "./component/AccordionItem";
+import CompanySidebar from "./component/CompanySidebar";
+
+
+
+import Protected from "./component/Protected/index";
+import { useState } from "react";
+import { RegisterFormProvider } from "./contexts/RegisterFormContext";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleRegister from "./component/GoogleRegister";
+import { ToastContainer } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 function App() {
-  const jobInfo = {
-    img: "Edit.svg", // Replace with your image path
-    text: "UI UX",
-    backgroundColor: "#f0f0f0" // Optional: replace with desired background color
-  };
+  const [isSinUp, setIsSinUp] = useState("false");
+   
   return (
-    <>
+    <BrowserRouter>
+      <Navbar />
+      <RegisterFormProvider>
+        <ToastContainer theme="colored"/>
+        <Routes>
+          {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
 
-     
-   <Navbar/> 
-     <JobsDetails/>
-     
-    <Footer/>
-   {/* <JobInfoCard
-        img={jobInfo.img} 
-        text={jobInfo.text} 
-        backgroundColor={jobInfo.backgroundColor} 
-      />
-  
-  <JobCard/>
-  <EduCard/>
-  <JobSeekerProfileCard/> */}
-  
+          {/* <Route path="/find-jobs" element={<FindJobs />} />
+                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/contact" element={<Contact />} />*/}
 
-
-      
-        {/* <Routes>
-          <Route path="/" element={<JobSeeker />} />
-          <Route path="/Jobs" element={<Jobs />} />
-          <Route path="/profile" element={<JobSeekerProfile />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/step-two" element={<SignUpStepTwo />} />
         </Routes>
-     */}
-    </>
+      </RegisterFormProvider>
+
+      <Footer />
+    </BrowserRouter>
   );
 }
-
 export default App;

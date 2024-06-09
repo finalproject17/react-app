@@ -1,5 +1,3 @@
-
-//import React from 'react';
 import AccordionItem from "../../component/AccordionItem/index";
 import styles from "./style.module.css";
 const WhyChooseUs = () => {

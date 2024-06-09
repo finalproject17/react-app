@@ -1,15 +1,18 @@
 
 .jobSeekerContainer {
   background-color: var(--white);
-  height: 22.1875rem; /* 355px */
-  width: 16.5rem; /* 264px */
+  height: auto;
+  width: 100%;
+  max-width: 16.5rem; /* 264px */
   border-radius: 1rem; /* 16px */
-  border: solid 1px var(--border01); 
+  border: solid 1px var(--border01);
   margin-top: 0.9375rem; /* 15px */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
   transition: background-color 0.5s ease, border 0.5s ease;
+  margin-bottom: 1.5rem !important;
 }
 
 .jobSeekerContainer:hover {
@@ -19,7 +22,8 @@
 }
 
 .contentContainer {
-  width: 13.25rem; /* 212px */
+  width: 90%;
+  max-width: 13.25rem; /* 212px */
   margin: auto;
 }
 
@@ -27,29 +31,30 @@
   width: 5rem; /* 80px */
   height: 5rem; /* 80px */
   border: solid 0.0625rem var(--secondary); /* 1px */
-  border-radius: 3.125rem; /* 50px */
+  border-radius: 50%;
 }
 
 .name {
   font-size: 1.5rem; /* 24px */
   font-weight: bold;
+  margin-top: 0.5rem !important;
 }
 
 .jobTitle {
-  color: var(--Paragraph02);
-  font-size: 0.75rem; /* 12px */
-  margin-bottom: 0px;
-}
-
-.salary {
   color: var(--secondary);
   font-size: 0.75rem; /* 12px */
-  margin-bottom: 0.5rem; /* 8px */
+  margin-bottom: 0.5rem;
 }
+
+/* .salary {
+  color: var(--secondary);
+  font-size: 0.75rem; /* 12px */
+  /* margin-bottom: 0.5rem; 8px */
+
 
 .locationContainer {
   background-color: var(--border03);
-  width: 5.875rem; /* 94px */
+  width: 60%;
   height: 1.625rem; /* 26px */
   text-align: center;
   border-radius: 0.5rem; /* 8px */
@@ -67,25 +72,64 @@
 }
 
 .separator {
-  width: 13.25rem; /* 212px */
+  width: 100%;
   margin: auto;
   margin-bottom: 14px; /* 14px */
   margin-top: 14px; /* 14px */
   border: solid 1px var(--border01); /* 1px */
 }
+
 .skillsContainer {
-  width: 13.25rem; /* 212px */
+  width: 100%;
   margin: auto;
 }
 
 .viewProfileButton {
   margin-top: 0.875rem; /* 14px */
+  font-size: 1rem;
   background-color: var(--secondary);
   color: var(--white);
   width: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0;
 }
 
 .viewProfileButton:hover {
   background-color: var(--Third);
   color: var(--white);
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Your CSS code here */
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .viewProfileButton {
+    font-size: 14px;
+
+}
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  /* Your CSS code here */
+}
+
+/* Extra large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {
+  /* Your CSS code here */
+}
+
+/* XX large devices (larger desktops, less than 1600px) */
+@media (max-width: 1599.98px) {
+  /* Your CSS code here */
 }

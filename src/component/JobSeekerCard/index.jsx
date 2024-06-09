@@ -1,18 +1,19 @@
-
-
 import React, { useEffect } from "react";
-
 import styles from "./JobSeekerCard.module.css";
 import Skills from "../Skills";
 import "bootstrap/dist/css/bootstrap.min.css";
-import  axios  from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsersAction } from "../../store/Slices/usersSlice";
+import axiosInstance from "../../axioseConfig/instance";
 
-const JobSeekerCard = () => {
-
-
+const JobSeekerCard = ({ candidate }) => {
 
   return (
-    <div className={` ${styles.jobSeekerContainer}`}>
+    
+    <div
+      className={` ${styles.jobSeekerContainer} d-flex justify-content-center align-items-center flex-column m-0`}
+    >
+      
       <div className={`${styles.contentContainer}`}>
         <div>
           <div
@@ -20,31 +21,29 @@ const JobSeekerCard = () => {
           >
             <img
               className={styles.circularImage}
-              src="avatar=03.svg"
+              src={candidate.profilePhoto}
               alt="Profile Avatar"
             />
           </div>
-          <div className="text-center ">
-            <h5 className={`m-0 ${styles.name}`}>John Deo</h5>
-            <p className={`${styles.jobTitle}`}>Graphic Designer</p>
-            <p className={`${styles.salary}`}>$3k-$4k/mo</p>
+          <div className="text-center">
+            <h5 className={`m-0 ${styles.name}`}>
+              {candidate.firstName} {candidate.lastName}
+            </h5>
+            <p className={`${styles.jobTitle}`}>{candidate.category}</p>
+            {/* <p className={`${styles.salary}`}>$3k-$4k/mo</p> */}
           </div>
-
 
           <div className={styles.locationContainer}>
             <img src="location.svg" alt="Location Icon" />
-            <p className={`m-0 ${styles.locationText}`}>Egypt, Alex</p>
+            <p className={`m-0 ${styles.locationText}`}>
+              {candidate.country}, {candidate.city}
+            </p>
           </div>
-          
-
-
+         
 
           <hr className={styles.separator} />
           <div className={styles.skillsContainer}>
-            <div
-              className="d-flex justify-content-start"
-              style={{ marginBottom: "8px" }}
-            >
+            <div className="d-flex justify-content-start mb-2">
               <Skills name="Figma" />
               <Skills name="Sketch" />
               <Skills name="Adobe XD" />
