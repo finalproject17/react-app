@@ -1,0 +1,32 @@
+/* .job-details .skills .badge {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+   */
+  .JobsDetailsHead{
+    height: 30vh;
+    background-color: var(--Fifth);
+    color: var(--primary);
+    font-size: small;
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+     
+   }
+   .job-listing-card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-listing-card .card-body {
+    padding: 1rem;
+  }
+  
+  .job-listing-card .btn {
+    min-width: 100px;
+  }
+  
+  

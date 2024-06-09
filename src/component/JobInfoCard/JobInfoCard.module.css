@@ -1,0 +1,40 @@
+.Container {
+  width: 9rem;
+  height: 2.5rem;
+  text-align: center;
+  border-radius: 0.5rem; /* 8px */
+  padding: 0.125rem; /* 2px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18px;
+}
+
+.Text {
+  font-size: 1rem; /* 12px */
+  margin-left: 4px !important; /* 20px */
+  color: var(--Paragraph02);
+}
+@media only screen and (max-width: 768px) {
+
+.Container
+{
+   height: 2.9rem;
+    margin-right: 12px;
+}
+.Text {
+  font-size: 0.9rem; 
+
+}
+}
+@media only screen and (max-width: 600px){
+   .Text {
+  font-size: 0.8rem; 
+
+}
+.Container
+{
+   height: 3rem;
+    margin-right: 4px;
+}
+}
