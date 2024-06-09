@@ -2,7 +2,7 @@
 import React from 'react';
 
 =======
->>>>>>> 1bafa587feed4e2213e1ea98426baba11e5dbcac
+>>>>>>> a31c4d69d821e37e1f3d45e9c561b1f0bcc2ff01
 const About = () => {
     return (
         <div>

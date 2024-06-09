@@ -1,6 +1,5 @@
 import AccordionItem from "../../component/AccordionItem/index";
 import styles from "./style.module.css";
-import Footer from "../../component/Footer/index";
 const WhyChooseUs = () => {
   return (
     <>
@@ -74,7 +73,7 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 };

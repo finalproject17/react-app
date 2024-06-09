@@ -1,11 +1,16 @@
-<<<<<<< HEAD
 /* Navbar.module.css */
 .nav {
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
+    margin: 0 20px;
     position: relative;
+}
+
+.nav img {
+    width: 148.7px;
+    height: 55px;
 }
 
 .menuIcon {
@@ -45,13 +50,13 @@
 
 .listItems a {
     text-decoration: underline;
-    color: var(--secondary);
+    color: #27ae60;
 }
 
 .listItems button {
     padding: 5px 10px;
     border: none;
-    background-color: var(--secondary);
+    background-color: #27ae60;
     color: #fff;
     cursor: pointer;
     border-radius: 6px;
@@ -62,13 +67,10 @@
 }
 
 a .active {
-    color: var(--main-color);
+    color: #27ae60;
     font-weight: bold;
 }
 
-.nav .logo{
-    width: 110px;
-}
 /* Responsive styles */
 @media (max-width: 768px) {
     .menuIcon {
@@ -81,22 +83,11 @@ a .active {
         right: 0;
         width: 100%;
         flex-direction: column;
-        height: fit-content;
-        padding: 5px;
+        height: 0;
         overflow: hidden;
         transition: height 0.3s ease-in-out;
-<<<<<<< HEAD
-        background-color: var(--background);
-        z-index: 999;
-=======
-<<<<<<< HEAD
         background-color: #fff;
         z-index: 999 ;
-=======
-        background-color: var(--background);
-        z-index: 999;
->>>>>>> a31c4d69d821e37e1f3d45e9c561b1f0bcc2ff01
->>>>>>> d0255cede50369c32b81ef7216d71435e135c636
     }
 
     .rightBar.open {
@@ -134,5 +125,3 @@ a .active {
         margin: 0 5px;
     }
 }
-=======
->>>>>>> 883eab889022b5199ced584ed01d026390138d04
