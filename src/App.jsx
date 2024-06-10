@@ -6,10 +6,9 @@ import Candidates from "./pages/Candidates";
 import Navbar from './component/Navbar';
 import CompanyNavbar from "./component/CompanyNavbar";
 import JobSeekerNavbar from "./component/Navbar";
-import SideMenuItem from './component/JobSeekerSidebar';
-import  AccordionItem  from "./component/AccordionItem";
-import CompanySidebar from "./component/CompanySidebar";
-
+import CompanySidebar from './component/CompanySidebar/index';
+import JobSeekerMyProfileForm from "./component/JobSeekerMyProfileEdit";
+import CompanyForm from "./component/JobSeekerMyProfileEdit";
 
 
 function App() {
@@ -17,10 +16,8 @@ function App() {
     <>
       <CompanyNavbar></CompanyNavbar>
       {/* <JobSeekerNavbar></JobSeekerNavbar> */}
-      <CompanySidebar></CompanySidebar>
-      
-
-      {/* <Candidates></Candidates> */}
+      {/* <CompanySidebar></CompanySidebar> */}
+      <CompanyForm></CompanyForm>
     </>
   );
 }

@@ -102,7 +102,6 @@ const CandidatesFilter = ({ candidates, onFilter }) => {
             <option value="">All</option>
             {[
               "Aswan",
-              "Assuit",
               "Luxor",
               "Sharm El Sheikh",
               "Giza",
@@ -116,6 +115,23 @@ const CandidatesFilter = ({ candidates, onFilter }) => {
               "el-Arab",
               "Badr",
               "Sadat City",
+              "Obour",
+              "New Cairo",
+              "6th of October City",
+              "Banha",
+              "Shibin El Kom",
+              "Qalyub",
+              "Marsa Matruh",
+              "Arish",
+              "Kafr El Sheikh",
+              "El-Mahalla El-Kubra",
+              "Damietta",
+              "Assiut",
+              "Qena",
+              "Sohag",
+              "Minya",
+              "Beni Suef",
+              "Faiyum",
             ].map((city) => (
               <option key={city}>{city}</option>
             ))}
