@@ -19,7 +19,7 @@
 
 
 }
-Button{
+.myButton{
     background-color: var(--secondary) !important;
 
 }

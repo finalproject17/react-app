@@ -1,24 +1,39 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
-import JobCard from './component/JobCard/index';
-import Candidates from "./pages/Candidates";
-import Navbar from './component/Navbar';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./component/Navbar";
+import Footer from "./component/Footer";
+import SignUp from "./pages/signup";
+import SignUpStepTwo from "./component/signupStepTow";
 import CompanyNavbar from "./component/CompanyNavbar";
-import JobSeekerNavbar from "./component/Navbar";
-import CompanySidebar from './component/CompanySidebar/index';
-import JobSeekerMyProfileForm from "./component/JobSeekerMyProfileEdit";
 import CompanyForm from "./component/JobSeekerMyProfileEdit";
-
+import { RegisterFormProvider } from "./contexts/RegisterFormContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const [isSinUp, setIsSinUp] = useState("false");
+
   return (
-    <>
-      <CompanyNavbar></CompanyNavbar>
-      {/* <JobSeekerNavbar></JobSeekerNavbar> */}
-      {/* <CompanySidebar></CompanySidebar> */}
-      <CompanyForm></CompanyForm>
-    </>
+    <Router>
+      <CompanyNavbar />
+      <CompanyForm />
+
+      <RegisterFormProvider>
+        <ToastContainer theme="colored" />
+        <Navbar />
+        <Routes>
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/step-two" element={<SignUpStepTwo />} />
+        </Routes>
+        <Footer />
+      </RegisterFormProvider>
+    </Router>
   );
 }
 

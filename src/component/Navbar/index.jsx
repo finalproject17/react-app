@@ -35,7 +35,7 @@ const JobSeekerNavbar = () => {
             <Nav.Link
               style={{ color: "#01A84D", fontWeight: "bold" }}
               className="text-decoration-underline"
-              href="register"
+              href="signUp"
             >
               Register
             </Nav.Link>

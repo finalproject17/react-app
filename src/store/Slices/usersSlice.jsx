@@ -24,7 +24,7 @@ export const updateUser = createAsyncThunk(
   "users/updateUser", // Action type string
   async (updatedUser) => {
   
-      const res = await axiosInstance.patch(
+      const res = await axiosInstance.put(
         `/users/66659f993aa76347cff49653`,
         updatedUser
       );
@@ -118,3 +118,6 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+
+
+
