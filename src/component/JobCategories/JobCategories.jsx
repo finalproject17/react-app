@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import styles from './JobCategories.module.css';
-import { FaBullhorn, FaLock, FaUserTie, FaPenFancy, FaChartLine, FaCalculator, FaHeadset } from 'react-icons/fa';
+import { FaBullhorn, FaLock, FaUserTie, FaPenFancy, FaChartLine,  FaHeadset } from 'react-icons/fa';
 
 const categories = [
   { name: 'Markting', icon: <FaBullhorn />, highlight: true },

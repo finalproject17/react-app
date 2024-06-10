@@ -1,24 +1,32 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import './App.css';
+import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Navbar from './component/Navbar/index';
-import Home from '../src/pages/JobSeeker/index'
+import JobSeeker from './pages/JobSeeker'
+//import JobsDetails from './pages/JobsDetails'
+import Login from "./component/login";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Jobs from '../src/pages/Jobs'
+import JobSeekerProfile from './pages/JobSeekerProfile'
+import Contact from './pages/Contact/ContactForm'
+
+
+// import CompanyNav from './component/CompanyNavBar/companyNav'
 
 function App() {
-    return (
-        <Router>
-            {/* <Navbar /> */}
-            <Routes>
-                {/* Define your routes here */}
-                <Route path="/JobSeeker" element={<Home />} />
-                {/* <Route path="/find-jobs" element={<FindJobs />} />
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/register" element={<Register />} /> */}
-            </Routes>
-        </Router>
-    );
+  return (
+    
+    <BrowserRouter>
+      {/* <CompanyNav/> */}
+      <Routes>
+        <Route path='/' element={<JobSeeker />} />
+        <Route path='/Jobs' element={<Jobs />} />
+        <Route path='/profile' element={<JobSeekerProfile />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/contact' element={<Contact />} />
+        {/* <Route path='/profile' element={<SeekingProfile />} /> */}
+      </Routes>
+
+    </BrowserRouter>
+  );
 }
 
 export default App;
