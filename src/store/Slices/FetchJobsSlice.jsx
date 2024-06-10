@@ -81,7 +81,7 @@ const jobsSlice = createSlice({
     name: 'jobs',
     initialState: {
         jobs: [],
-        job: null,
+        job: {},
         count: 0,
         loading: false,
         error: null,
