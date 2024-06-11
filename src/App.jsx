@@ -1,56 +1,49 @@
-import "./App.css";
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import JobSeeker from "./pages/JobSeeker";
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from "./component/login";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Jobs from "../src/pages/Jobs";
+import Jobs from "./pages/Jobs";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
-import Footer from "./component/Footer/index";
-import Navbar from "./component/Navbar/index";
-import JobInfoCard from "./component/JobInfoCard/index"
+import BrowserJobs from './pages/BrowseJobs';
 import "./App.css";
-import JobCard from "./component/JobCard";
-import EduCard from "./component/EduCard";
-import JobCategories from "./component/JobCategories/JobCategories";
-import JobSeekerProfileCard from "./component/jobSeekerProfileCard";
-import JobsDetails from "./pages/JobsDetails";
+import Navbar from "./component/Navbar";
+import Footer from "./component/Footer";
+import SignUp from "./pages/signup";
+import SignUpStepTwo from "./component/signupStepTow";
+import CompanyNavbar from "./component/CompanyNavbar";
+import CompanyForm from "./component/JobSeekerMyProfileEdit";
+import { RegisterFormProvider } from "./contexts/RegisterFormContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import JobSeekerSidebar from './component/JobSeekerSidebar'
+import JobsDetails from './pages/JobsDetails'
+
 function App() {
-  const jobInfo = {
-    img: "Edit.svg", // Replace with your image path
-    text: "UI UX",
-    backgroundColor: "#f0f0f0" // Optional: replace with desired background color
-  };
+  const [isSinUp, setIsSinUp] = useState("false");
+
   return (
-    <>
+    <Router>
+      <CompanyNavbar />
+      <CompanyForm />
 
-     
-   <Navbar/> 
-     <JobsDetails/>
-     
-    <Footer/>
-   {/* <JobInfoCard
-        img={jobInfo.img} 
-        text={jobInfo.text} 
-        backgroundColor={jobInfo.backgroundColor} 
-      />
-  
-  <JobCard/>
-  <EduCard/>
-  <JobSeekerProfileCard/> */}
-  
-
-
-      
-        {/* <Routes>
-          <Route path="/" element={<JobSeeker />} />
-          <Route path="/Jobs" element={<Jobs />} />
-          <Route path="/profile" element={<JobSeekerProfile />} />
-          <Route path="/login" element={<Login />} />
+      <RegisterFormProvider>
+        <ToastContainer theme="colored" />
+        <Navbar />
+        <Routes>
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/step-two" element={<SignUpStepTwo />} />
+          <Route path="/jobseeker" element={<JobSeekerSidebar />} />
+          <Route path="/JobsDetails" element={<JobsDetails />} />
+          <Route path="/Jobs" element={<BrowserJobs />} />
         </Routes>
-     */}
-    </>
+        <Footer />
+        <BrowserJobs/>
+      </RegisterFormProvider>
+    </Router>
   );
 }
 

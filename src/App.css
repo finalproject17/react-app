@@ -21,6 +21,7 @@
 }
 
 
+
 * {
   margin: 0;
   padding: 0;
@@ -39,3 +40,16 @@ h5{
 
 
 }
+
+.form-check-input:checked{
+      background-color: #275C45 !important;
+    border-color: #B4E0D3 !important;
+
+
+}
+.form-control:focus {
+  border-color: var(--Third) !important;
+  box-shadow: 0 0 0 0.1rem #19875424 !important;
+}
+
+

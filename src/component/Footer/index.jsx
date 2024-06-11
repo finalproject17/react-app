@@ -1,3 +1,4 @@
+
 //import React from 'react';
 import styles from "./footer.module.css";
 import { Link } from "react-router-dom";
@@ -87,5 +88,4 @@ const Footer = () => {
     </>
   );
 };
-
 export default Footer;

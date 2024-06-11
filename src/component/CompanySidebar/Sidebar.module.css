@@ -1,0 +1,78 @@
+/* Sidebar.module.css */
+.sidebar {
+    width: 20%;
+    background-color: white !important;
+    padding-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    position: static;
+}
+
+.dashboardContainer {
+    width: 100%;
+}
+
+.navbarBrand {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    color: #28a745; /* Adjust color as needed */
+}
+
+.element {
+    font-size: 1.1em;
+    padding: 15px;
+    color: #262626; /* Default text color */
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding-left: 20%;
+    position: relative;
+}
+
+.activeFlag {
+    width: 6px;
+    height: 72px;
+    background-color: #28a745;
+    margin: 0;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0px;
+}
+
+.navLink {
+    color: #262626;
+    text-decoration: none;
+}
+
+.navLink:hover, .navLink.active {
+    color: #28a745 !important; 
+}
+
+
+.element.active ,.element:hover {
+    background-color: #FAFCF8;
+    color: #28a745 !important; /* Change text color to green */
+    font-weight: bold; 
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 35%;
+        font-size: 0.9rem;
+        z-index: 1000;
+        height: 100%;
+        overflow-y: auto;
+    }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 30%;
+        z-index: 1000;
+        height: 100%;
+        overflow-y: auto;
+    }
+}
+/* Media query for responsiveness */
