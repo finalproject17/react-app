@@ -1,0 +1,90 @@
+.mainCard{
+    background-color: var(--background);
+    border: 1px solid var(--secondary);
+    border-radius: 16px;
+    margin-left: 10rem;
+    margin-top: 23rem;
+    width: 17.813rem;
+    height:54.625rem;
+    position:relative;
+}
+
+.mainCard .mainCard_userImg{
+    position: absolute;
+    top: -3.875rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border:4px solid var(--white);
+    border-radius: 50%;
+}
+
+.mainCard .user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainCard .userDetails{
+    background-color: var(--white);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.25rem;
+    background-color:var(--white);
+    width: 10.625rem;
+    margin-inline: auto;
+    height: 5rem;
+
+}
+
+
+.mainCard .userDetails .userDetails_name{
+    margin-bottom: 6px;
+    font-size:32px;
+    font-weight: bold;
+}
+
+.mainCard .userDetails .userDetails_jobTitle{
+    font-size:16px;
+    font-weight: 400;
+    color: var(--secondary);
+}
+
+.mainCard  .btn{
+margin-bottom: 18px;
+}
+
+li{
+    list-style-type: none;
+}
+
+.mainCard ul{
+    margin-inline: 20px;
+    padding-left: 0 !important;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 28px;
+}
+.contact_section_text{
+
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.socialMedia_icons{
+    display: flex;
+    justify-content: center;
+    margin-block: 18px; 
+}
+.socialMedia_icon{
+    background-color: var(--secondary);
+    width: 1.875rem;
+    height: 1.875rem;
+    color: var(--white);
+   text-align: center;
+    border-radius: 50%;
+    margin-inline: 8px;
+}
+

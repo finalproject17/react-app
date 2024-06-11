@@ -1,0 +1,115 @@
+.heroSection {
+    background: linear-gradient(#F9FFFE, #E7FFE0);
+    padding: 0 20px; 
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden;
+    margin: 0 auto; 
+    max-width: 1200px; 
+    padding: 20px 0; 
+}
+
+.containerContent {
+    max-width: 42%;
+}
+
+.containerContent h1 {
+    font-size: 2.5rem;
+    color: #275C45;
+    font-family: Plus Jakarta Sans;
+}
+
+.highlight {
+    color: #27ae60;
+}
+
+.containerContent p {
+    font-size: 16px;
+    color: #666;
+}
+
+.containerImage img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.searchItem {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 15px;
+}
+
+.searchItem i {
+    position: absolute;
+    left: 10px;
+    color: gray;
+}
+
+.searchSelect {
+    padding: 5px 10px 5px 30px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    color: #989DA6;
+}
+
+.searchSelect.noBorder {
+    border-bottom: none;
+}
+
+.searchSelect:focus {
+    border-bottom: 1px solid #27ae60;
+}
+
+.separator {
+    margin: 0 15px;
+    color: gray;
+}
+
+.searchButton {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #27ae60;
+    color: #fff;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.searchButton i {
+    margin-right: 5px;
+}
+
+.searchButton:hover {
+    background-color: #27ae60;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin: 0 auto; 
+    max-width: 1200px; 
+}

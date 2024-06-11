@@ -1,0 +1,15 @@
+.userItem{
+display: flex;
+align-items: center;
+gap:0 8px;
+margin-top: 11px;
+color: var(  --Paragraph02);
+/* background-color: var(--border01); */
+border: 1px solid var(--border01);
+border-radius: 0.5rem;
+padding-left: 22px;
+width: 12.813rem;
+font-size: 16px;
+font-weight: 500px;
+letter-spacing: 0.5px;
+}
