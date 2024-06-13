@@ -21,17 +21,21 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import JobSeekerSidebar from './component/JobSeekerSidebar'
 import JobsDetails from './pages/JobsDetails'
+import ContactForm from './pages/Contact';
 
 function App() {
   const [isSinUp, setIsSinUp] = useState("false");
 
   return (
+    <>
     <Router>
       <CompanyNavbar />
       <CompanyForm />
 
       <RegisterFormProvider>
         <ToastContainer theme="colored" />
+      <ContactForm></ContactForm>
+      <JobSeekerProfile></JobSeekerProfile>
         <Navbar />
         <Routes>
           <Route path="/SignUp" element={<SignUp />} />
@@ -39,11 +43,13 @@ function App() {
           <Route path="/jobseeker" element={<JobSeekerSidebar />} />
           <Route path="/JobsDetails" element={<JobsDetails />} />
           <Route path="/Jobs" element={<BrowserJobs />} />
+
         </Routes>
         <Footer />
         <BrowserJobs/>
       </RegisterFormProvider>
     </Router>
+    </>
   );
 }
 

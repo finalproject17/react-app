@@ -3,9 +3,10 @@
 import styles from './style.module.css';
 import classNames from 'classnames';
 import Form from 'react-bootstrap/Form';
+import SideMenuItem from '../../component/SideMenuItem';
 import PrimaryButton from '../../component/primaryButton';
 import SecondaryButton from '../../component/SecondayButton';
-// import {faChartLine, faUser, faPenToSquare, faBriefcase, faNewspaper, faBookmark, faGear, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import {faChartLine, faUser, faPenToSquare, faBriefcase, faNewspaper, faBookmark, faGear, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -13,7 +14,7 @@ const Jobs = () => {
     return (
         <>
       <div className={classNames(styles.mainContent,'row','d-flex')}>
-        {/* <div className={classNames(styles.sideMenu,'col-md-4')}>
+        <div className={classNames(styles.sideMenu,'col-md-4')}>
           <SideMenuItem icon={faChartLine} label="Dashboard"/>
           <SideMenuItem icon={faUser} label="My Profile"/>
           <SideMenuItem icon={faPenToSquare} label="Post Job"/>
@@ -22,7 +23,7 @@ const Jobs = () => {
           <SideMenuItem icon={faBookmark} label="Saved Jobs" />
           <SideMenuItem icon={faGear} label="Settings"/>
           <SideMenuItem icon={faArrowRightFromBracket} label="Log Out"/>
-        </div> */}
+        </div>
   
         <div className={classNames(styles.rightSection,'col-md-8', 'm-2','m-auto')}>
           <h3 className={classNames(styles.formTitle, 'mt-4')}>Post Job</h3>

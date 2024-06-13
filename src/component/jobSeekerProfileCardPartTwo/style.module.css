@@ -1,11 +1,16 @@
 .container{
     margin-top: 2.375rem;
     width:17.813rem;
-    height: 29.688rem;
+    /* height: 29.688rem; */
     border: 1px solid var(--secondary);
     border-radius: 1rem;
-    margin-left: 10rem;
+    margin-left: 2rem; 
     position: relative;
+    padding-bottom: 1rem; /* Add padding to avoid the button sticking to the bottom border */
+    /* height: 31.688rem; */
+    min-height: 31.688rem;
+/* overflow: hidden; */
+
 }
 
 

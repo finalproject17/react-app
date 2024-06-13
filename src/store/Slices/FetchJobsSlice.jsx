@@ -61,6 +61,7 @@ export const filterSalary=createAsyncThunk('jobs/filter',async ({minBudget,maxBu
 
 
 
+
 export const updateJob = createAsyncThunk('jobs/updateJob', async ({ id, updatedJob }) => {
     const res = await axiosInstance.patch(`/jobs/update/${id}`, updatedJob);
     return res.data;

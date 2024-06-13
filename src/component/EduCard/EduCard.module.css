@@ -1,9 +1,13 @@
-.card {
+.container{
   width: 40rem;
   height: 11rem;
   background-color: #eff2fb;
   border-radius: 16px;
   position: relative;
+  margin-top: 36px;
+    margin-left: 96px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .triangle {
@@ -51,4 +55,15 @@
      color: var(--Paragraph01);
        margin-top: 8px !important;
    
+
+}
+
+.card-title {
+  font-size: 1.2em;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background: white;
+  padding: 0 10px;
+  z-index: 1;
 }
