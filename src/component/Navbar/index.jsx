@@ -12,7 +12,7 @@ const JobSeekerNavbar = () => {
       <Container>
         <Navbar.Brand href="#home">
           <img
-            src="logo.svg"
+            src="/logo.svg"
             width="60%"
             className="d-inline-block align-top"
             alt="Careers logo"

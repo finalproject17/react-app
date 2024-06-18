@@ -26,8 +26,12 @@
 
 .title {
   margin-bottom: 0.25rem; /* 4px */
+  
 }
-
+.titleLink{
+  text-decoration: none !important;
+  color: var(--Paragraph01);
+}
 .subtext {
   font-size: 0.75rem; /* 12px */
   color: var(--PlaceHolder);

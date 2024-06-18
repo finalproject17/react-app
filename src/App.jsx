@@ -26,6 +26,7 @@ function App() {
   const [isSinUp, setIsSinUp] = useState("false");
 
   return (
+    <>
     <Router>
       <CompanyNavbar />
       <CompanyForm />
@@ -37,13 +38,16 @@ function App() {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/step-two" element={<SignUpStepTwo />} />
           <Route path="/jobseeker" element={<JobSeekerSidebar />} />
-          <Route path="/JobsDetails" element={<JobsDetails />} />
+          <Route path="/JobsDetails/:id" element={<JobsDetails />} />
           <Route path="/Jobs" element={<BrowserJobs />} />
         </Routes>
         <Footer />
         <BrowserJobs/>
       </RegisterFormProvider>
     </Router>
+
+     {/* <JobsDetails /> */}
+     </>
   );
 }
 

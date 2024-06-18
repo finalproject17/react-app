@@ -8,19 +8,24 @@ import Horizontal from '../../component/RangeSlider';
 import JobCard from '../../component/JobCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJobs } from '../../store/Slices/FetchJobsSlice';
-
+import {DebounceInput} from 'react-debounce-input';
+import ReactDOM from 'react-dom';
 const BrowseJobs = () => {
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [categories, setCategories] = useState([]);
     const [jobTypes, setJobTypes] = useState([]);
     const [jobLevels, setJobLevels] = useState([]);
     const [Range, setRange] = useState({ mn: 0, mx: 10000 });
+    const [searchInput, setSearchInput] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState('');
     const dispatch = useDispatch();
     const jobs = useSelector((state) => state.jobs.jobs);
     const loading = useSelector((state) => state.jobs.loading);
     const error = useSelector((state) => state.jobs.error);
-
+     
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -46,6 +51,10 @@ const BrowseJobs = () => {
         );
     };
 
+    const handleLocationChange = (e) => {
+        setSelectedLocation(e.target.value);
+    };
+
     const filterJobs = () => {
         let filtered = [...jobs];
 
@@ -65,7 +74,35 @@ const BrowseJobs = () => {
             filtered = filtered.filter(job => job.salary.from >= Range.mn && job.salary.to <= Range.mx);
         }
 
+        if (searchInput) {
+            filtered = filtered.filter(job => job.JobTitle.toLowerCase().includes(searchInput.toLowerCase()));
+        }
+
+        if (selectedLocation) {
+            filtered = filtered.filter(job => job.jobLocation.State === selectedLocation);
+        }
+
         setFilteredJobs(filtered);
+    };
+
+    const handleSearchInputChange = (e) => {
+        const value = e.target.value;
+        setSearchInput(value);
+
+        if (value) {
+            const filteredSuggestions = jobs.filter(job =>
+                job.JobTitle.toLowerCase().includes(value.toLowerCase())
+            );
+            setSuggestions(filteredSuggestions);
+        } else {
+            setSuggestions([]);
+        }
+    };
+
+    const handleSuggestionClick = (suggestion) => {
+        setSearchInput(suggestion.JobTitle);
+        setSuggestions([]);
+        filterJobs();
     };
 
     useEffect(() => {
@@ -76,8 +113,12 @@ const BrowseJobs = () => {
 
     useEffect(() => {
         filterJobs();
-    }, [categories, jobLevels, jobTypes, Range, jobs]);
+    }, [categories, jobLevels, jobTypes, Range, jobs, selectedLocation]);
 
+    useEffect(() => {
+        filterJobs();
+    }, [searchInput]);
+   
     return (
         <>
             <div className={styles.nav}>
@@ -109,21 +150,44 @@ const BrowseJobs = () => {
             </div>
 
             <div className={styles.searchPart}>
-                <input type="text" className={styles.searchInput} placeholder='search...' />
-                <div className={styles.searchForm}>
-                    <button className={styles.searchBtn}>
-                        <GrFormSearch />Search
-                    </button>
-                </div>
-            </div>
+    <DebounceInput
+        type="text"
+        className={styles.searchInput}
+        placeholder="search..."
+        value={searchInput}
+        onChange={handleSearchInputChange}
+        debounceTimeout={1000}
+    />
+    <div className={styles.searchForm}>
+        <button className={styles.searchBtn} onClick={filterJobs}>
+            <GrFormSearch />Search
+        </button>
+    </div>
+    {suggestions.length > 0 && (
+        <ul className={styles.suggestions}>
+            {suggestions.map((suggestion, index) => (
+                <li
+                    key={index}
+                    className={styles.suggestionItem}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                >
+                    {suggestion.JobTitle}
+                </li>
+            ))}
+        </ul>
+    )}
+</div>
 
-            <div className={styles.searchCountResult}>All 1,270 candidates found</div>
-            <div className={`${styles.mainContent}`}>
-                <div className={`${styles.filterSection} d-flex justify-center`}>
+
+            <div className={styles.searchCountResult}><b>You have {filteredJobs.length} jobs to apply ^_^</b></div>
+            <div className={`${styles.mainContent} col-lg-12`}>
+
+                <div className={`${styles.filterSection} d-flex justify-center col-lg-4 col-md-4`}>
                     <div className={styles.filterSectionContent}>
                         <div className={`${styles.filtersectionOne} ${styles.borderBottom}`}>
                             <div className={styles.titleOne}>Location</div>
-                            <select name="text" id="locationFiltration">
+                            <select name="text" id="locationFiltration" value={selectedLocation} onChange={handleLocationChange}>
+                                <option value="">Select Location</option>
                                 <option value="Alexandria">Alexandria</option>
                                 <option value="Al Khankah">Al Khankah</option>
                                 <option value="Arish">Arish</option>
@@ -240,7 +304,7 @@ const BrowseJobs = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`${styles.candidatesSection} `}>
+                <div className={`${styles.candidatesSection} col-lg-8`}>
                     <div className="jobSection">
                         {loading && <div>Loading...</div>}
                         {error && <div>Error: {error}</div>}
@@ -248,6 +312,7 @@ const BrowseJobs = () => {
                         {!loading && !error && 
                             filteredJobs.map(job => (
                                 <JobCard
+                                    id={job._id}
                                     key={job._id}
                                     companyLogo={job.companyLogo}
                                     companyName={job.companyName}

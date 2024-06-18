@@ -173,3 +173,13 @@
   justify-content: center;
   margin-top: 20px;
 }
+.companyLogo .logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+.sideBarContent .content{
+  display: flex;
+}
