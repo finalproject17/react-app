@@ -8,13 +8,14 @@ import JobCategories from '../../component/JobCategories/JobCategories';
 // import SideMenuItem from '../../component/SideMenuItem';
 //import Footer from '../../component/Footer';
 import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
+import JobFinder from '../../component/JobFinder/JobFinder'
 
 
 const JobSeeker = () => {
     return (
         <>
             <div className={styles.heroSection}>
-                <Navbar />
+            <Navbar /> 
                 <div className={styles.container}>
                     <div className={styles.containerContent}>
                         <h1>
@@ -58,6 +59,7 @@ const JobSeeker = () => {
                 </div>
             </div>
             <JobCategories />
+            <JobFinder />
             <WhyChooseUs/>
             <JobSeekerProfileCard/>
             {/* <SideMenuItem /> */}
