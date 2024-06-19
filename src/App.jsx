@@ -6,7 +6,7 @@ import Jobs from "./pages/Jobs";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
 import BrowseJobs from './pages/BrowseJobs';
 import "./App.css";
-import Navbar from "./component/Navbar";
+// import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import SignUp from "./pages/signup";
 import SignUpStepTwo from "./component/signupStepTow";
@@ -18,6 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 import JobSeekerSidebar from './component/JobSeekerSidebar';
 import JobsDetails from './pages/JobsDetails';
 import ContactForm from './pages/Contact';
+import SavedJobs from './component/SavedJobs';
+import JobSeekerNavbar from './component/JobSeekerNavbar';
 
 function App() {
   const [isSignUp, setIsSignUp] = useState("false");
@@ -25,20 +27,21 @@ function App() {
   return (
     <>
       <Router>
-        {/* <CompanyNavbar /> */}
+        <CompanyNavbar />
         <CompanyForm />
 
         <RegisterFormProvider>
           <ToastContainer theme="colored" />
           <ContactForm />
           <JobSeekerProfile />
-          <Navbar />
+          <JobSeekerNavbar />
           <Routes>
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/step-two" element={<SignUpStepTwo />} />
             <Route path="/jobseeker" element={<JobSeekerSidebar />} />
             <Route path="/JobsDetails/:id" element={<JobsDetails />} />
             <Route path="/Jobs" element={<BrowseJobs />} />
+            <Route path='/savedJobs' element={<SavedJobs></SavedJobs>}/>
           </Routes>
           <Footer />
           <BrowseJobs />

@@ -7,20 +7,15 @@ const SavedJobs = () => {
   const dispatch = useDispatch();
   const userId = '66659f993aa76347cff49653'; // Replace with actual user ID from your authentication context or state
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
-  const status = useSelector((state) => state.savedJobs.status);
-  const error = useSelector((state) => state.savedJobs.error);
+  // console.log(savedJobs);
+  // console.log(state.savedJobs.savedJobs);
 
+  // const status = useSelector((state) => state.savedJobs.status);
+  // const error = useSelector((state) => state.savedJobs.error);
   useEffect(() => {
     dispatch(getSavedJobs(userId));
   }, [dispatch, userId]);
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (status === 'failed') {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <div>
@@ -46,7 +41,7 @@ const SavedJobs = () => {
             state={job.state}
             government={job.government}
             salary={job.salary}
-            jobId={job.jobId}
+            // jobId={job.jobId}
           />
         ))
       )}

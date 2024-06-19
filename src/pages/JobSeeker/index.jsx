@@ -2,7 +2,6 @@
 import WhyChooseUs from '../../Sections/WhyChooseUsSection/index'
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
-import Navbar from '../../component/Navbar/index';
 import JobCategories from '../../component/JobCategories/JobCategories';
 // import Login from '../../component/login';
 // import SideMenuItem from '../../component/SideMenuItem';
@@ -15,7 +14,7 @@ const JobSeeker = () => {
     return (
         <>
             <div className={styles.heroSection}>
-            <Navbar /> 
+            {/* <Navbar />  */}
                 <div className={styles.container}>
                     <div className={styles.containerContent}>
                         <h1>
