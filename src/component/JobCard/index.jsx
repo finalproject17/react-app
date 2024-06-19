@@ -1,54 +1,49 @@
-import React from "react";
+
 import styles from "./JobCard.module.css";
 import JobInfoCard from "../JobInfoCard";
-
-const JobCard = () => {
+import { Link } from 'react-router-dom';
+const JobCard = ({id,key,companyLogo,title,JobCategory,JobSubCategory,jobLocation,JobType,description,JoblocationType,jobLevel,jobRequirements,skills,timeStamp,status,state,government,salary}) => {
+  
   return (
-    <div
-      className={` my-5 p-0 d-flex align-items-center ${styles.container}`}
-    >
-      <div className={`${styles.detailsContainer}`}>
+    <div className={`d-flex align-items-center ${styles.container}`} key={key}>
+      <div className={styles.detailsContainer}>
         <div className={`d-flex align-items-center ${styles.padding2}`}>
-          <img src="employer logo square.svg" alt="Employer Logo" />
+          { <img src={companyLogo} alt="Employer Logo" className={styles.imgSize}/>}
           <div className={`d-flex flex-column ${styles.marginLeft}`}>
-            <h5 className={`m-0 ${styles.title}`}>
-              Developer & expert in java c++
+            {/* <p>{key}</p> */}
+         <Link  to={`/JobsDetails/${id}`}  className={styles.titleLink}>  <h5 className={`m-0 ${styles.title}`}>
+              {title}
             </h5>
+            
+            </Link> 
             <div className="d-flex">
-              <img src="clock.svg" alt="Clock Icon" />
-              <p className={`m-0 ${styles.subtext}`}>12 days ago</p>
+              <img src="/clock.svg" alt="Clock Icon" />
+              <p className={`m-0 ${styles.subtext}`}>{timeStamp}</p>
             </div>
           </div>
         </div>
-        {/*Start JobInfo  */}
+        {/* Start JobInfo */}
         <div className={`d-flex ${styles.padding}`}>
           <JobInfoCard
-            img="office bag.svg"
-            text="Full Time"
+            img="/office bag.svg"
+            text={JobType}
             backgroundColor="var(--border02)"
-          ></JobInfoCard>
-          <JobInfoCard img="Building.svg" text="Remote"></JobInfoCard>
-          <JobInfoCard img="location2.svg" text="Egypt, Alex"></JobInfoCard>
-          <JobInfoCard
-            img="dollar coin.svg"
-            text="$900 / Monthly"
-          ></JobInfoCard>
+          />
+          <JobInfoCard img="/Building.svg" text={JoblocationType} />
+          <JobInfoCard img="/location2.svg" text={`${state} ${government}`} />
+          <JobInfoCard img="/dollar coin.svg" text={salary && `${salary.from} / ${salary.to}`} />
         </div>
-
-        {/* End JobInfo  */}
+        {/* End JobInfo */}
         <hr className={styles.separator} />
-        <p className={`${styles.jobDescription}`}>
-          When team members told us they needed more flexibility around where
-          and how they worked, we acted, creating two options to accommodate
-          two...
+        <p className={styles.jobDescription}>
+          {description}
         </p>
       </div>
-      {/*  */}
-      <div className={`${styles.container2}`}>
-        <img className={`${styles.favIcon}`} src="bookmark.svg"></img>
-        <button className={`${styles.button}`}>Apply Now</button>
+      {/* Right side */}
+      <div className={styles.container2}>
+        <img className={styles.favIcon} src="/bookmark.svg" alt="Bookmark Icon" />
+        <button className={styles.button}>Apply Now</button>
       </div>
-      {/*  */}
     </div>
   );
 };

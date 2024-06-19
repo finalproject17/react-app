@@ -2,11 +2,11 @@
 import styles from './style.module.css';
 
 const JobSeekerProfileItem = (
-  { width, height, content, icon: Icon,backgroundColor }
+  { width, height, content, icon: Icon,backgroundColor,additionalclass }
 ) => {
   return (
     <>
-     <div className={styles.userItem} style={{ width, height,backgroundColor }}>
+     <div className={`${styles.userItem} ${additionalclass}`} style={{ width, height,backgroundColor }} >
       <Icon className={styles.icon} />
       <div className={styles.userItem_text}>{content}</div>
      </div>

@@ -81,7 +81,7 @@ const CompanyForm = () => {
               alt="Company Logo"
               style={{ width: "50px", height: "50px", marginRight: "10px" }}
             />
-            <Button variant="success">Upload new photo</Button>
+            <Button className={`${styles.myButton}`} variant="success">Upload new photo</Button>
             <Link className="ms-2 text-danger">Delete</Link>
           </div>
         </Col>

@@ -12,7 +12,7 @@ const JobSeekerNavbar = () => {
       <Container>
         <Navbar.Brand href="#home">
           <img
-            src="logo.svg"
+            src="/logo.svg"
             width="60%"
             className="d-inline-block align-top"
             alt="Careers logo"
@@ -35,7 +35,7 @@ const JobSeekerNavbar = () => {
             <Nav.Link
               style={{ color: "#01A84D", fontWeight: "bold" }}
               className="text-decoration-underline"
-              href="register"
+              href="signUp"
             >
               Register
             </Nav.Link>

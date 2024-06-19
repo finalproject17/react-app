@@ -7,6 +7,9 @@
   /* padding-left: 1.4375rem; */ /* Commented out as it's not being converted to rem */
   justify-content: center;
   gap: 3.5rem; /* 56px */
+  justify-content: center;
+  gap: 3.5rem; /* 56px */
+  margin:2.188rem;
 }
 
 
@@ -23,12 +26,25 @@
 
 .title {
   margin-bottom: 0.25rem; /* 4px */
+  
 }
-
+.titleLink{
+  text-decoration: none !important;
+  color: var(--Paragraph01);
+}
 .subtext {
   font-size: 0.75rem; /* 12px */
   color: var(--PlaceHolder);
 }
+
+.imgSize{
+  width:60px;
+  height:60px;
+  border-radius: 50%;
+}
+
+
+
 
 .separator {
   width: 38.3rem; /* 38.3rem */
@@ -114,7 +130,7 @@
     width: 100%;
   }
   .button {
-                  width: 93%;
+      width: 93%;
   }
   .favIcon {
     /* display: none; */

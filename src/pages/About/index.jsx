@@ -1,12 +1,16 @@
-<<<<<<< HEAD
-import React from 'react';
 
+<<<<<<< HEAD
 =======
->>>>>>> 1bafa587feed4e2213e1ea98426baba11e5dbcac
+// import React from 'react';
+
+
+>>>>>>> b73e854f46434a0ca3cb464cb132ac78e4ced93e
 const About = () => {
+   
+  
     return (
         <div>
-            
+         
         </div>
     );
 }
