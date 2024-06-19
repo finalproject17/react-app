@@ -39,12 +39,18 @@ h5{
 
 
 }
-<<<<<<< HEAD
-=======
 .form-check-input:checked{
       background-color: #275C45 !important;
     border-color: #B4E0D3 !important;
 
 
 }
->>>>>>> a31c4d69d821e37e1f3d45e9c561b1f0bcc2ff01
+.bg-green{
+    background-color: var(--main-color);
+}
+.text-green{
+    color: var(--main-color);
+}
+.custmBorder{
+    border: 1.5px solid var(--border01);
+}

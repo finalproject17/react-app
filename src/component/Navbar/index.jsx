@@ -1,8 +1,19 @@
 import React from "react";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  NavDropdown,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAuth } from "../../contexts/authContext";
 
 const JobSeekerNavbar = () => {
+  const { isLoggedIn, logout } = useAuth();
   return (
     <Navbar
       collapseOnSelect
@@ -24,24 +35,62 @@ const JobSeekerNavbar = () => {
           className="justify-content-end"
         >
           <Nav className="ml-auto p-3">
-            <Nav.Link href="home" className="text-success">
+            <Nav.Link href="/home" className="text-success">
               Home
             </Nav.Link>
             <Nav.Link href="candidates">Candidates</Nav.Link>
             <Nav.Link href="about-us">About Us</Nav.Link>
-            <Nav.Link style={{ paddingRight: "3rem" }} href="contact">
+            <Nav.Link style={{ paddingRight: "2rem" }} href="contact">
               Contact
             </Nav.Link>
-            <Nav.Link
-              style={{ color: "#01A84D", fontWeight: "bold" }}
-              className="text-decoration-underline"
-              href="signUp"
-            >
-              Register
-            </Nav.Link>
-            <Button variant="success" className="ml-2">
-              Sign In
-            </Button>
+            
+            {isLoggedIn ? (
+              <>
+                <NavDropdown
+                  style={{}}
+                  title={
+                    <div className="d-flex align-items-center ">
+                      <Image
+                        src="https://cdn.helperplace.com/misc/jpi/4/Couple%202%20kids%202-sm.webp"
+                        roundedCircle
+                        width="40"
+                        className="me-3"
+                      />
+
+                      <Col
+                        className="applicantInfo"
+                        style={{ fontSize: "10px" }}
+                        xs={3}
+                      >
+                        <h6 className="applicantName">Madonna Adel</h6>
+                        <span className="salery text-green">Your Profile</span>
+                      </Col>
+                    </div>
+                  }
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item href="#account">
+                    My Account
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item onClick={() => logout()}>
+                    Logout
+                  </NavDropdown.Item>
+                  <NavDropdown.Item >
+                    Settings
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="signUp" className="text-success">
+                  Register
+                </Nav.Link>
+                <Button variant="outline-success" className="ml-2" href="login">
+                  Login
+                </Button>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -50,3 +99,4 @@ const JobSeekerNavbar = () => {
 };
 
 export default JobSeekerNavbar;
+

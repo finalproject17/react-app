@@ -4,6 +4,7 @@
     align-items: center;
     height: 889px;
     position: relative;
+    
 }
 
 .register .loginContain {
@@ -87,4 +88,8 @@
     margin-top: 5px;
     font-size: 0.875rem;
     white-space: nowrap;
+    }
+
+    .bage{
+        cursor: "pointer";
     }

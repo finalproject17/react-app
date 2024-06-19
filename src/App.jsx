@@ -13,49 +13,47 @@ import Navbar from "./component/Navbar/index";
 import Footer from "./component/Footer";
 import SignUp from "./pages/signup/index";
 import SignUpStepTwo from "./component/signupStepTow";
-import JobCard from './component/JobCard/index';
+import JobCard from "./component/JobCard/index";
 import Candidates from "./pages/Candidates";
 import CompanyNavbar from "./component/CompanyNavbar";
 import JobSeekerNavbar from "./component/Navbar";
-import SideMenuItem from './component/JobSeekerSidebar';
-import  AccordionItem  from "./component/AccordionItem";
+import SideMenuItem from "./component/JobSeekerSidebar";
+import AccordionItem from "./component/AccordionItem";
 import CompanySidebar from "./component/CompanySidebar";
 
-
-
-import Protected from "./component/Protected/index";
 import { useState } from "react";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleRegister from "./component/GoogleRegister";
+import GoogleRegister from "./component/GoogleAuth";
 import { ToastContainer } from "react-toastify";
- import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./component/login/index";
+import { AuthProvider } from "./contexts/authContext";
+import Guards from "./Guards";
 function App() {
-  const [isSinUp, setIsSinUp] = useState("false");
-   
   return (
-    <BrowserRouter>
-      <Navbar />
-      <RegisterFormProvider>
-        <ToastContainer theme="colored"/>
-        <Routes>
-          {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <RegisterFormProvider>
+          <ToastContainer theme="colored" />
+          <Routes>
+            <Route path="/login" element={<Login />} />
 
-              {/* <Route path="/find-jobs" element={<FindJobs />} />
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/contact" element={<Contact />} />*/}
-
-          <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/step-two" element={<SignUpStepTwo />} />
-        </Routes>
-      </RegisterFormProvider>
-
-      <Footer />
-    </BrowserRouter>
+            {/*<Route path="/about-us" element={<AboutUs />} />*/}
+            {/*-------------------------------- protected routes --------------------------*/}
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route element={<Guards/>}>
+            <Route path="/step-two" element={<SignUpStepTwo />} />
+            {/* <Route path="/find-jobs" element={<FindJobs />} /> */}
+            {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
+            <Route path="/JobSeeker" element={<Candidates />} />
+            </Route>
+          </Routes>
+        </RegisterFormProvider>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 export default App;
-
-
-
-

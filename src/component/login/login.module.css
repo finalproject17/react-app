@@ -7,7 +7,7 @@
 }
 
 .register .registerForm {
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--main-color);
     border-radius: 12.43px;
 }
 
@@ -64,12 +64,6 @@
 }
 .label {
     padding: 0 7px;
-    bottom: 50px;
-    left: 11px;
-}
-
-.label_1 {
-    padding: 0 7px;
-    bottom: 27px;
+    bottom:30px;
     left: 11px;
 }
