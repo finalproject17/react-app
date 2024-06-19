@@ -28,23 +28,25 @@ function App() {
     <>
       <Router>
         <CompanyNavbar />
+        <JobSeekerNavbar></JobSeekerNavbar>
+        <JobSeekerSidebar></JobSeekerSidebar>
         <CompanyForm />
 
         <RegisterFormProvider>
           <ToastContainer theme="colored" />
-          <ContactForm />
-          <JobSeekerProfile />
-          <JobSeekerNavbar />
+          {/* <ContactForm /> */}
+          {/* <JobSeekerProfile /> */}
+          {/* <JobSeekerNavbar /> */}
           <Routes>
-            <Route path="/SignUp" element={<SignUp />} />
+            {/* <Route path="/SignUp" element={<SignUp />} />
             <Route path="/step-two" element={<SignUpStepTwo />} />
             <Route path="/jobseeker" element={<JobSeekerSidebar />} />
             <Route path="/JobsDetails/:id" element={<JobsDetails />} />
             <Route path="/Jobs" element={<BrowseJobs />} />
-            <Route path='/savedJobs' element={<SavedJobs></SavedJobs>}/>
+            <Route path='/savedJobs' element={<SavedJobs></SavedJobs>}/> */}
           </Routes>
-          <Footer />
-          <BrowseJobs />
+          {/* <Footer /> */}
+          {/* <BrowseJobs /> */}
         </RegisterFormProvider>
       </Router>
     </>

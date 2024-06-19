@@ -47,7 +47,7 @@ const JobSeekerNavbar = () => {
             >
               Register
             </Link>
-            <Button variant="success" className="ml-2">
+            <Button variant="success" className="m-0">
               Sign In
             </Button>
           </Nav>

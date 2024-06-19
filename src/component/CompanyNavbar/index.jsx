@@ -30,7 +30,7 @@ const CompanyNavbar = () => {
             <Link className="nav-link" to="/about-us">About Us</Link>
             <Link className="nav-link" to="/contact" style={{ paddingRight: "3rem" }}>Contact</Link>
             <Link className="nav-link text-decoration-underline" to="/register" style={{ color: "#01A84D", fontWeight: "bold" }}>Register</Link>
-            <Button variant="success" className="ml-2">Sign In</Button>
+            <Button variant="success" className="m-0">Sign In</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
