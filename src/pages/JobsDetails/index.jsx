@@ -10,6 +10,11 @@ import { useParams } from 'react-router-dom';
 
 const JobsDetails = () => {
   
+  const photos = [
+    { img: "icon1.png" }, { img: "icon2.png" }, { img: "icon3.png" }, { img: "icon4.png" }, 
+    { img: "icon1.png" }, { img: "icon2.png" }, { img: "icon3.png" }, { img: "icon4.png" }, 
+    { img: "icon1.png" }, { img: "icon2.png" }, { img: "icon4.png" }
+  ];
 
   const btns = {
     primary: "Apply Now",

@@ -5,46 +5,71 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
+import axios from "axios";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { getAllUsersAction, registerUser } from "../../store/Slices/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import GoogleRegister from "../GoogleRegister/index";
+import GoogleRegister from "../GoogleAuth/index";
 import { toast } from "react-toastify";
- 
+
 export default function SignUpStepTwo() {
+  const { formData, updateFormData, nextStep, prevStep } = useFormContext();
+  const navigate = useNavigate();
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const allUsers = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (inputValue && !selectedSkills.includes(inputValue)) {
+        setSelectedSkills([...selectedSkills, inputValue]);
+      }
+      setInputValue("");
+    }
+  };
+
+  const handleRemoveSkill = (skill) => {
+    setSelectedSkills(selectedSkills.filter((item) => item !== skill));
+  };
+
   useEffect(() => {
     dispatch(getAllUsersAction());
   }, [dispatch]);
 
-  const { formData, updateFormData, nextStep, prevStep } = useFormContext();
-  const navigate = useNavigate();
+  useEffect(() => {
+    formik.setFieldValue("skills", selectedSkills);
+  }, [selectedSkills]);
 
   async function signUp(val) {
+    console.log(allUsers);
+    console.log(selectedSkills);
     try {
-      console.log("gdfgfhfh");
       updateFormData(val);
-      
       const User = { ...formData, ...val };
-      const Value = JSON.stringify(User);
-      console.log(Value);
       const isEmailExist = allUsers.find((user) => user.email === User.email);
       const isPhoneExist = allUsers.find((user) => user.phone === User.phone);
-        console.log(isEmailExist)
+      console.log(isEmailExist);
       if (isEmailExist) {
         toast.error("Email already exists");
         return;
-      } else if(isPhoneExist) {
-       toast.error("phone already exists");
-       return;
+      } else if (isPhoneExist) {
+        toast.error("phone already exists");
+        return;
       } else {
-         dispatch(registerUser(User));
-         nextStep();
-         navigate("/home");
+        dispatch(registerUser(User));
+        console.log(User);
+        nextStep();
+        navigate("/login");
       }
     } catch (err) {
-      console.log(err);
+      toast.error(err);
     }
   }
 
@@ -55,6 +80,7 @@ export default function SignUpStepTwo() {
     experienceLevel: Yup.string().required("The Experience Level is required"),
     desiredJobType: Yup.string().required("The Desired Job Type is required"),
     qualifications: Yup.string().required("The Qualifications is required"),
+    skills: Yup.array().min(1, "At least one skill is required"),
   });
 
   const formik = useFormik({
@@ -65,12 +91,12 @@ export default function SignUpStepTwo() {
       experienceLevel: formData.experienceLevel || "",
       desiredJobType: formData.desiredJobType || "",
       qualifications: formData.qualifications || "",
+      skills: formData.skills || selectedSkills,
     },
     validationSchema: validationSchema,
     onSubmit: signUp,
   });
 
-  
   return (
     <section className={styles.register}>
       <div className={`container ${styles.loginContain}`}>
@@ -85,7 +111,6 @@ export default function SignUpStepTwo() {
               </p>
             </div>
             <form onSubmit={formik.handleSubmit}>
-              
               <div className="nameInputs d-flex align-items-center  ">
                 <div
                   className={`form-group position-relative input-component w-50 me-2`}
@@ -160,7 +185,7 @@ export default function SignUpStepTwo() {
                   <div className="position-relative">
                     <label
                       htmlFor="country"
-                      className={`position-absolute bg-white  ${styles.label}`}
+                      className={`position-absolute bg-white ${styles.label}`}
                     >
                       Country
                     </label>
@@ -223,6 +248,7 @@ export default function SignUpStepTwo() {
                   )}
                 </div>
               </div>
+
               <div className="form-group input-component mt-4">
                 <div className="position-relative">
                   <label
@@ -259,6 +285,7 @@ export default function SignUpStepTwo() {
                   )}
                 </div>
               </div>
+
               <div className="form-group input-component mt-4">
                 <div className="position-relative">
                   <label
@@ -317,7 +344,7 @@ export default function SignUpStepTwo() {
                     <option value=""></option>
                     <option value="None">None</option>
                     <option value="Bachelors Degree">Bachelors Degree</option>
-                    <option value="Master's Degreee">Master's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
                   </select>
                 </div>
 
@@ -332,6 +359,48 @@ export default function SignUpStepTwo() {
                   )}
                 </div>
               </div>
+
+              <div className="form-group input-component mt-4">
+                <div className="position-relative">
+                  <label
+                    htmlFor="muliSkills"
+                    className={`position-absolute bg-white ${styles.label}`}
+                  >
+                    Enter Your Skills
+                  </label>
+                  <input
+                    type="text"
+                    name="skills"
+                    id="muliSkills"
+                    className="mt-4 form-control"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
+
+                <div>
+                  {selectedSkills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="badge  m-2 p-2 bg-body-secondary text-secondary-emphasis rounded-2"
+                      onClick={() => handleRemoveSkill(skill)}
+                    >
+                      {skill} &times;
+                    </span>
+                  ))}
+                </div>
+                <div>
+                  {formik.errors.skills && formik.touched.skills ? (
+                    <span className="text-danger p-0 m-0">
+                      {formik.errors.skills}
+                    </span>
+                  ) : (
+                    <span className=" opacity-0">. </span>
+                  )}
+                </div>
+              </div>
+
               <div className="d-flex align-items-center">
                 <button
                   type="button"
@@ -350,7 +419,10 @@ export default function SignUpStepTwo() {
             </form>
             <p>
               Already have an account?
-              <NavLink to="" className="text-success text-decoration-none">
+              <NavLink
+                to="/signin"
+                className="text-success text-decoration-none"
+              >
                 <span>Sign in</span>
               </NavLink>
             </p>
@@ -359,12 +431,6 @@ export default function SignUpStepTwo() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            {/* <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Github
-            </div> */}
-            {/* <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Google
-            </div> */}
             <GoogleRegister></GoogleRegister>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>

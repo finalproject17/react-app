@@ -9,10 +9,6 @@ function AccordionItem({ title, content }) {
 
   return (
     <>
-
-    
-                
-
                 <div className={styles['accordion-item']}>
                 <div className={styles['accordion-header']} onClick={() => setIsActive(!isActive)}>
                     {title}

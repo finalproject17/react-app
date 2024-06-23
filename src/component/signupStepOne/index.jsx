@@ -1,19 +1,19 @@
 // import React from "react";
 import loginImage from "../../assets/images/loginSvg.svg";
 import styles from "./signUpStepOne.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFormContext } from "../../contexts/RegisterFormContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import GoogleRegister from "../GoogleRegister";
+import GoogleRegister from "../GoogleAuth";
 
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
 
   const [isSinUp, setIsSinUp] = useState("false");
-  const [comfirmPassVal, setComfirmPassword] = useState('');
+  const [comfirmPassVal, setComfirmPassword] = useState("");
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
@@ -37,7 +37,6 @@ export default function SignUpStepOne() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
       ),
-    
   });
 
   const formik = useFormik({
@@ -50,14 +49,12 @@ export default function SignUpStepOne() {
     },
     validationSchema: validationSchema,
     onSubmit: (val) => {
-      if (formik.values.password != comfirmPassVal) 
-        return;
-    
+      if (formik.values.password != comfirmPassVal) return;
+
       updateFormData(val);
       nextStep();
     },
   });
-
 
   return (
     <section className={styles.register}>
@@ -132,6 +129,7 @@ export default function SignUpStepOne() {
                   )}
                 </div>
               </div>
+
               <div className="form-group position-relative input-component mt-4">
                 <div className="position-relative">
                   <label
@@ -160,6 +158,7 @@ export default function SignUpStepOne() {
                   )}
                 </div>
               </div>
+
               <div className="form-group position-relative input-component mt-4">
                 <div className="position-relative">
                   <label
@@ -249,6 +248,7 @@ export default function SignUpStepOne() {
                   )}
                 </div>
               </div>
+
               <button
                 type="submit"
                 className="btn btn-success w-100 m-auto mb-3 mt-3 d-flex align-items-center justify-content-center"
@@ -258,7 +258,10 @@ export default function SignUpStepOne() {
             </form>
             <p>
               Already have an account?
-              <NavLink to="" className="text-success text-decoration-none">
+              <NavLink
+                to="/login"
+                className="text-success text-decoration-none"
+              >
                 <span>Sign in</span>
               </NavLink>
             </p>

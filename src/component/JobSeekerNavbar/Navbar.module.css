@@ -1,4 +1,7 @@
+<<<<<<< HEAD:src/component/JobSeekerNavbar/Navbar.module.css
 
+=======
+>>>>>>> Madonna:src/component/Navbar/Navbar.module.css
 /* Navbar.module.css */
 
 .nav {
@@ -86,6 +89,7 @@ a .active {
         padding: 5px;
         overflow: hidden;
         transition: height 0.3s ease-in-out;
+
         background-color: var(--background);
         z-index: 999;
     }
@@ -125,3 +129,17 @@ a .active {
         margin: 0 5px;
     }
 }
+<<<<<<< HEAD:src/component/JobSeekerNavbar/Navbar.module.css
+=======
+
+.seekerImg{
+    width: 10%;
+    
+    border-radius: 50%;
+    padding: 0;
+}
+
+.dropdown-toggle::after {
+    opacity: 0 !important;
+}
+>>>>>>> Madonna:src/component/Navbar/Navbar.module.css

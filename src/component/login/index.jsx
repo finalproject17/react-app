@@ -1,83 +1,100 @@
-import React from "react";
+import React, { useEffect } from "react";
 import loginImage from "../../assets/images/loginSvg.svg";
 import styles from "./login.module.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, getAllUsersAction } from "../../store/Slices/usersSlice";
+import { toast } from "react-toastify";
+
 export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const allUsers = useSelector((state) => state.users.users);
+
+  useEffect(() => {
+    dispatch(getAllUsersAction()); // Fetch all users on component mount
+  }, [dispatch]);
+
+  const signIn = async (values) => {
+    try {
+      const { email, password } = values;
+
+      // Check if the user exists in the fetched user data
+      const isUserFind = allUsers.find((user) => user.email === email);
+
+      if (!isUserFind) {
+        toast.error("Email Not Found");
+      } else {
+     
+        const res = await dispatch(loginUser({ email, password }));
+      
+        if (res.payload && res.payload.token) {
+          localStorage.setItem("token", res.payload.token); 
+          navigate("/home"); 
+        } else {
+          toast.error("Login failed. Please check your credentials."); // Show error if login failed
+        }
+      }
+    } catch (error) {
+      console.error("Error during sign-in process:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("The email is required")
+      .email("Please enter a valid email"),
+    password: Yup.string()
+      .required("The password is required")
+      .min(8, "Minimum length should be 8 characters"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: signIn,
+  });
+
   return (
     <section className={styles.register}>
-      <div className="container d-flex justify-content-between bg-body">
+      <div className={`container ${styles.loginConain}`}>
         <div className={`row ${styles.registerForm}`}>
-          <div className={`${styles.sectionLeft} col-7   p-4`}>
+          <div className={`${styles.sectionLeft} col-7 p-4`}>
             <div className="leftTitle text-center mb-5">
-              <h2>Create Account</h2>
-              <p>
-                Search all the open positions on the web. Get your own
-                personalized salary estimate. Read reviews on over 600,000
-                companies worldwide.
-              </p>
+              <h2>Login to Your Account</h2>
             </div>
-            <form action="">
-              <div className="nameInputs d-flex align-items-center justify-content-between ">
-                <div className={`form-group position-relative input-component w-50 ${styles.inputWrapper}`}>
-                  <label
-                    htmlFor="f-name"
-                    className={`position-absolute bg-white ${styles.label}`}
-                  >
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    name="f-name"
-                    id="f-name"
-                    className="mb-4 form-control"
-                  />
-                </div>
-                <div className={`form-group position-relative input-component w-50 `}>
-                  <label
-                    htmlFor="l-name"
-                    className={`position-absolute bg-white ${styles.label}`}
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    name="l-name"
-                    id="l-name"
-                    className="mb-4 form-control"
-                  />
-                </div>
-              </div>
-              <div className="form-group position-relative input-component">
+            <form onSubmit={formik.handleSubmit}>
+              <div className="form-group position-relative input-component mt-4">
                 <label
                   htmlFor="email"
-                  className={`position-absolute bg-white ${styles.label_1}`}
+                  className={`position-absolute bg-white ${styles.label}`}
                 >
                   Email Address
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   id="email"
-                  className="mb-4 form-control"
+                  className="mt-4 form-control"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.errors.email && formik.touched.email && (
+                  <span className="text-danger">{formik.errors.email}</span>
+                )}
               </div>
-              <div className="form-group position-relative input-component ">
-                <label
-                  htmlFor="phone"
-                  className={`position-absolute bg-white ${styles.label_1}`}
-                >
-                  Phone
-                </label>
-                <input
-                  type="number"
-                  name="phone"
-                  id="phone"
-                  className="mb-4 form-control"
-                />
-              </div>
-              <div className="form-group position-relative input-component ">
+
+              <div className="form-group input-component mt-4">
                 <label
                   htmlFor="password"
-                  className={`position-absolute bg-white ${styles.label_1}`}
+                  className={`position-absolute bg-white ${styles.label}`}
                 >
                   Password
                 </label>
@@ -85,50 +102,42 @@ export default function Login() {
                   type="password"
                   name="password"
                   id="password"
-                  className="mb-4 form-control"
+                  className="mt-4 form-control"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.errors.password && formik.touched.password && (
+                  <span className="text-danger">{formik.errors.password}</span>
+                )}
               </div>
-              <div className="form-group position-relative input-component ">
-                <label
-                  htmlFor="rePassword"
-                  className={`position-absolute bg-white ${styles.label_1}`}
-                >
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  name="rePassword"
-                  id="rePassword"
-                  className="mb-4 form-control"
-                />
-              </div>
-              <button className="btn btn-success w-100 m-auto mb-3 mt-3 d-flex align-items-center justify-content-center">
-                Next
+
+              <button
+                type="submit"
+                className="btn btn-success w-100 mt-3"
+                disabled={formik.isSubmitting}
+              >
+                Login
               </button>
             </form>
+
             <p>
-              Already have an account?
-              <span className="text-success">Sign in</span>
+              Don't have an account?
+              <NavLink
+                to="/signUp"
+                className="text-success text-decoration-none"
+              >
+                Sign Up
+              </NavLink>
             </p>
-            <div className="d-flex justify-content-center align-items-center">
-              <div className={styles.line}></div>
-              <span className="p-2 bg-white">or</span>
-              <div className={styles.line}></div>
-            </div>
-            <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success ">
-              Github
-            </div>
-            <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success ">
-              Google
-            </div>
           </div>
 
           <div className={`${styles.sectionRigth} col-5 `}>
-            <div className="rigth-title">
+            <div className="rigth-title mt-4">
               <h2>Get The Right Job You Deserve</h2>
             </div>
             <div className="rigth-img">
-              <img src={loginImage} alt="login Imge" />
+              <img src={loginImage} alt="login Image" />
             </div>
           </div>
         </div>

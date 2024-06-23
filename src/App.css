@@ -1,6 +1,7 @@
 :root {
     --primary: #275C45;
     --secondary: #01A84D;
+    --main-color: #01A84D;
     --Third: #25D366;
     --Forth: #96E3B9;
     --Fifth:#FAFCF8;
@@ -19,7 +20,6 @@
     --gradient02: linear-gradient(#F9FFFE, #E7FFE0);
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
-
 
 
 * {
@@ -53,3 +53,12 @@ h5{
 }
 
 
+.bg-green{
+    background-color: var(--main-color);
+}
+.text-green{
+    color: var(--main-color);
+}
+.custmBorder{
+    border: 1.5px solid var(--border01);
+}

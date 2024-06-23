@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import JobSeeker from "./pages/JobSeeker";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
@@ -9,58 +9,47 @@ import "./App.css";
 import Footer from "./component/Footer";
 import SignUp from "./pages/signup";
 import SignUpStepTwo from "./component/signupStepTow";
+import JobCard from "./component/JobCard/index";
+import Candidates from "./pages/Candidates";
 import CompanyNavbar from "./component/CompanyNavbar";
-import CompanyForm from "./component/JobSeekerMyProfileEdit";
+// import JobSeekerNavbar from "./component/Navbar";
+import SideMenuItem from "./component/JobSeekerSidebar";
+import AccordionItem from "./component/AccordionItem";
+import CompanySidebar from "./component/CompanySidebar";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleRegister from "./component/GoogleAuth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import JobSeekerSidebar from './component/JobSeekerSidebar';
-import JobsDetails from './pages/JobsDetails';
-import ContactForm from './pages/Contact';
-import SavedJobs from './component/SavedJobs';
-import JobSeekerNavbar from './component/JobSeekerNavbar';
-import Candidates from './pages/Candidates';
-import Jobs from './pages/Jobs';
-import JobsFilter from './component/JobsFilter';
-import JobTable from './component/JobTable';
+import Login from "./component/login/index";
+import { AuthProvider } from "./contexts/authContext";
+import Guards from "./Guards";
+import { Navbar } from 'react-bootstrap';
 
 function App() {
-  const [isSignUp, setIsSignUp] = useState("false");
-
   return (
-    <>
-      <Router>
-        {/* <CompanyNavbar /> */}
-        {/* <JobSeekerNavbar></JobSeekerNavbar> */}
-        {/* <JobSeekerSidebar></JobSeekerSidebar> */}
-        {/* <CompanyForm /> */}
-        {/* <BrowseJobs></BrowseJobs> */}
-        {/* <Candidates></Candidates> */}
-        <JobSeekerNavbar></JobSeekerNavbar>
-        {/* <Jobs></Jobs> */}
-        {/* <JobsFilter></JobsFilter> */}
-        {/* <JobTable></JobTable> */}
-        
-
+    <AuthProvider>
+   
+        <Navbar />
         <RegisterFormProvider>
           <ToastContainer theme="colored" />
-          {/* <ContactForm /> */}
-          {/* <JobSeekerProfile /> */}
-          {/* <JobSeekerNavbar /> */}
           <Routes>
+            <Route path="/login" element={<Login />} />
+
+            {/*<Route path="/about-us" element={<AboutUs />} />*/}
+            {/*-------------------------------- protected routes --------------------------*/}
             <Route path="/SignUp" element={<SignUp />} />
+            <Route element={<Guards/>}>
             <Route path="/step-two" element={<SignUpStepTwo />} />
-            <Route path="/jobseeker" element={<JobSeekerSidebar />} />
-            <Route path="/JobsDetails/:id" element={<JobsDetails />} />
-            <Route path="/jobs" element={<Jobs />} />
-            // <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
-}/>
+            {/* <Route path="/find-jobs" element={<FindJobs />} /> */}
+            {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
+            <Route path="/JobSeeker" element={<Candidates />} />
+            </Route>
           </Routes>
-          {/* <Footer /> */}
-          {/* <BrowseJobs /> */}
         </RegisterFormProvider>
-      </Router>
-    </>
+        <Footer />
+   
+    </AuthProvider>
   );
 }
 
