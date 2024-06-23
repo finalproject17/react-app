@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../../contexts/authContext";
-
+import { UilEllipsisV } from "@iconscout/react-unicons";
 const JobSeekerNavbar = () => {
   const { isLoggedIn, logout } = useAuth();
   return (
@@ -56,7 +56,7 @@ const JobSeekerNavbar = () => {
                         width="40"
                         className="me-3"
                       />
-
+                      
                       <Col
                         className="applicantInfo"
                         style={{ fontSize: "10px" }}
