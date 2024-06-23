@@ -1,9 +1,11 @@
 import React from "react";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Button, Container, NavDropdown, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAuth } from "../../contexts/authContext";
 
 const JobSeekerNavbar = () => {
+  const { isLoggedIn, logout } = useAuth();
   return (
     <Navbar
       collapseOnSelect
@@ -40,16 +42,61 @@ const JobSeekerNavbar = () => {
             <Link to="/contact" className="nav-link" style={{ paddingRight: "3rem" }}>
               Contact
             </Link>
-            <Link
+            {isLoggedIn ? (
+              <>
+                <NavDropdown
+                  style={{}}
+                  title={
+                    <div className="d-flex align-items-center ">
+                      <Image
+                        src="https://cdn.helperplace.com/misc/jpi/4/Couple%202%20kids%202-sm.webp"
+                        roundedCircle
+                        width="40"
+                        className="me-3"
+                      />
+                      
+                      <Col
+                        className="applicantInfo"
+                        style={{ fontSize: "10px" }}
+                        xs={3}
+                      >
+                        <h6 className="applicantName">Madonna Adel</h6>
+                        <span className="salery text-green">Your Profile</span>
+                      </Col>
+                    </div>
+                  }
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item href="#account">
+                    My Account
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item onClick={() => logout()}>
+                    Logout
+                  </NavDropdown.Item>
+                  <NavDropdown.Item >
+                    Settings
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            ) : (
+              <>
+                 <Link
               to="/signUp"
               className="nav-link"
               style={{ color: "#01A84D", fontWeight: "bold", textDecoration: "underline" }}
             >
               Register
             </Link>
-            <Button variant="success" className="m-0">
+            <Link
+            to="/login"
+                          variant="success"
+              className="m-0">
+              
               Sign In
-            </Button>
+            </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

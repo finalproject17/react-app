@@ -27,13 +27,14 @@ import Setting from './component/Setting';
 import { RegisterFormProvider } from './contexts/RegisterFormContext';
 import { ToastContainer } from 'react-bootstrap';
 import Login from './component/login';
+import { AuthProvider } from './contexts/authContext';
 
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
 
   return (
     <>
-
+<AuthProvider>
       <Router>
         {/* <CompanyNavbar /> */}
         {/* <JobSeekerNavbar></JobSeekerNavbar> */}
@@ -61,7 +62,7 @@ export default function App() {
             <Route path="/jobseeker" element={<JobSeekerSidebar />} />
             <Route path="/JobsDetails/:id" element={<JobsDetails />} />
             <Route path="/jobs" element={<Jobs />} />
-            <Route path="/login" element={<Login />} />☻
+            <Route path="/login" element={<Login />} />
             <Route path="/myProfile" element={    <JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>} />
            <Route path="/settings" element={ <Setting></Setting>} />
            <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
@@ -72,7 +73,7 @@ export default function App() {
           {/* <BrowseJobs /> */}
         </RegisterFormProvider>
       </Router>
-  
+      </AuthProvider>
 
     </>
   );
