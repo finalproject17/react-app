@@ -1,7 +1,4 @@
-<<<<<<< HEAD:src/component/JobSeekerNavbar/Navbar.module.css
 
-=======
->>>>>>> Madonna:src/component/Navbar/Navbar.module.css
 /* Navbar.module.css */
 
 .nav {
@@ -129,8 +126,7 @@ a .active {
         margin: 0 5px;
     }
 }
-<<<<<<< HEAD:src/component/JobSeekerNavbar/Navbar.module.css
-=======
+
 
 .seekerImg{
     width: 10%;
@@ -142,4 +138,3 @@ a .active {
 .dropdown-toggle::after {
     opacity: 0 !important;
 }
->>>>>>> Madonna:src/component/Navbar/Navbar.module.css

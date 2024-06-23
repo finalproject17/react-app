@@ -45,7 +45,7 @@ const SavedJobs = () => {
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>
-          <h4 className='mt-4 mb-4'>Saved Jobs</h4>
+          <h4 className='mt-4 mb-5'>Saved Jobs</h4>
           {localSavedJobs.length === 0 ? (
             <Alert variant="info">No saved jobs</Alert>
           ) : (

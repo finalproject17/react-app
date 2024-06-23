@@ -6,8 +6,8 @@
     position: relative;
 }
 
-.register .registerForm {
-    border: 1px solid var(--main-color);
+.registerForm {
+    border: 1px solid var(--secondary);
     border-radius: 12.43px;
 }
 
@@ -56,14 +56,20 @@
     background: #cacaca;
 }
 .inputWrapper {
-   margin-right: 10px; 
+  margin-right: 10px; 
 }
 
 .nameInputs .inputWrapper:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 .label {
     padding: 0 7px;
-    bottom:30px;
+    bottom: 50px;
+    left: 11px;
+}
+
+.label_1 {
+    padding: 0 7px;
+    bottom: 27px;
     left: 11px;
 }
