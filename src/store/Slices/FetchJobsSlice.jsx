@@ -52,6 +52,16 @@ export const postJob = createAsyncThunk('jobs/postJob', async (jobData) => {
     return res.data;
 });
 
+
+//filter the range of salary
+export const filterSalary=createAsyncThunk('jobs/filter',async ({minBudget,maxBudget})=>{
+    const res = await axiosInstance.patch(`/jobs/filter`,{minBudget,maxBudget} );
+    return res.data;
+})
+
+
+
+
 export const updateJob = createAsyncThunk('jobs/updateJob', async ({ id, updatedJob }) => {
     const res = await axiosInstance.patch(`/jobs/update/${id}`, updatedJob);
     return res.data;
@@ -72,7 +82,7 @@ const jobsSlice = createSlice({
     name: 'jobs',
     initialState: {
         jobs: [],
-        job: null,
+        job: {},
         count: 0,
         loading: false,
         error: null,

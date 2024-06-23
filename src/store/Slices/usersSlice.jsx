@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../axioseConfig/instance";
 
+
+
+
 // Register user
 export const registerUser = createAsyncThunk(
   "/users/registerUser",
@@ -21,12 +24,22 @@ export const loginUser = createAsyncThunk(
 
 // Update user
 export const updateUser = createAsyncThunk(
-  "/users/updateUser",
+  "users/updateUser", // Action type string
   async (updatedUser) => {
-    const res = await axiosInstance.put("/users", updatedUser);
-    return res.data;
-  }
+  
+      const res = await axiosInstance.put(
+        `/users/66659f993aa76347cff49653`,
+        updatedUser
+      );
+      return res.data;
+
+    }
+  
 );
+
+
+
+
 
 // Get all users
 export const getAllUsersAction = createAsyncThunk(

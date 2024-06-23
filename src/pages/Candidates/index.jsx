@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import JobSeekerCard from "./../../component/JobSeekerCard/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAction } from "../../store/Slices/usersSlice";
-import CandidatesFilter from "../../component/CandidatesFilter";
+import JobSeekersFilter from "../../component/JobSeekersFilter";
 
 const Candidates = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Candidates = () => {
         <Row>
           {/* Sidebar */}
           <Col md={3}>
-            <CandidatesFilter candidates={candidates} onFilter={handleFilter} />
+            <JobSeekersFilter candidates={candidates} onFilter={handleFilter} />
           </Col>
 
           {/* Main Content */}
@@ -53,7 +53,8 @@ const Candidates = () => {
                 <Col
                   key={index}
                   md={6} // For larger screens, we set md={6}
-                  lg={4} // For extra large screens, we set lg={4}
+                  lg={4}
+                   // For extra large screens, we set lg={4}
                   className="d-flex align-items-center justify-content-center flex-wrap"
                 >
                   <JobSeekerCard candidate={candidate} />

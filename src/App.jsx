@@ -1,58 +1,67 @@
-// import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  BrowserRouter,
-} from "react-router-dom";
-import "./App.css";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./component/Navbar/index";
-// import Home from '../src/pages/JobSeeker/index';
-// import JobSeeker from "../src/pages/JobSeeker";
+import JobSeeker from "./pages/JobSeeker";
+import JobSeekerProfile from "./pages/JobSeekerProfile";
+import BrowseJobs from './pages/BrowseJobs';
+import "./App.css";
+// import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
-import SignUp from "./pages/signup/index";
+import SignUp from "./pages/signup";
 import SignUpStepTwo from "./component/signupStepTow";
-import JobCard from './component/JobCard/index';
-import Candidates from "./pages/Candidates";
-import Navbar from './component/Navbar';
 import CompanyNavbar from "./component/CompanyNavbar";
-import JobSeekerNavbar from "./component/Navbar";
-import SideMenuItem from './component/JobSeekerSidebar';
-import  AccordionItem  from "./component/AccordionItem";
-import CompanySidebar from "./component/CompanySidebar";
-
-
-
-import Protected from "./component/Protected/index";
-import { useState } from "react";
+import CompanyForm from "./component/JobSeekerMyProfileEdit";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleRegister from "./component/GoogleRegister";
 import { ToastContainer } from "react-toastify";
- import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
+import JobSeekerSidebar from './component/JobSeekerSidebar';
+import JobsDetails from './pages/JobsDetails';
+import ContactForm from './pages/Contact';
+import SavedJobs from './component/SavedJobs';
+import JobSeekerNavbar from './component/JobSeekerNavbar';
+import Candidates from './pages/Candidates';
+import Jobs from './pages/Jobs';
+import JobsFilter from './component/JobsFilter';
+import JobTable from './component/JobTable';
+
 function App() {
-  const [isSinUp, setIsSinUp] = useState("false");
-   
+  const [isSignUp, setIsSignUp] = useState("false");
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <RegisterFormProvider>
-        <ToastContainer theme="colored"/>
-        <Routes>
-          {/* <Route path="/JobSeeker" element={<JobSeeker />} /> */}
+    <>
+      <Router>
+        {/* <CompanyNavbar /> */}
+        {/* <JobSeekerNavbar></JobSeekerNavbar> */}
+        {/* <JobSeekerSidebar></JobSeekerSidebar> */}
+        {/* <CompanyForm /> */}
+        {/* <BrowseJobs></BrowseJobs> */}
+        {/* <Candidates></Candidates> */}
+        <JobSeekerNavbar></JobSeekerNavbar>
+        {/* <Jobs></Jobs> */}
+        {/* <JobsFilter></JobsFilter> */}
+        {/* <JobTable></JobTable> */}
+        
 
-          {/* <Route path="/find-jobs" element={<FindJobs />} />
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/contact" element={<Contact />} />*/}
-
-          <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/step-two" element={<SignUpStepTwo />} />
-        </Routes>
-      </RegisterFormProvider>
-
-      <Footer />
-    </BrowserRouter>
+        <RegisterFormProvider>
+          <ToastContainer theme="colored" />
+          {/* <ContactForm /> */}
+          {/* <JobSeekerProfile /> */}
+          {/* <JobSeekerNavbar /> */}
+          <Routes>
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/step-two" element={<SignUpStepTwo />} />
+            <Route path="/jobseeker" element={<JobSeekerSidebar />} />
+            <Route path="/JobsDetails/:id" element={<JobsDetails />} />
+            <Route path="/jobs" element={<Jobs />} />
+            // <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
+}/>
+          </Routes>
+          {/* <Footer /> */}
+          {/* <BrowseJobs /> */}
+        </RegisterFormProvider>
+      </Router>
+    </>
   );
 }
+
 export default App;
