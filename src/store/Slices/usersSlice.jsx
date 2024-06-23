@@ -5,7 +5,7 @@ import axiosInstance from "../../axioseConfig/instance";
 export const registerUser = createAsyncThunk(
   "/users/registerUser",
   async (user) => {
-    const res = await axiosInstance.post("/users/post", user);
+    const res = await axiosInstance.post("/users/register", user);
     return res.data;
   }
 );
@@ -14,12 +14,18 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "/users/loginUser",
   async (userData) => {
-    const res = await axiosInstance.post("/users/login", userData);
-    console.log(res);
-    return res.data;
+    try {
+      const res = await axiosInstance.post("/users/login", userData);
+      console.log(res);
+      return res.data; 
+    } catch (error) {
+     
+      throw error;
+      
+    
+    }
   }
 );
-
 // Update user
 export const updateUser = createAsyncThunk(
   "/users/updateUser",
@@ -68,7 +74,9 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = [action.payload];
+        // Assuming action.payload contains the token
+        localStorage.setItem("token", action.payload.token); // Store token in local storage or state
+        state.users = [action.payload]; // Update state as needed
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
