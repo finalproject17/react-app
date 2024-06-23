@@ -23,6 +23,8 @@ import Candidates from './pages/Candidates';
 import Jobs from './pages/Jobs';
 import JobsFilter from './component/JobsFilter';
 import JobTable from './component/JobTable';
+import JobSeekerMyProfileEdit from './component/JobSeekerMyProfileEdit';
+import Setting from './component/Setting';
 
 function App() {
   const [isSignUp, setIsSignUp] = useState("false");
@@ -37,6 +39,7 @@ function App() {
         {/* <BrowseJobs></BrowseJobs> */}
         {/* <Candidates></Candidates> */}
         <JobSeekerNavbar></JobSeekerNavbar>
+        {/* <JobSeekerMyProfileEdit></JobSeekerMyProfileEdit> */}
         {/* <Jobs></Jobs> */}
         {/* <JobsFilter></JobsFilter> */}
         {/* <JobTable></JobTable> */}
@@ -53,7 +56,9 @@ function App() {
             <Route path="/jobseeker" element={<JobSeekerSidebar />} />
             <Route path="/JobsDetails/:id" element={<JobsDetails />} />
             <Route path="/jobs" element={<Jobs />} />
-            // <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
+            <Route path="/myProfile" element={    <JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>} />
+           <Route path="/settings" element={ <Setting></Setting>} />
+           <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
 }/>
           </Routes>
           {/* <Footer /> */}

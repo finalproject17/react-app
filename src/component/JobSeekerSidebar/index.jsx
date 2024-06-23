@@ -51,7 +51,7 @@ const JobSeekerSidebar = () => {
           )}
           <UilUser></UilUser>
           <Link
-            to="/profile" // Specify the route for My Profile
+            to="/myProfile" // Specify the route for My Profile
             className={`${styles.navLink} ${
               activeItem === "profile" ? styles.active : ""
             }`}
