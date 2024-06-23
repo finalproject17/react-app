@@ -33,6 +33,7 @@ const JobCard = ({ job, id, onRemove }) => {
               setIsFav(false);
               onRemove(jobId);
             }); 
+
        
         })
         .catch((error) => {

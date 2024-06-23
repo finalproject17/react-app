@@ -13,11 +13,11 @@ import JobCard from "./component/JobCard/index";
 import Candidates from "./pages/Candidates";
 import CompanyNavbar from "./component/CompanyNavbar";
 import "react-toastify/dist/ReactToastify.css";
-import JobSeekerSidebar from './component/JobSeekerSidebar';
 import JobsDetails from './pages/JobsDetails';
 import ContactForm from './pages/Contact';
 import SavedJobs from './component/SavedJobs';
 import JobSeekerNavbar from './component/JobSeekerNavbar';
+import JobSeekerSidebar from './component/JobSeekerSidebar';
 
 import Jobs from './pages/Jobs';
 import JobsFilter from './component/JobsFilter';
