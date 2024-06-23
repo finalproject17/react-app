@@ -1,24 +1,22 @@
 .container {
-  width: 52.1875rem; /* 52.1875rem */
-  height: 15rem; /* 15rem */
-  border: 1px solid #01a84d;
+  width: 100%; /* 52.1875rem */
+  border: 1px solid var(--border01);
   border-radius: 1rem; /* 16px */
-  padding-top: 1.25rem; /* 20px */
-  /* padding-left: 1.4375rem; */ /* Commented out as it's not being converted to rem */
-  justify-content: center;
-  gap: 3.5rem; /* 56px */
-  justify-content: center;
-  gap: 3.5rem; /* 56px */
-  margin:2.188rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: background-color 0.3s ease, border 0.3s ease; 
+}
+.container:hover{
+  background-color: var(--Fifth);
+  border: 1px solid var(--secondary);
+
 }
 
+.padding{
+  padding-top: 1rem;
+}
 
-.padding {
-  padding-top: 1.25rem; /* 20px */
-}
-.padding2 {
-  padding-top: 1.25rem; /* 20px */
-}
 
 .marginLeft {
   margin-left: 1rem; /* 16px */
@@ -47,7 +45,7 @@
 
 
 .separator {
-  width: 38.3rem; /* 38.3rem */
+  width:85%; /* 38.3rem */
   /* margin-left: 1.5rem; */ /* Commented out as it's not being converted to rem */
   margin-top: 1rem; /* 16px */
   margin-bottom: 0.875rem; /* 14px */
@@ -60,109 +58,101 @@
   flex-direction: column;
   align-items: end;
   justify-content: center;
-  gap: 8.625rem; /* 138px */
+  gap: 7rem; /* 138px */
 }
 
 .jobDescription {
-  width: 100%; /* 605px */
+  width: 85%; /* 605px */
   font-size: 1rem; /* 1rem */
   font-weight: 400;
   line-height: 1.5rem; /* 24px */
+  margin: 0;
+  color: var(--Paragraph01);
 }
 
 .button {
-  width: 6.5rem; /* 104px */
-  height: 2.125rem; /* 34px */
   border: none;
-  border-radius: 0.5rem; /* 8px */
   background-color: #01a84d;
   color: white;
   font-size: 1rem; /* 1rem */
-}
-.favIcon {
+  margin: 0; 
+  padding:0.4rem 0.9rem;
 }
 
 .detailsContainer {
-     width: 75%;
+     width: 85%;
+}
+.fav{
+  width: 30px;
+  height:30;
 }
 
 
-@media only screen and (max-width: 600px) {
-
-}
-
-@media only screen and (max-width: 992px) {
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
   .container {
-    gap: 0;
-    width: 44rem;
-  }
-  .detailsContainer {
-    width: 35.375rem;
-  }
-  .jobDescription {
-    
-  }
-  .separator {
-    width: 34.3rem;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .container {
-    width: 34rem;
-    height: 20rem;
-    display: flex;
     flex-direction: column;
-    position: relative;
-  }
-  .container2 {
-    display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-  }
-  .detailsContainer {
-    width: 31.375rem;
-  }
-  .jobDescription {
- 
-  }
-  .separator {
+    justify-content: center;
+
+    gap: 0;
+
+}
+.container2
+{
+  width: 100%;
+
+  gap:0;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+  .button{
     width: 100%;
   }
-  .button {
-      width: 93%;
-  }
-  .favIcon {
-    /* display: none; */
-    position: absolute;
-    top: 14px;
-    right: 14px;
-  }
-  .padding2 {
-    padding-top: 0; /* 20px */
-  }
-}
-@media only screen and (max-width: 600px) {
-  .container {
-    width: 26rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-    .button {
-    width: 23.5rem;
-    
-  }
   .detailsContainer{
-            width: 23.375rem;
-
+    width: 100%;
+    padding-bottom: 1rem;
+}
   }
-      .jobDescription {
-      
-    }
+  /* Your CSS code here */
+
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .button {
+    border: none;
+    background-color: #01a84d;
+    color: white;
+    font-size: 0.7rem; /* 1rem */
+    margin: 0; 
+    padding:0.3rem 0.8rem;
+  }
+
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+
 }
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  .button {
+    border: none;
+    border-radius: 0.5rem; /* 8px */
+    background-color: #01a84d;
+    color: white;
+    font-size: 0.8rem; /* 1rem */
+    margin: 0; 
+    padding:0.3rem 0.8rem;
+  }}
+
+/* Extra large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {
+  /* Your CSS code here */
+}
+
+/* XX large devices (larger desktops, less than 1600px) */
+@media (max-width: 1599.98px) {
+  /* Your CSS code here */
+}
+

@@ -3,7 +3,7 @@ import jobsReducer from './Slices/FetchJobsSlice';
 import formReducer from './Slices/FormJobsSlice';
 import userReducer from './Slices/usersSlice' ;
 import companiesReducer from './Slices/companiesSlice'
-import savedJobsReducer from './Slices/savedJobsSlice'; // Adjust the import path as necessary
+import savedJobsReducer from './Slices/savedJobsSlice'; 
 
 const store = configureStore({
     reducer: {

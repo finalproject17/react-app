@@ -1,51 +1,71 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSavedJobs } from '../../store/Slices/savedJobsSlice'; // Adjust the import path as necessary
-import JobCard from '../JobCard'; // Adjust the import path as necessary
+import { getSavedJobs, deleteSavedJob } from '../../store/Slices/savedJobsSlice';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
+import JobCard from '../JobCard';
+import JobSeekerSidebar from '../JobSeekerSidebar';
 
 const SavedJobs = () => {
   const dispatch = useDispatch();
   const userId = '66659f993aa76347cff49653'; // Replace with actual user ID from your authentication context or state
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
-  // console.log(savedJobs);
-  // console.log(state.savedJobs.savedJobs);
+  const [localSavedJobs, setLocalSavedJobs] = useState([]);
 
-  // const status = useSelector((state) => state.savedJobs.status);
-  // const error = useSelector((state) => state.savedJobs.error);
   useEffect(() => {
     dispatch(getSavedJobs(userId));
   }, [dispatch, userId]);
 
+  useEffect(() => {
+    setLocalSavedJobs(savedJobs);
+  }, [savedJobs]);
+
+  const handleRemoveJob = (jobId) => {
+    const updatedJobs = localSavedJobs.filter(savedJob => savedJob.jobId && savedJob.jobId._id !== jobId);
+    setLocalSavedJobs(updatedJobs);
+    dispatch(getSavedJobs(userId));
+
+    // const savedJob = savedJobs.find((savedJob) => savedJob.jobId && savedJob.jobId._id === jobId);
+    // if (savedJob) {
+    //   // console.log(savedJob);
+    //   dispatch(deleteSavedJob(savedJob._id))
+    //     .then(() => {
+    //       // Optionally, refetch saved jobs or handle further UI updates here
+    //       dispatch(getSavedJobs(userId));
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error deleting saved job:', error);
+    //     });
+    // }
+  };
 
   return (
-    <div>
-      {savedJobs.length === 0 ? (
-        <div>No saved jobs</div>
-      ) : (
-        savedJobs.map((job) => (
-          <JobCard
-            key={job.jobId}
-            companyLogo={job.companyLogo}
-            title={job.title}
-            JobCategory={job.JobCategory}
-            JobSubCategory={job.JobSubCategory}
-            jobLocation={job.jobLocation}
-            JobType={job.JobType}
-            description={job.description}
-            JoblocationType={job.JoblocationType}
-            jobLevel={job.jobLevel}
-            jobRequirements={job.jobRequirements}
-            skills={job.skills}
-            timeStamp={job.timeStamp}
-            status={job.status}
-            state={job.state}
-            government={job.government}
-            salary={job.salary}
-            // jobId={job.jobId}
-          />
-        ))
-      )}
-    </div>
+    <Container fluid>
+      <Row>
+        <Col md={3}>
+          <JobSeekerSidebar />
+        </Col>
+        <Col md={9}>
+          <h4 className='mt-4 mb-4'>Saved Jobs</h4>
+          {localSavedJobs.length === 0 ? (
+            <Alert variant="info">No saved jobs</Alert>
+          ) : (
+            localSavedJobs.map((savedJob) => {
+              if (!savedJob || !savedJob.jobId) {
+                return null; // Skip this entry if savedJob or savedJob.jobId is undefined
+              }
+              return (
+                <JobCard
+                  key={savedJob._id}
+                  job={savedJob.jobId}
+                  id={savedJob.jobId._id}
+                  onRemove={handleRemoveJob}
+                />
+              );
+            })
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

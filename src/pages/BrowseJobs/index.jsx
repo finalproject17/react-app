@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { GrFormSearch } from "react-icons/gr";
 import styles from './style.module.css';
-import Footer from '../../component/Footer';
 import Horizontal from '../../component/RangeSlider';
 import JobCard from '../../component/JobCard';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,9 +25,7 @@ const BrowseJobs = () => {
     const loading = useSelector((state) => state.jobs.loading);
     const error = useSelector((state) => state.jobs.error);
      
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+ 
 
     const handleCategoryChange = (e) => {
         const value = e.target.value;
@@ -121,33 +118,7 @@ const BrowseJobs = () => {
    
     return (
         <>
-            <div className={styles.nav}>
-                <div className={styles.logo}>
-                    <img src="../../../assets/careers-logo[1].svg" alt="Logo" />
-                </div>
-                <div className={styles.menuIcon} onClick={toggleMenu}>
-                    {isMenuOpen ? <FaTimes /> : <FaBars />}
-                </div>
-                <div className={`${styles.rightBar} ${isMenuOpen ? styles.open : ''}`}>
-                    <ul className={styles.list}>
-                        <li>
-                            <NavLink to="/JobSeeker" onClick={toggleMenu}>Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/find-jobs" onClick={toggleMenu}>Find jobs</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/about-us" onClick={toggleMenu}>About Us</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/contact" onClick={toggleMenu}>Contact</NavLink>
-                        </li>
-                    </ul>
-                    <div className={styles.listItems}>
-                        <NavLink to="/register" className={styles.registerLink} onClick={toggleMenu}>Sign Out</NavLink>
-                    </div>
-                </div>
-            </div>
+
 
             <div className={styles.searchPart}>
     <DebounceInput
@@ -337,7 +308,7 @@ const BrowseJobs = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+          
         </>
     );
 };

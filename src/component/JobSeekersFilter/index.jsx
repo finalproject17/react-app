@@ -6,16 +6,15 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const CandidatesFilter = ({ candidates, onFilter }) => {
+const JobSeekersFilter = ({ candidates, onFilter }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedExperienceLevels, setSelectedExperienceLevels] = useState([]);
   const [selectedJobTypes, setSelectedJobTypes] = useState([]);
   const [selectedQualifications, setSelectedQualifications] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
 
-  const updateFilter = (prevSelected, value) =>
-    prevSelected.includes(value)
-      ? prevSelected.filter((v) => v !== value)
+  const updateFilter = (prevSelected, value) =>prevSelected.includes(value)
+? prevSelected.filter((v) => v !== value)
       : [...prevSelected, value];
 
   const handleFilterChange = (filterType, value) => {
@@ -109,7 +108,6 @@ const CandidatesFilter = ({ candidates, onFilter }) => {
               "Cairo",
               "Hurghada",
               "Helwan",
-              "Sohag",
               "Quesna",
               "Al Khankah",
               "el-Arab",
@@ -198,7 +196,7 @@ const CandidatesFilter = ({ candidates, onFilter }) => {
           )}
         </Form.Group>
         <hr />
-        <Button type="submit" variant="success" className="w-100">
+        <Button type="submit" variant="success" className="w-100 m-0">
           Filter Now
         </Button>
       </Form>
@@ -206,4 +204,4 @@ const CandidatesFilter = ({ candidates, onFilter }) => {
   );
 };
 
-export default CandidatesFilter;
+export default JobSeekersFilter;

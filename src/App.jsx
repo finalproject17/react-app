@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import JobSeeker from "./pages/JobSeeker";
-import Jobs from "./pages/Jobs";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
 import BrowseJobs from './pages/BrowseJobs';
 import "./App.css";
@@ -20,6 +19,10 @@ import JobsDetails from './pages/JobsDetails';
 import ContactForm from './pages/Contact';
 import SavedJobs from './component/SavedJobs';
 import JobSeekerNavbar from './component/JobSeekerNavbar';
+import Candidates from './pages/Candidates';
+import Jobs from './pages/Jobs';
+import JobsFilter from './component/JobsFilter';
+import JobTable from './component/JobTable';
 
 function App() {
   const [isSignUp, setIsSignUp] = useState("false");
@@ -27,10 +30,17 @@ function App() {
   return (
     <>
       <Router>
-        <CompanyNavbar />
+        {/* <CompanyNavbar /> */}
+        {/* <JobSeekerNavbar></JobSeekerNavbar> */}
+        {/* <JobSeekerSidebar></JobSeekerSidebar> */}
+        {/* <CompanyForm /> */}
+        {/* <BrowseJobs></BrowseJobs> */}
+        {/* <Candidates></Candidates> */}
         <JobSeekerNavbar></JobSeekerNavbar>
-        <JobSeekerSidebar></JobSeekerSidebar>
-        <CompanyForm />
+        {/* <Jobs></Jobs> */}
+        {/* <JobsFilter></JobsFilter> */}
+        {/* <JobTable></JobTable> */}
+        
 
         <RegisterFormProvider>
           <ToastContainer theme="colored" />
@@ -38,12 +48,13 @@ function App() {
           {/* <JobSeekerProfile /> */}
           {/* <JobSeekerNavbar /> */}
           <Routes>
-            {/* <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/SignUp" element={<SignUp />} />
             <Route path="/step-two" element={<SignUpStepTwo />} />
             <Route path="/jobseeker" element={<JobSeekerSidebar />} />
             <Route path="/JobsDetails/:id" element={<JobsDetails />} />
-            <Route path="/Jobs" element={<BrowseJobs />} />
-            <Route path='/savedJobs' element={<SavedJobs></SavedJobs>}/> */}
+            <Route path="/jobs" element={<Jobs />} />
+            // <Route path='/savedjobs' element={        <SavedJobs></SavedJobs>
+}/>
           </Routes>
           {/* <Footer /> */}
           {/* <BrowseJobs /> */}

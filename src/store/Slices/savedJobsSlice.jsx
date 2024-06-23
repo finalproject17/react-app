@@ -13,34 +13,23 @@ export const getSavedJobs = createAsyncThunk(
 // Save a job
 export const postSavedJob = createAsyncThunk(
   'savedJobs/postSavedJob',
-  async ({ userId, jobId }, { rejectWithValue }) => {
-    try {
+  async ({ userId, jobId }) => {
       const res = await axiosInstance.post(`/savedJobs`, { userId, jobId });
       return res.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
-      return rejectWithValue(err.response.data);
-    }
+    
   }
 );
 
-// Delete a saved job
+// Delete a saved job bu saved job id
+
 export const deleteSavedJob = createAsyncThunk(
   'savedJobs/deleteSavedJob',
-  async ({ userId, jobId }, { rejectWithValue }) => {
-    try {
-      const res = await axiosInstance.delete(`/savedJobs`, { data: { userId, jobId } });
-      return res.data;
-    } catch (err) {
-      if (!err.response) {
-        throw err;
-      }
-      return rejectWithValue(err.response.data);
-    }
+  async (savedJobId) => {
+    const res = await axiosInstance.delete(`/savedJobs/${savedJobId}`);
+    return res.data;
   }
 );
+
 
 const savedJobsSlice = createSlice({
   name: 'savedJobs',
@@ -64,7 +53,7 @@ const savedJobsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(postSavedJob.fulfilled, (state, action) => {
-        state.savedJobs.push(action.payload.jobId); // Assuming payload structure
+        state.savedJobs.push(action.payload.jobId);
       })
       
       .addCase(postSavedJob.rejected, (state, action) => {
