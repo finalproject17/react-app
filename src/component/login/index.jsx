@@ -27,14 +27,15 @@ export default function Login() {
       if (!isUserFind) {
         toast.error("Email Not Found");
       } else {
-     
         const res = await dispatch(loginUser({ email, password }));
-      
         if (res.payload && res.payload.token) {
-          localStorage.setItem("token", res.payload.token); 
-          navigate("/home"); 
+          // Save token and user ID in local storage
+          localStorage.setItem("token", res.payload.token);
+          localStorage.setItem("userId", res.payload.user._id);
+
+          navigate(`/home/${res.payload.user._id}`);
         } else {
-          toast.error("Login failed. Please check your credentials."); // Show error if login failed
+          toast.error("Login failed. Please check your credentials.");
         }
       }
     } catch (error) {

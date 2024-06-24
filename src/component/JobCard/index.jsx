@@ -9,8 +9,7 @@ import styles from './JobCard.module.css';
 
 const JobCard = ({ job, id, onRemove }) => {
   const dispatch = useDispatch();
-  const userId = '66659f993aa76347cff49653'; // Replace with actual userId from your application
-
+  const userId = '66659f993aa76347cff49653';
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
   const [isFav, setIsFav] = useState(false);
 
@@ -64,7 +63,7 @@ const JobCard = ({ job, id, onRemove }) => {
         <div className={`d-flex align-items-center ${styles.padding2}`}>
           <img src={job.companyId.companyLogo} alt="Employer Logo" className={styles.imgSize} />
           <div className={`d-flex flex-column ${styles.marginLeft}`}>
-            <Link to={`/JobsDetails/${id}`} className={styles.titleLink}>
+            <Link to={`/JobsDetails/${job._id}`} className={styles.titleLink}>
               <h5 className={`m-0 ${styles.title}`}>{job.JobTitle}</h5>
             </Link>
             <div className="d-flex">

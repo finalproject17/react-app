@@ -1,11 +1,7 @@
-//import React from 'react';
 import WhyChooseUs from '../../Sections/WhyChooseUsSection/index'
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
 import JobCategories from '../../component/JobCategories/JobCategories';
-// import Login from '../../component/login';
-// import SideMenuItem from '../../component/SideMenuItem';
-//import Footer from '../../component/Footer';
 import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
 import JobFinder from '../../component/JobFinder/JobFinder'
 
@@ -57,12 +53,8 @@ const JobSeeker = () => {
                     <Card number="20k+" title="Company" description="We always provide people a complete <br /> solution upon focused of any business" />
                 </div>
             </div>
-            <JobCategories />
-            <JobFinder />
-            <WhyChooseUs/>
-            <JobSeekerProfileCard/>
+         
             {/* <SideMenuItem /> */}
-            <Login />
         </>
     );
 }

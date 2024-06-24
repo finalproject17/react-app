@@ -36,6 +36,9 @@ const JobSeekerNavbar = () => {
             <Link to="/savedjobs" className="nav-link">
               Saved Jobs
             </Link>
+            <Link to="/candidates" className="nav-link">
+            candidates
+            </Link>
             <Link to="/about-us" className="nav-link">
               About Us
             </Link>
@@ -90,8 +93,11 @@ const JobSeekerNavbar = () => {
             </Link>
             <Link
             to="/login"
-                          variant="success"
-              className="m-0">
+            variant="success"
+            className="nav-link"
+            style={{ color: "#01A84D", fontWeight: "bold", textDecoration: "underline" }}
+            >
+
               
               Sign In
             </Link>
