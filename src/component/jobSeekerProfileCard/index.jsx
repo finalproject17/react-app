@@ -1,30 +1,37 @@
-import  { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { fetchUser } from '../../store/Slices/usersSlice';
-import styles from './style.module.css';
+import { fetchUserById } from '../../store/Slices/usersSlice';
+import { useParams } from 'react-router-dom';
+import styles from './style.module.css'; 
+import EduCard from '../EduCard/index'
+
+// Components
 import PrimaryButton from '../primaryButton';
 import JobSeekerProfileItem from '../jobSeekerProfileItem';
-import { SlLocationPin } from "react-icons/sl";
-import { CgWorkAlt } from "react-icons/cg";
-import { CgProfile } from "react-icons/cg";
-import { BiBookmarkAlt } from "react-icons/bi";
-import { GoClock } from "react-icons/go";
-import { FiPhoneCall } from "react-icons/fi";
-import { TbMail } from "react-icons/tb";
-import { GrFacebookOption } from "react-icons/gr";
-import { BiLogoLinkedin } from "react-icons/bi";
-import { getAllUsersAction } from '../../store/Slices/usersSlice';
+import { SlLocationPin } from 'react-icons/sl';
+import { CgWorkAlt } from 'react-icons/cg';
+import { CgProfile } from 'react-icons/cg';
+import { BiBookmarkAlt } from 'react-icons/bi';
+import { GoClock } from 'react-icons/go';
+import { FiPhoneCall } from 'react-icons/fi';
+import { TbMail } from 'react-icons/tb';
+import { GrFacebookOption } from 'react-icons/gr';
+import { BiLogoLinkedin } from 'react-icons/bi';
 
 const JobSeekerProfileCard = () => {
     const dispatch = useDispatch();
+    const { userId } = useParams();
     const user = useSelector((state) => state.users.user);
     const loading = useSelector((state) => state.users.loading);
     const error = useSelector((state) => state.users.error);
-    const userId = '6665cad3823dd4d470d3622d';
 
     useEffect(() => {
-        dispatch(getAllUsersAction(userId)); // Replace 'userId' with the actual user ID
-    }, [dispatch]);
+        dispatch(fetchUserById(userId));
+    }, [dispatch, userId]);
+
+    // useEffect(() => {
+    //     console.log("Qualifications:", user.qualifications); // Adjust this according to your data structure
+    // }, [user]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -33,7 +40,7 @@ const JobSeekerProfileCard = () => {
 
     return (
         <div className={styles.mainCard}>
-            <div className={styles.mainCard_userImg}><img src={user.profilePhoto || "6.svg"} alt="userProfile" /></div>
+            <div className={styles.mainCard_userImg}><img src={user.profilePhoto || "/default-profile.jpg"} alt="userProfile" /></div>
             <div className={styles.user}>
                 <div className={styles.userDetails}>
                     <div className={styles.userDetails_name}>{user.firstName} {user.lastName}</div>
@@ -55,12 +62,13 @@ const JobSeekerProfileCard = () => {
             </ul>
             <ul>
                 <li><div className={styles.contact_section_text}>Social Media</div></li>
-                <div>
-                    <li className={styles.socialMedia_icons}>
-                        <div className={styles.socialMedia_icon}><GrFacebookOption /></div>
-                        <div className={styles.socialMedia_icon}><BiLogoLinkedin /></div>
-                    </li>
-                </div>
+                <li className={styles.socialMedia_icons}>
+                    <div className={styles.socialMedia_icon}><GrFacebookOption /></div>
+                    <div className={styles.socialMedia_icon}><BiLogoLinkedin /></div>
+                </li>
+                {/* <li>
+    <EduCard qualifications={user.qualifications} name="Qualifications" />
+</li> */}
             </ul>
         </div>
     );

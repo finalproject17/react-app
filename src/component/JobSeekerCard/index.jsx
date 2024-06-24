@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./JobSeekerCard.module.css";
 import Skills from "../Skills";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +8,11 @@ import { getAllUsersAction } from "../../store/Slices/usersSlice";
 import axiosInstance from "../../axioseConfig/instance";
 
 const JobSeekerCard = ({ candidate }) => {
+  const navigate = useNavigate();
+
+  const handleViewProfile = () => {
+    navigate(`/profile/${candidate._id}`);
+  };
 
   return (
     
@@ -53,7 +59,7 @@ const JobSeekerCard = ({ candidate }) => {
               <Skills name="+5" />
             </div>
           </div>
-          <button className={`btn ${styles.viewProfileButton}`}>
+          <button className={`btn ${styles.viewProfileButton}`} onClick={handleViewProfile}>
             View Profile
           </button>
         </div>
@@ -63,3 +69,5 @@ const JobSeekerCard = ({ candidate }) => {
 };
 
 export default JobSeekerCard;
+
+

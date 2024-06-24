@@ -43,7 +43,7 @@ const JobSeeker = () => {
                         </div>
                     </div>
                     <div className={styles.containerImage}>
-                        <img src="../../../assets/Hero section.jpg" alt="Job Search" />
+                        <img src="Hero section.jpg" alt="Job Search" />
                     </div>
                 </div>
 
