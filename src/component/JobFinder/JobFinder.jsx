@@ -9,7 +9,8 @@ const JobFinder = () => {
     <Container className={styles.container}>
       <Row className={styles.row}>
         <Col md={6} className={styles.imageCol}>
-          <img src="../../../assets/work.JPG" alt="Job Search" className={styles.image} />
+          <img src="work.JPG" alt="Job Search" className={styles.image} />
+          
         </Col>
         <Col md={6} className="d-flex flex-column justify-content-center">
           <h1 className={styles.header}>Millions of Jobs. Find the one that suits you.</h1>
