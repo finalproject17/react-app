@@ -17,7 +17,7 @@ const JobsDetails = () => {
   const { id } = useParams();
   const userId = "66659f993aa76347cff49653"; 
   const dispatch = useDispatch();
-  const { jobs, job, loading, error } = useSelector((state) => state.jobs);
+  const { jobs, job} = useSelector((state) => state.jobs);
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
   const [isApplied, setIsApplied] = useState(false);
   const [appliedJobId, setAppliedJobId] = useState(null);
@@ -42,8 +42,7 @@ const JobsDetails = () => {
   }, [appliedJobs, id]);
 
   const handleApplyNow = async (jobId) => {
-     // Check if the job is already applied for
-
+     
       const resultAction = await dispatch(applyForJob({ userId, jobId })).unwrap();
       console.log("Applied job ID:", resultAction);
       await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
