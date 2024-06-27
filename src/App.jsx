@@ -24,6 +24,7 @@ import Footer from "./component/Footer";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { ToastContainer } from "react-bootstrap";
 import { AuthProvider } from "./contexts/authContext";
+import AppliedJobs from "./component/AppliedJobs";
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
@@ -31,26 +32,31 @@ export default function App() {
       <AuthProvider>
         <Router>
           <JobSeekerNavbar></JobSeekerNavbar>
+          <AppliedJobs></AppliedJobs>
           <RegisterFormProvider>
             <ToastContainer theme="colored" />
             <Routes>
               <Route path="/Home" element={<HomePage />} />
               <Route path="/SignUp" element={<SignUp />} />
-              <Route path="/step-two" element={<SignUpStepTwo />} />
+              {/* -----------------------------protected--------------------------*/}
+              {/* <Route element={<Guards />}>
+                <Route path="/step-two" element={<SignUpStepTwo />} />
+              </Route> */}
               <Route path="/jobseeker" element={<JobSeekerSidebar />} />
               <Route path="/JobsDetails/:id" element={<JobsDetails />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/myProfile"
-                element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}/>
+                element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}
+              />
               <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
               <Route path="/candidates" element={<Candidates></Candidates>} />
               <Route path="*" element={<HomePage></HomePage>} />
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
           </RegisterFormProvider>
         </Router>
       </AuthProvider>

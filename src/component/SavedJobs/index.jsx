@@ -13,6 +13,7 @@ const SavedJobs = () => {
 
   useEffect(() => {
     dispatch(getSavedJobs(userId));
+    // console.log(savedJobs);
   }, [dispatch, userId]);
 
   useEffect(() => {

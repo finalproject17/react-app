@@ -2,7 +2,7 @@
 //import React from 'react';
 import styles from "./footer.module.css";
 import { Link } from "react-router-dom";
-
+import { UilEllipsisV } from "@iconscout/react-unicons";
 const Footer = () => {
   return (
     <>
@@ -84,6 +84,8 @@ const Footer = () => {
             <span className={styles.privacy}>Security</span>
           </div>
         </div>
+
+        <UilEllipsisV></UilEllipsisV>
       </div>
     </>
   );
