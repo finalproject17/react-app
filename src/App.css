@@ -63,3 +63,17 @@ h5{
 .custmBorder{
     border: 1.5px solid var(--border01);
 }
+/* .row>* {
+ 
+  padding-left: 0 !important;
+  padding-right: 3rem !important;
+} */
+
+.table>:not(caption)>*>* {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+  padding-right: 0.5rem !important;
+  padding-left: 1rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+}

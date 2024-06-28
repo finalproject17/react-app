@@ -22,6 +22,7 @@ export const applyForJob = createAsyncThunk(
     }
   );
   
+  
 
   
   export const deleteAppliedJob = createAsyncThunk(

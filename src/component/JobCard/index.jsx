@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { UilBookmark } from '@iconscout/react-unicons';
 import { UisBookmark } from '@iconscout/react-unicons-solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/savedJobsSlice'; // Assuming you have a getSavedJobs action
+import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/savedJobsSlice';
 import JobInfoCard from '../JobInfoCard';
 import styles from './JobCard.module.css';
 
@@ -23,17 +23,14 @@ const JobCard = ({ job, id, onRemove }) => {
 
   const handleFavIcon = (jobId) => {
     const savedJob = savedJobs.find((savedJob) => savedJob.jobId && savedJob.jobId._id === jobId);
-  
+
     if (savedJob) {
       dispatch(deleteSavedJob(savedJob._id))
         .then(() => {
-          dispatch(getSavedJobs(userId)).then(() => 
-            {
-              setIsFav(false);
-              onRemove(jobId);
-            }); 
-
-       
+          dispatch(getSavedJobs(userId)).then(() => {
+            setIsFav(false);
+            onRemove(jobId);
+          });
         })
         .catch((error) => {
           console.error('Error deleting saved job:', error);
@@ -53,9 +50,17 @@ const JobCard = ({ job, id, onRemove }) => {
     }
   };
 
+  const truncateDescription = (description, maxLength) => {
+    if (description.length <= maxLength) {
+      return description;
+    }
+    return description.slice(0, maxLength) + '...';
+  };
+
   if (!job) return null;
 
-  const jobLocation = job.jobLocation || {};
+  // Handle jobLocation array
+  const jobLocation = job.jobLocation && job.jobLocation.length > 0 ? job.jobLocation[0] : {};
 
   return (
     <div className={`d-flex align-items-center ${styles.container}`}>
@@ -79,7 +84,7 @@ const JobCard = ({ job, id, onRemove }) => {
           <JobInfoCard img="/dollar coin.svg" text={job.salary && `${job.salary.from} : ${job.salary.to}`} />
         </div>
         <hr className={styles.separator} />
-        <p className={styles.jobDescription}>{job.description}</p>
+        <p className={styles.jobDescription}>{truncateDescription(job.description, 100)}</p> {/* Adjust max length here */}
       </div>
       <div className={styles.container2}>
         {isFav ? (

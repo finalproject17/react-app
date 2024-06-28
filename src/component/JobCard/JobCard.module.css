@@ -31,8 +31,10 @@
   color: var(--Paragraph01);
 }
 .subtext {
-  font-size: 0.75rem; /* 12px */
+  font-size: 0.8rem;
   color: var(--PlaceHolder);
+  padding-left: 2px;
+
 }
 
 .imgSize{

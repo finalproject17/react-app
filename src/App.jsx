@@ -25,6 +25,7 @@ import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { ToastContainer } from "react-bootstrap";
 import { AuthProvider } from "./contexts/authContext";
 import AppliedJobs from "./component/AppliedJobs";
+import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
@@ -32,7 +33,7 @@ export default function App() {
       <AuthProvider>
         <Router>
           <JobSeekerNavbar></JobSeekerNavbar>
-          <AppliedJobs></AppliedJobs>
+          {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>
             <ToastContainer theme="colored" />
             <Routes>
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="/JobsDetails/:id" element={<JobsDetails />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/applied-jobs" element={<AppliedJobs></AppliedJobs>}/>
               <Route
                 path="/myProfile"
                 element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}
