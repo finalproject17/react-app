@@ -10,12 +10,7 @@ import styles from "./Setting.module.css";
 const Setting = () => {
 
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    overview: "",
-    email: "",
-
-  });
+ 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value });
   };

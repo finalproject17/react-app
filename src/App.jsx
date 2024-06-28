@@ -21,9 +21,13 @@ import Login from "./component/login";
 import Candidates from "./pages/Candidates";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
 import Footer from "./component/Footer";
+
+import SendEmailToForgetPassword from "./pages/SendEmailToForgetPassword";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { ToastContainer } from "react-bootstrap";
 import { AuthProvider } from "./contexts/authContext";
+
+
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
@@ -49,6 +53,8 @@ export default function App() {
               <Route path="/candidates" element={<Candidates></Candidates>} />
               <Route path="*" element={<HomePage></HomePage>} />
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
+      
+              <Route path="/endemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
             </Routes>
             <Footer />
           </RegisterFormProvider>
