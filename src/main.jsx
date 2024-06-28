@@ -1,4 +1,4 @@
-//import React from 'react'
+
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
 import store from "./store";
@@ -12,12 +12,13 @@ import './index.css'
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
+  // <React.StrictMode>+
   <GoogleOAuthProvider clientId="87940203805-mcmv9q7a0vo5a4qgh2ql0f5naf39hdbv.apps.googleusercontent.com">
     <Provider store={store}>
       <App />
     </Provider>
   </GoogleOAuthProvider>
-
+  
+  
   // </React.StrictMode>
 );

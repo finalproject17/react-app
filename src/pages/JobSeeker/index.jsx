@@ -1,20 +1,16 @@
-//import React from 'react';
 import WhyChooseUs from '../../Sections/WhyChooseUsSection/index'
 import styles from './JobSeeker.module.css';
 import Card from '../../component/Cards/Cards';
-import Navbar from '../../component/Navbar/index';
 import JobCategories from '../../component/JobCategories/JobCategories';
-import Login from '../../component/login';
-import SideMenuItem from '../../component/SideMenuItem';
-//import Footer from '../../component/Footer';
 import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
+import JobFinder from '../../component/JobFinder/JobFinder'
 
 
 const JobSeeker = () => {
     return (
         <>
             <div className={styles.heroSection}>
-                <Navbar />
+            {/* <Navbar />  */}
                 <div className={styles.container}>
                     <div className={styles.containerContent}>
                         <h1>
@@ -47,7 +43,7 @@ const JobSeeker = () => {
                         </div>
                     </div>
                     <div className={styles.containerImage}>
-                        <img src="../../../assets/Hero section.jpg" alt="Job Search" />
+                        <img src="Hero section.jpg" alt="Job Search" />
                     </div>
                 </div>
 
@@ -57,11 +53,8 @@ const JobSeeker = () => {
                     <Card number="20k+" title="Company" description="We always provide people a complete <br /> solution upon focused of any business" />
                 </div>
             </div>
-            <JobCategories />
-            <WhyChooseUs/>
-            <JobSeekerProfileCard/>
-            <SideMenuItem />
-            <Login />
+         
+            {/* <SideMenuItem /> */}
         </>
     );
 }

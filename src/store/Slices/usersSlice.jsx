@@ -17,20 +17,31 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await axiosInstance.post("/users/login", userData);
       console.log(res);
-      return res.data; 
+      return res.data;
     } catch (error) {
-     
       throw error;
-      
-    
     }
   }
 );
+
+//get User ByI d
+export const fetchUserById = createAsyncThunk(
+  "/users/fetchUserById",
+  async (userId) => {
+    const res = await axiosInstance.get(`/users/${userId}`);
+    console.log(res);
+    return res.data;
+  }
+);
+
 // Update user
 export const updateUser = createAsyncThunk(
-  "/users/updateUser",
+  "users/updateUser", // Action type string
   async (updatedUser) => {
-    const res = await axiosInstance.put("/users", updatedUser);
+    const res = await axiosInstance.put(
+      `/users/66659f993aa76347cff49653`,
+      updatedUser
+    );
     return res.data;
   }
 );
@@ -43,6 +54,13 @@ export const getAllUsersAction = createAsyncThunk(
     return res.data;
   }
 );
+
+//safy
+export const fetchUsers = createAsyncThunk("/users/fetchUsers", async () => {
+  const res = await axiosInstance.get("/users");
+  console.log(res);
+  return res.data;
+});
 
 const userSlice = createSlice({
   name: "users",
@@ -112,11 +130,21 @@ const userSlice = createSlice({
       .addCase(getAllUsersAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchUserById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchUserById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
+
 });
 
 export default userSlice.reducer;
-
-
-

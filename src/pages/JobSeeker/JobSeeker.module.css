@@ -1,26 +1,50 @@
 .heroSection {
     background: linear-gradient(#F9FFFE, #E7FFE0);
-    padding: 0 20px; 
+    padding: 0 20px;
 }
 
 .container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column-reverse;
     align-items: center;
     overflow-x: hidden;
-    margin: 0 auto; 
-    max-width: 1200px; 
-    padding: 20px 0; 
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .containerContent {
-    max-width: 42%;
+    max-width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .containerContent {
+        max-width: 42%;
+        text-align: left;
+        margin-top: 0;
+    }
 }
 
 .containerContent h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #275C45;
-    font-family: Plus Jakarta Sans;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .containerContent h1 {
+        font-size: 2.5rem;
+    }
 }
 
 .highlight {
@@ -28,31 +52,52 @@
 }
 
 .containerContent p {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .containerContent p {
+        font-size: 16px;
+    }
 }
 
 .containerImage img {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     height: auto;
+}
+
+@media (min-width: 768px) {
+    .containerImage img {
+        max-width: 400px;
+    }
 }
 
 .searchBar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: fit-content;
+    margin-top: 20px;
 }
 
 .searchItem {
     display: flex;
     align-items: center;
     position: relative;
-    margin-right: 15px;
+    margin-right: 10px;
+    flex: 1 1 100%;
+}
+
+@media (min-width: 576px) {
+    .searchItem {
+        flex: 1 1 auto;
+    }
 }
 
 .searchItem i {
@@ -68,6 +113,13 @@
     outline: none;
     font-size: 14px;
     color: #989DA6;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .searchSelect {
+        width: auto;
+    }
 }
 
 .searchSelect.noBorder {
@@ -79,20 +131,37 @@
 }
 
 .separator {
+    display: none;
     margin: 0 15px;
     color: gray;
+}
+
+@media (min-width: 576px) {
+    .separator {
+        display: inline-block;
+    }
 }
 
 .searchButton {
     display: flex;
     align-items: center;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 3px;
     background-color: #27ae60;
     color: #fff;
     cursor: pointer;
-    margin-left: auto;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+@media (min-width: 576px) {
+    .searchButton {
+        margin-left: auto;
+        margin-top: 0;
+        width: auto;
+    }
 }
 
 .searchButton i {
@@ -105,11 +174,18 @@
 
 .cardContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding: 20px;
-    flex-wrap: wrap;
-    margin: 0 auto; 
-    max-width: 1200px; 
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+@media (min-width: 576px) {
+    .cardContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }

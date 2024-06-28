@@ -6,8 +6,8 @@
     position: relative;
 }
 
-.register .registerForm {
-    border: 1px solid var(--main-color);
+.registerForm {
+    border: 1px solid var(--secondary);
     border-radius: 12.43px;
 }
 
@@ -32,17 +32,20 @@
 .sectionRigth .rigth-img img {
     width: 444px;
 }
-@media (max-width: 990px) { 
+
+@media (max-width: 990px) {
     .sectionRigth {
         display: none;
     }
-    .sectionLeft{
+
+    .sectionLeft {
         width: 100%;
     }
 }
-@media (max-width: 769px) { 
-  
-    .registerForm{
+
+@media (max-width: 769px) {
+
+    .registerForm {
         width: 95%;
         flex-direction: column;
         align-items: center;
@@ -54,16 +57,30 @@
     width: 300px;
     height: 1px;
     background: #cacaca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .inputWrapper {
-   margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .nameInputs .inputWrapper:last-child {
     margin-right: 0;
 }
+
 .label {
     padding: 0 7px;
-    bottom:30px;
+   bottom: 31px;
     left: 11px;
+}
+
+.label_1 {
+    padding: 0 7px;
+    bottom: 31px;
+    left: 11px;
+}
+.loginSec{
+    margin-top: 150px;
 }

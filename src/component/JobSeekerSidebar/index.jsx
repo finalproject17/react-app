@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./Sidebar.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faFolder, faUser } from "@fortawesome/free-regular-svg-icons";
 import { UilFileCheckAlt } from '@iconscout/react-unicons'
 import { UilTachometerFastAlt } from "@iconscout/react-unicons";
 import { UilUser } from "@iconscout/react-unicons";
@@ -12,8 +10,6 @@ import { UilFileLandscape } from "@iconscout/react-unicons";
 import { UilBookmark } from "@iconscout/react-unicons";
 import { UilCog } from "@iconscout/react-unicons";
 import { UilSignout } from "@iconscout/react-unicons";
-
-
 
 const JobSeekerSidebar = () => {
   const [activeItem, setActiveItem] = useState("dashboard");
@@ -23,10 +19,7 @@ const JobSeekerSidebar = () => {
   };
 
   return (
-    <Navbar
-      bg="light"
-      className={`d-flex flex-column vh-100 ${styles.sidebar}`}
-    >
+    <Navbar bg="light" className={`d-flex flex-column vh-100 ${styles.sidebar}`}>
       <Nav className={`flex-column mt-4 w-100 ${styles.dashboardContainer}`}>
         <div
           className={`d-flex align-items-center ${styles.element} ${
@@ -38,13 +31,14 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilTachometerFastAlt></UilTachometerFastAlt>
-          <Nav.Link
+          <Link
+            to="/dashboard" // Specify the route for Dashboard
             className={`${styles.navLink} ${
               activeItem === "dashboard" ? styles.active : ""
             }`}
           >
             Dashboard
-          </Nav.Link>
+          </Link>
         </div>
         <div
           className={`d-flex align-items-center ${styles.element} ${
@@ -56,14 +50,14 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilUser></UilUser>
-
-          <Nav.Link
+          <Link
+            to="/myProfile" // Specify the route for My Profile
             className={`${styles.navLink} ${
               activeItem === "profile" ? styles.active : ""
             }`}
           >
             My Profile
-          </Nav.Link>
+          </Link>
         </div>
 
         <div
@@ -76,13 +70,14 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilFileLandscape></UilFileLandscape>
-          <Nav.Link
+          <Link
+            to="/manage-cv" // Specify the route for Manage CV
             className={`${styles.navLink} ${
               activeItem === "manage-cv" ? styles.active : ""
             }`}
           >
             Manage CV
-          </Nav.Link>
+          </Link>
         </div>
 
         <div
@@ -95,14 +90,16 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilFileCheckAlt></UilFileCheckAlt>
-          <Nav.Link
+          <Link
+            to="/applied-jobs" // Specify the route for Applied Jobs
             className={`${styles.navLink} ${
               activeItem === "applied-jobs" ? styles.active : ""
             }`}
           >
             Applied Jobs
-          </Nav.Link>
+          </Link>
         </div>
+
         <div
           className={`d-flex align-items-center ${styles.element} ${
             activeItem === "saved-jobs" ? styles.active : ""
@@ -113,14 +110,16 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilBookmark></UilBookmark>
-          <Nav.Link
+          <Link
+            to="/savedJobs" // Specify the route for Saved Jobs
             className={`${styles.navLink} ${
               activeItem === "saved-jobs" ? styles.active : ""
             }`}
           >
             Saved Jobs
-          </Nav.Link>
+          </Link>
         </div>
+
         <div
           className={`d-flex align-items-center ${styles.element} ${
             activeItem === "setting" ? styles.active : ""
@@ -131,14 +130,16 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilCog />
-          <Nav.Link
+          <Link
+            to="/settings" // Specify the route for Settings
             className={`${styles.navLink} ${
               activeItem === "setting" ? styles.active : ""
             }`}
           >
-            Setting
-          </Nav.Link>
+            Settings
+          </Link>
         </div>
+
         <div
           className={`d-flex align-items-center ${styles.element} ${
             activeItem === "log-out" ? styles.active : ""
@@ -149,13 +150,14 @@ const JobSeekerSidebar = () => {
             <span className={styles.activeFlag}></span>
           )}
           <UilSignout></UilSignout>
-          <Nav.Link
+          <Link
+            to="/logout" // Specify the route for Log Out
             className={`${styles.navLink} ${
               activeItem === "log-out" ? styles.active : ""
             }`}
           >
             Log Out
-          </Nav.Link>
+          </Link>
         </div>
       </Nav>
     </Navbar>
