@@ -1,44 +1,66 @@
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJobs, getJobById } from './../../store/Slices/FetchJobsSlice';
 import styles from './jobsDetails.module.css';
 import PrimaryButton from '../../component/primaryButton';
 import SecondaryButton from '../../component/SecondayButton';
-import ClipLoader from 'react-spinners/ClipLoader';
 import { useParams } from 'react-router-dom';
+import { applyForJob, deleteAppliedJob, fetchAppliedJobsByJobSeeker } from '../../store/Slices/AppliedJobsSlice';
 
 const JobsDetails = () => {
-  
-
   const btns = {
     primary: "Apply Now",
     secondary: "Save Job",
     primary2: "Show More"
   };
 
-  const {id} = useParams()
-  // console.log(id)
-
+  const { id } = useParams();
+  const userId = "66659f993aa76347cff49653"; 
   const dispatch = useDispatch();
-  const { jobs, job, loading, error } = useSelector((state) => state.jobs);
-  console.log(jobs)
+  const { jobs, job} = useSelector((state) => state.jobs);
+  const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
+  const [isApplied, setIsApplied] = useState(false);
+  const [appliedJobId, setAppliedJobId] = useState(null);
+
+  // Fetch all jobs and specific job by ID
   useEffect(() => {
     dispatch(getAllJobs());
     dispatch(getJobById(id));
-  }, [dispatch , id]);
+    dispatch(fetchAppliedJobsByJobSeeker({ userId }));
+  }, [dispatch, id, userId]);
 
-  if (loading) {
-    return (
-      <div className={styles.spinnerContainer}>
-        <ClipLoader color={"#123abc"} loading={loading} size={50} />
-      </div>
-    );
-  }
+  // Check if the job is already applied for
+  useEffect(() => {
+    if (appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+      setIsApplied(true);
+      const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId === id);
+      setAppliedJobId(appliedJob._id);
+    } else {
+      setIsApplied(false);
+      setAppliedJobId(null);
+    }
+  }, [appliedJobs, id]);
 
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
+  const handleApplyNow = async (jobId) => {
+     
+      const resultAction = await dispatch(applyForJob({ userId, jobId })).unwrap();
+      console.log("Applied job ID:", resultAction);
+      await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
+      console.log("Posted");
+      setIsApplied(true);
+      setAppliedJobId(resultAction);
+
+  };
+
+  const handleDeleteApplication = async () => {
+  
+      await dispatch(deleteAppliedJob(appliedJobId)).unwrap();
+      await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
+      console.log("Deleted");
+      setIsApplied(false);
+      setAppliedJobId(null);
+ 
+  };
 
   return (
     <div className={styles.container}>
@@ -49,13 +71,16 @@ const JobsDetails = () => {
           </div>
           <div className={styles.content}>
             <h5 className={styles.jobTitle}>{job.JobTitle}</h5>
-            {/* <p className={styles.companyName}>{job.companyId.companyName}</p> */}
             <div className={styles.time}><img src="/Vector2.svg" alt="icon" /> 12 days ago</div>
           </div>
         </div>
         <div className='col-lg-4 col-md-4 col-sm-12'>
           <div className={styles.btns}>
-            <PrimaryButton name={btns.primary} />
+            {isApplied ? (
+              <PrimaryButton onClick={handleDeleteApplication} name="Delete Application" />
+            ) : (
+              <PrimaryButton onClick={() => handleApplyNow(job._id)} name={btns.primary} />
+            )}
             <SecondaryButton name={btns.secondary} />
           </div>
         </div>
@@ -96,16 +121,15 @@ const JobsDetails = () => {
         <div className={`${styles.othersJobsSideBar} col-lg-3 col-md-4 col-sm-6`}>
           <p className={styles.OtherJobs}>Other Jobs</p>
           <div className={styles.parent}>
-           
             <div className={styles.sideBarContent}>
               {jobs.map((job) => (
                 <div key={job._id} className={styles.content}>
                   <div className={styles.companyLogo}>
-                  <img src={job.companyId.companyLogo} alt='companyLogo' className={styles.logo}/>
+                    <img src={job.companyId.companyLogo} alt='companyLogo' className={styles.logo} />
                   </div>
                   <div className={styles.text}>
-                  <h5 className={styles.jobTitleSideBar}>{job.JobTitle}</h5>
-                  <p className={styles.companyNameSideBar}>{job.companyId.companyName}</p>
+                    <h5 className={styles.jobTitleSideBar}>{job.JobTitle}</h5>
+                    <p className={styles.companyNameSideBar}>{job.companyId.companyName}</p>
                   </div>
                 </div>
               ))}
@@ -116,7 +140,6 @@ const JobsDetails = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

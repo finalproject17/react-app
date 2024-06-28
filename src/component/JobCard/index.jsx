@@ -85,7 +85,7 @@ const JobCard = ({ job, id, onRemove }) => {
         ) : (
           <UilBookmark onClick={() => handleFavIcon(job._id)} />
         )}
-        <button className={`${styles.button} btn btn-success`}>Apply Now</button>
+        <button className={`${styles.button} btn btn-success`}>Details</button>
       </div>
     </div>
   );

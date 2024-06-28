@@ -53,7 +53,7 @@ const savedJobsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(postSavedJob.fulfilled, (state, action) => {
-        state.savedJobs.push(action.payload.jobId);
+        state.savedJobs.push(action.payload);
       })
       
       .addCase(postSavedJob.rejected, (state, action) => {

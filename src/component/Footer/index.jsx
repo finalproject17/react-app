@@ -51,7 +51,7 @@ const Footer = () => {
                   type="email"
                   placeholder="Enter your email"
                 />
-                <button className={styles.SendBtn}>Send</button>
+                {/* <button className={styles.SendBtn}>Send</button> */}
               </div>
               <div className={styles.social}>
                 <Link to="" className={styles.link}>

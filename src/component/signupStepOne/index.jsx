@@ -8,7 +8,8 @@ import { useFormContext } from "../../contexts/RegisterFormContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import GoogleRegister from "../GoogleAuth";
-
+import { GoogleLogin } from "@react-oauth/google";
+import {jwtDecode} from 'jwt-decode'
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
 
@@ -270,13 +271,19 @@ export default function SignUpStepOne() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            {/* <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Github
-            </div>
-            <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Google
-            </div> */}
-            <GoogleRegister></GoogleRegister>
+
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                const credentialResponseDecoded = jwtDecode(
+                  credentialResponse.credential
+                );
+                console.log(credentialResponse);
+                console.log(credentialResponseDecoded);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

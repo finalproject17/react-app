@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, getAllUsersAction } from "../../store/Slices/usersSlice";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ export default function Login() {
       <div className={`container ${styles.loginConain}`}>
         <div className={`row ${styles.registerForm}`}>
           <div className={`${styles.sectionLeft} col-7 p-4`}>
-            <div className={styles.loginSec }>
+            <div className={styles.loginSec}>
               <div className="leftTitle text-center my-5">
                 <h2>Login to Your Account</h2>
               </div>
@@ -134,6 +135,24 @@ export default function Login() {
                   Sign Up
                 </NavLink>
               </p>
+              <div className="d-flex justify-content-center align-items-center">
+                <div className={styles.line}></div>
+                <span className="p-2 bg-white">or</span>
+                <div className={styles.line}></div>
+                          
+              </div>
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  const credentialResponseDecoded = jwtDecode(
+                    credentialResponse.credential
+                  );
+                  console.log(credentialResponse);
+                  console.log(credentialResponseDecoded);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
             </div>
           </div>
 
