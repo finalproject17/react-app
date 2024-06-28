@@ -4,8 +4,6 @@ import { fetchUserById } from '../../store/Slices/usersSlice';
 import { useParams } from 'react-router-dom';
 import styles from './style.module.css'; 
 import EduCard from '../EduCard/index'
-
-// Components
 import PrimaryButton from '../primaryButton';
 import JobSeekerProfileItem from '../jobSeekerProfileItem';
 import { SlLocationPin } from 'react-icons/sl';

@@ -14,14 +14,14 @@ export default function Login() {
   const allUsers = useSelector((state) => state.users.users);
 
   useEffect(() => {
-    dispatch(getAllUsersAction()); // Fetch all users on component mount
+    dispatch(getAllUsersAction()); 
   }, [dispatch]);
 
   const signIn = async (values) => {
     try {
       const { email, password } = values;
 
-      // Check if the user exists in the fetched user data
+      
       const isUserFind = allUsers.find((user) => user.email === email);
 
       if (!isUserFind) {

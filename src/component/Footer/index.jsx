@@ -2,7 +2,7 @@
 //import React from 'react';
 import styles from "./footer.module.css";
 import { Link } from "react-router-dom";
-
+import { UilEllipsisV } from "@iconscout/react-unicons";
 const Footer = () => {
   return (
     <>
@@ -51,7 +51,7 @@ const Footer = () => {
                   type="email"
                   placeholder="Enter your email"
                 />
-                <button className={styles.SendBtn}>Send</button>
+                {/* <button className={styles.SendBtn}>Send</button> */}
               </div>
               <div className={styles.social}>
                 <Link to="" className={styles.link}>
@@ -84,6 +84,8 @@ const Footer = () => {
             <span className={styles.privacy}>Security</span>
           </div>
         </div>
+
+        <UilEllipsisV></UilEllipsisV>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ export const getSavedJobs = createAsyncThunk(
   'savedJobs/getSavedJobs',
   async (userId) => {
     const res = await axiosInstance.get(`/savedJobs/${userId}`);
+    console.log(res.data);
     return res.data;
   }
 );
@@ -13,7 +14,7 @@ export const getSavedJobs = createAsyncThunk(
 // Save a job
 export const postSavedJob = createAsyncThunk(
   'savedJobs/postSavedJob',
-  async ({ userId, jobId }) => {
+  async ({ userId, jobId}) => {
       const res = await axiosInstance.post(`/savedJobs`, { userId, jobId });
       return res.data;
     
@@ -53,7 +54,7 @@ const savedJobsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(postSavedJob.fulfilled, (state, action) => {
-        state.savedJobs.push(action.payload.jobId);
+        state.savedJobs.push(action.payload);
       })
       
       .addCase(postSavedJob.rejected, (state, action) => {
