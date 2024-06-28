@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/HomePage";
 import SignUp from "./pages/signup";
-import SignUpStepTwo from "./component/signupStepTow";
+import SignUpStepTwo from "./component/signupStepTwo";
 import JobsDetails from "./pages/JobsDetails";
 import SavedJobs from "./component/SavedJobs";
 import JobSeekerNavbar from "./component/JobSeekerNavbar";
@@ -26,7 +22,6 @@ import { ToastContainer } from "react-bootstrap";
 import { AuthProvider } from "./contexts/authContext";
 import AppliedJobs from "./component/AppliedJobs";
 export default function App() {
-  const [isSignUp, setIsSignUp] = useState("false");
   return (
     <>
       <AuthProvider>
@@ -40,7 +35,7 @@ export default function App() {
               <Route path="/SignUp" element={<SignUp />} />
               {/* -----------------------------protected--------------------------*/}
               {/* <Route element={<Guards />}> */}
-                <Route path="/step-two" element={<SignUpStepTwo />} />
+              <Route path="/step-two" element={<SignUpStepTwo />} />
               {/* </Route> */}
               <Route path="/jobseeker" element={<JobSeekerSidebar />} />
               <Route path="/JobsDetails/:id" element={<JobsDetails />} />

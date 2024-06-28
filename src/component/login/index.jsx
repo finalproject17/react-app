@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser, getAllUsersAction } from "../../store/Slices/usersSlice";
 import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
+import { useAuth } from "../../contexts/authContext";
+import { GoRows } from "react-icons/go";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allUsers = useSelector((state) => state.users.users);
-
+    const { login } = useAuth();
   useEffect(() => {
     dispatch(getAllUsersAction()); 
   }, [dispatch]);
@@ -24,17 +26,16 @@ export default function Login() {
 
       
       const isUserFind = allUsers.find((user) => user.email === email);
-
+      console.log(isUserFind);
       if (!isUserFind) {
         toast.error("Email Not Found");
       } else {
-        const res = await dispatch(loginUser({ email, password }));
+        const res = dispatch(loginUser({ email, password }));
+        console.log("wwwwwwwwww", res);
         if (res.payload && res.payload.token) {
-          // Save token and user ID in local storage
-          localStorage.setItem("token", res.payload.token);
-          localStorage.setItem("userId", res.payload.user._id);
-
-          navigate(`/home/${res.payload.user._id}`);
+          login(res.payload.token);
+          console.log(res.data.token);
+          navigate(`/home`);
         } else {
           toast.error("Login failed. Please check your credentials.");
         }
