@@ -26,6 +26,7 @@ import { ToastContainer } from "react-bootstrap";
 import { AuthProvider } from "./contexts/authContext";
 import AppliedJobs from "./component/AppliedJobs";
 import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
+import ManageCV from "./component/ManageCV/index ";
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
@@ -54,6 +55,8 @@ export default function App() {
               />
               <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
+              <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
+
               <Route path="/candidates" element={<Candidates></Candidates>} />
               <Route path="*" element={<HomePage></HomePage>} />
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
