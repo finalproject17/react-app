@@ -29,6 +29,7 @@ import { AuthProvider } from "./contexts/authContext";
 import AppliedJobs from "./component/AppliedJobs";
 import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
+import Dashboard from "./component/Dashboard";
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
@@ -55,6 +56,7 @@ export default function App() {
                 path="/myProfile"
                 element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}
               />
+              <Route path="/dashboard" element={<Dashboard></Dashboard>} />
               <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
               <Route path="manage-cv" element={<ManageCV></ManageCV>}/>

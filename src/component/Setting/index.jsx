@@ -1,32 +1,31 @@
 // JobSeekerMyProfileEdit.js
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import JobSeekerSidebar from "../JobSeekerSidebar";
 import styles from "./Setting.module.css";
 
 const Setting = () => {
+  const [formData, setFormData] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
 
-
- 
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- 
   return (
     <Container fluid>
       <Row>
         <Col md={3}>
-
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>
-        <h4 className='mt-4 mb-5'>Setting</h4>
+          <h4 className='mt-4 mb-5'>Setting</h4>
 
-   
           <Form className={`${styles.formContainer}`}>
             <Form.Group className="mb-4 position-relative">
               <Form.Label
@@ -34,18 +33,16 @@ const Setting = () => {
                 column
                 sm={2}
               >
-Old Password              </Form.Label>
+                Old Password
+              </Form.Label>
               <Col sm={12}>
                 <Form.Control
-                  name="firstName"
-                  value={formData.firstName}
-                //   onChange={handleChange}
+                  name="oldPassword"
+                  value={formData.oldPassword}
+                  onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
-                  placeholder={
-                    !formData.firstName
-                      ? "Enter Old Password"
-                      : formData.firstName
-                  }
+                  placeholder="Enter Old Password"
+                  type="password"
                 />
               </Col>
             </Form.Group>
@@ -60,13 +57,12 @@ Old Password              </Form.Label>
               </Form.Label>
               <Col sm={12}>
                 <Form.Control
-                  name="overview"
-                  value={formData.overview}
-                //   onChange={handleChange}
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleChange}
                   className={`${styles.jobSeekerInput} ${styles.inputField}`}
-                  placeholder={
-                    !formData.overview ? "Enter New Password" : formData.category
-                  }
+                  placeholder="Enter New Password"
+                  type="password"
                 />
               </Col>
             </Form.Group>
@@ -77,28 +73,22 @@ Old Password              </Form.Label>
                 column
                 sm={2}
               >
-                New Password
+                Confirm Password
               </Form.Label>
               <Col sm={12}>
                 <Form.Control
-                  name="overview"
-                  value={formData.overview}
-                //   onChange={handleChange}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                   className={`${styles.jobSeekerInput} ${styles.inputField}`}
-                  placeholder={
-                    !formData.overview ? "Confirm Password" : formData.category
-                  }
+                  placeholder="Confirm Password"
+                  type="password"
                 />
               </Col>
             </Form.Group>
-
-           
-        
 
             <div className="d-flex justify-content-end">
-              <Button  variant="success">
-                Save Changes
-              </Button>
+              <Button variant="success">Save Changes</Button>
             </div>
           </Form>
         </Col>
