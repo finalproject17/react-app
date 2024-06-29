@@ -121,7 +121,7 @@ export default function Login() {
                 Login
               </button>
             </form>
-
+         <div className="d-flex justify-content-between">
             <p>
               Don't have an account?
               <NavLink
@@ -131,6 +131,14 @@ export default function Login() {
                 Sign Up
               </NavLink>
             </p>
+
+            <NavLink
+                to="/endemailtoforgetpass"
+                className="text-success text-decoration-none"
+              >
+               Forget Password?
+              </NavLink>
+              </div>
           </div>
 
           <div className={`${styles.sectionRigth} col-5 `}>
