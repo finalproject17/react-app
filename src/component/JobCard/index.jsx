@@ -63,7 +63,7 @@ const JobCard = ({ job, id, onRemove }) => {
   const jobLocation = job.jobLocation && job.jobLocation.length > 0 ? job.jobLocation[0] : {};
 
   return (
-    <div className={`d-flex align-items-center ${styles.container}`}>
+    <div className={`d-flex align-items-center ${styles.containerr}`}>
       <div className={styles.detailsContainer}>
         <div className={`d-flex align-items-center ${styles.padding2}`}>
           <img src={job.companyId.companyLogo} alt="Employer Logo" className={styles.imgSize} />
