@@ -34,6 +34,7 @@ export default function App() {
     <>
       <AuthProvider>
         <Router>
+          
           <JobSeekerNavbar></JobSeekerNavbar>
           {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>

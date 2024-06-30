@@ -1,7 +1,5 @@
 // JobSeekerProfile.jsx
-// import  { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-// import axios from 'axios';
 import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
 import JobSeekerProfileCardPartTwo from '../../component/jobSeekerProfileCardPartTwo';
 import Overview from '../../component/overviewC';
@@ -11,11 +9,6 @@ import SkillsList from '../../component/SkillsList';
 import styles from './style.module.css';
 
 const JobSeekerProfile = () => {
-
-
-
-
-
   return (
     <div>
       <header className={styles.header}></header>
@@ -25,12 +18,11 @@ const JobSeekerProfile = () => {
             <JobSeekerProfileCard />
             <JobSeekerProfileCardPartTwo />
           </Col>
-          <Col md={8}>
+          <Col className={styles.mainContent}>
             <Overview />
             <Education name={'Education'}/>
-             <Work name={'Work&Experience'} /> 
-              <SkillsList  />
-         
+            <Work name={'Work & Experience'} />
+            <SkillsList />
           </Col>
         </Row>
       </Container>

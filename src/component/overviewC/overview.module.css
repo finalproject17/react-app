@@ -1,17 +1,14 @@
-/* overview.module.css */
 .container {
   padding: 40px;
 }
 
 .card {
   margin-top: 36px;
-
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: visible;
-  margin-left: 43px;
-
+  margin-left: px;
 }
 
 .card-title {
@@ -49,6 +46,7 @@ strong {
   border-radius: 5px; 
   margin-top: 20px;
 }
+
 .education-item, .experience-item {
   display: flex;
   align-items: flex-start;
@@ -110,6 +108,93 @@ strong {
   width: 2px;
   background-color: tomato;
 }
+
 .card .content p {
   color: #4CAF50;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  .card {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .card-title {
+    font-size: 1em;
+  }
+  .card-body {
+    padding-top: 20px;
+  }
+  .card-text {
+    font-size: 0.9em;
+  }
+  .education-item, .experience-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .education-item .number, .experience-item .number {
+    font-size: 1.2em;
+  }
+  .skills {
+    justify-content: center;
+  }
+}
+.overviewCard {
+  margin-top: 36px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: visible;
+  margin-left: 43px;
+}
+
+.overviewCard .card-body {
+  padding-top: 30px;
+}
+
+.overviewCard .card-text {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.overviewCard .card-title {
+  font-size: 1.2em;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background: white;
+  padding: 0 10px;
+  z-index: 1;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 1200px) {
+  .eduCard, .overviewCard {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  .eduCard, .overviewCard {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  .card-title {
+    font-size: 1em;
+  }
+  .card-body {
+    padding-top: 20px;
+  }
+  .card-text {
+    font-size: 0.9em;
+  }
 }
