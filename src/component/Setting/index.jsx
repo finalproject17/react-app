@@ -1,10 +1,10 @@
-// JobSeekerMyProfileEdit.js
-
 import React, { useState } from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import JobSeekerSidebar from "../JobSeekerSidebar";
 import styles from "./Setting.module.css";
+import { changePassword } from "../../store/Slices/usersSlice";
 
 const Setting = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +13,16 @@ const Setting = () => {
     confirmPassword: "",
   });
 
+  const dispatch = useDispatch();
+  const { loading, message, error } = useSelector((state) => state.users);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(changePassword(formData));
   };
 
   return (
@@ -24,15 +32,14 @@ const Setting = () => {
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>
-          <h4 className='mt-4 mb-5'>Setting</h4>
+          <h4 className="mt-4 mb-5">Setting</h4>
 
-          <Form className={`${styles.formContainer}`}>
+          {message && <Alert variant="success">{message}</Alert>}
+          {error && <Alert variant="danger">{error}</Alert>}
+
+          <Form className={`${styles.formContainer}`} onSubmit={handleSubmit}>
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Old Password
               </Form.Label>
               <Col sm={12}>
@@ -48,11 +55,7 @@ const Setting = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 New Password
               </Form.Label>
               <Col sm={12}>
@@ -68,11 +71,7 @@ const Setting = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Confirm Password
               </Form.Label>
               <Col sm={12}>
@@ -88,7 +87,9 @@ const Setting = () => {
             </Form.Group>
 
             <div className="d-flex justify-content-end">
-              <Button variant="success">Save Changes</Button>
+              <Button variant="success" type="submit" disabled={loading}>
+                {loading ? 'Saving...' : 'Save Changes'}
+              </Button>
             </div>
           </Form>
         </Col>
