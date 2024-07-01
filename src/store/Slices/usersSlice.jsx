@@ -101,7 +101,6 @@ export const requestOTP = createAsyncThunk(
 );
 
 // Verify OTP
-
 export const verifyOTP = createAsyncThunk(
   "users/verifyOTP",
   async ({ otp, email }) => {

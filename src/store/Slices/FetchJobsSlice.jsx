@@ -12,10 +12,12 @@ export const getJobsBySalary = createAsyncThunk('jobs/getJobsBySalary', async ()
     return res.data.jobs;
 });
 
+
 export const getJobById = createAsyncThunk('jobs/getJobById', async (id) => {
     const res = await axiosInstance.get(`/jobs/get/${id}`);
     return res.data.foundedJob;
-});
+  });
+  
 
 export const getJobsByCompanyName = createAsyncThunk('jobs/getJobsByCompanyName', async (companyName) => {
     const res = await axiosInstance.get(`/jobs/getCompany/${companyName}`);
@@ -31,6 +33,7 @@ export const getJobsByLocationGovernment = createAsyncThunk('jobs/getJobsByLocat
     const res = await axiosInstance.get(`/jobs/FilterJobsByLoactionGovernment/${government}`);
     return res.data.Jobs;
 });
+
 
 export const countJobs = createAsyncThunk('jobs/countJobs', async () => {
     const res = await axiosInstance.get('/jobs/countAll');
@@ -58,7 +61,6 @@ export const filterSalary=createAsyncThunk('jobs/filter',async ({minBudget,maxBu
     const res = await axiosInstance.patch(`/jobs/filter`,{minBudget,maxBudget} );
     return res.data;
 })
-
 
 
 

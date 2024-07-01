@@ -4,8 +4,10 @@ const axiosInstance = axios.create({
  baseURL: "http://localhost:3001",
 headers: {
   'Content-Type': 'application/json',
+    //'Job-Id': jobId
 },
 });
+
 
 
 
@@ -17,6 +19,7 @@ axiosInstance.interceptors.request.use(config => {
   return Promise.reject(error);
 });
 
+
 axiosInstance.interceptors.response.use(response => {
   console.log('Response received:', response);
   return response;
@@ -24,24 +27,6 @@ axiosInstance.interceptors.response.use(response => {
   console.error('Response error:', error);
   return Promise.reject(error);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
