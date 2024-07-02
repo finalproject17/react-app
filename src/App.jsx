@@ -21,7 +21,7 @@ import Login from "./component/login";
 import Candidates from "./pages/Candidates";
 import JobSeekerProfile from "./pages/JobSeekerProfile";
 import Footer from "./component/Footer";
-
+import JobApplication from "./pages/JobApplication"
 import SendEmailToForgetPassword from "./pages/SendEmailToForgetPassword";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { ToastContainer } from "react-bootstrap";
@@ -30,12 +30,14 @@ import AppliedJobs from "./component/AppliedJobs";
 import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
 import Dashboard from "./component/Dashboard";
+// import AppliedJobs from './component/AppliedJobs/index';
 export default function App() {
   const [isSignUp, setIsSignUp] = useState("false");
   return (
     <>
       <AuthProvider>
         <Router>
+          
           <JobSeekerNavbar></JobSeekerNavbar>
           {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>
@@ -62,9 +64,10 @@ export default function App() {
               <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
 
               <Route path="/candidates" element={<Candidates></Candidates>} />
-              <Route path="*" element={<HomePage></HomePage>} />
+              
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
-      
+              <Route path="*" element={<HomePage></HomePage>} />
+               <Route path="/applicationform/:jobId" element={<JobApplication/>}/>
               <Route path="/endemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
             </Routes>
             {/* <Footer /> */}

@@ -1,6 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../axioseConfig/instance";
 
+
+
+// Change Password
+export const changePassword = createAsyncThunk(
+  "users/changePassword",
+  async ({ oldPassword, newPassword, confirmPassword }, { rejectWithValue }) => {
+    if (newPassword !== confirmPassword) {
+      return rejectWithValue("Passwords do not match");
+    }
+
+    try {
+      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'User-Id': userId
+        }
+      };
+
+      const response = await axiosInstance.post('/users/change-password', { currentPassword: oldPassword, newPassword }, config);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 // Register user
 export const registerUser = createAsyncThunk(
   "users/registerUser",
@@ -71,7 +101,6 @@ export const requestOTP = createAsyncThunk(
 );
 
 // Verify OTP
-
 export const verifyOTP = createAsyncThunk(
   "users/verifyOTP",
   async ({ otp, email }) => {
@@ -111,6 +140,19 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+    //handle change password
+    .addCase(changePassword.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    })
+    .addCase(changePassword.fulfilled, (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    })
+    .addCase(changePassword.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
       // Handle registerUser
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
