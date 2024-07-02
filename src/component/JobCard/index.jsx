@@ -7,7 +7,7 @@ import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/s
 import JobInfoCard from '../JobInfoCard';
 import styles from './JobCard.module.css';
 
-const JobCard = ({ job, id, onRemove }) => {
+const JobCard = ({job, id, onRemove }) => {
   const dispatch = useDispatch();
   const userId = '66659f993aa76347cff49653';
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
