@@ -9,7 +9,7 @@ import styles from './JobCard.module.css';
 
 const JobCard = ({ job, id, onRemove }) => {
   const dispatch = useDispatch();
-  const userId = '66659f993aa76347cff49653';
+  const userId = '6681e2ab75a50c5ecc4d8e02';
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
   const [isFav, setIsFav] = useState(false);
 

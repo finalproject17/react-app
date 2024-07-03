@@ -8,7 +8,7 @@ import styles from './JobTrackingCircleChart.module.css';
 export default function JobTrackingCircleChart() {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs) || [];
   const dispatch = useDispatch();
-  const userId = "66659f993aa76347cff49653";
+  const userId = "6681e2ab75a50c5ecc4d8e02";
 
   useEffect(() => {
     // Fetch the applied jobs when the component mounts
@@ -70,36 +70,16 @@ export default function JobTrackingCircleChart() {
         />
       </Stack>
       <div className={`d-flex justify-content-center align-items-center pt-5 ${styles.percentageContainer}`}>
-     
-
-        <div className={`d-flex  justify-content-center align-items-baseline `}>
-        <div style={{ width: "20px", height: "8px", backgroundColor: "#01A84D", borderRadius: "5px" }}></div>
-        <div>
-       <p className='m-0 mx-2'>Accepted </p>
-       <p>({chartData.find(item => item.label === 'rejected')?.percentage || '0%'})</p>
-       </div>
-        </div>
-        <div className='d-flex justify-content-center align-items-baseline'>
-          <div style={{ width: "20px", height: "8px", backgroundColor: "#96E3B9", borderRadius: "5px" }}></div>
-       <div>
-       <p className='m-0 mx-2'>Pending </p>
-       <p>({chartData.find(item => item.label === 'rejected')?.percentage || '0%'})</p>
-       </div>
-        </div>
-        <div className='d-flex justify-content-center align-items-baseline'>
-          <div style={{ width: "20px", height: "8px", backgroundColor: "#989DA6", borderRadius: "5px" }}></div>
-       <div>
-       <p className='m-0 mx-2'>Rejected </p>
-       <p>({chartData.find(item => item.label === 'rejected')?.percentage || '0%'})</p>
-       </div>
-        </div>
-
-
-
-
-
+        {chartData.map(({ label, color, percentage }) => (
+          <div key={label} className='d-flex justify-content-center align-items-baseline mx-2'>
+            <div style={{ width: "20px", height: "8px", backgroundColor: color, borderRadius: "5px" }}></div>
+            <div className='mx-2'>
+              <p className='m-0'>{label.charAt(0).toUpperCase() + label.slice(1)}</p>
+              <p>({percentage})</p>
+            </div>
+          </div>
+        ))}
       </div>
-
     </>
   );
 }

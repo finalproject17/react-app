@@ -20,6 +20,10 @@
     --gradient02: linear-gradient(#F9FFFE, #E7FFE0);
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
+.form-control:disabled {
+  background-color: white !important;
+  opacity: 1;
+}
 
 
 

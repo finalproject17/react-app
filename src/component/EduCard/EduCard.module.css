@@ -1,160 +1,63 @@
-.container {
-  background-color: #eff2fb;
-  border-radius: 16px;
-  position: relative;
-  margin-top: 36px;
-  margin-left: 96px;
+/* StyledCard.module.css */
+.card {
+  background-color: var(--background);
+  border: none !important;
+  border-radius: 1rem;
   padding: 20px;
+  width: 70%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 20%;
-  left: -6%;
-  transform: rotate(-90deg);
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 28px solid #eff2fb;
-}
-
-.paragraph {
-  background-color: white;
-  border-radius: 9px;
-  width: fit-content;
-  font-size: 12px;
-  padding: 6px;
-  height: 30px;
-  color: var(--Paragraph01);
-  margin-top: 16px !important;
-}
-
-.eduHead {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.schoolName {
-  font-size: 12px;
-  color: var(--secondary);
-  margin-top: 4px !important;
-}
-
-.description {
-  font-size: 12px;
-  color: var(--Paragraph01);
-  margin-top: 8px !important;
-}
-
-.card-title {
-  font-size: 1.2em;
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  background: white;
-  padding: 0 10px;
-  z-index: 1;
-}
-
-.cardContent {
-  padding: 20px 40px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .container {
-    margin-left: 20px;
-    padding: 15px;
-  }
-
-  .cardContent {
-    padding: 15px 30px;
-  }
-
-  .triangle {
-    left: -4%;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 22px solid #eff2fb;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    margin-left: 10px;
-    padding: 10px;
-  }
-
-  .cardContent {
-    padding: 10px 20px;
-  }
-
-  .triangle {
-    left: -2%;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 18px solid #eff2fb;
-  }
-}
-.eduCard {
-  width: 40rem;
-  background-color: #eff2fb;
-  border-radius: 16px;
   position: relative;
-  margin-top: 36px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.triangle {
+.arrowLeft {
   position: absolute;
+  top: 20px;
+  left: -20px;
   width: 0;
   height: 0;
-  top: 20%;
-  left: -6%;
-  transform: rotate(-90deg);
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  border-bottom: 28px solid #eff2fb;
+  border-top: 20px solid transparent;
+  border-right: 20px solid var(--background);
+  border-bottom: 20px solid transparent;
 }
 
-.paragraph {
-  background-color: white;
-  border-radius: 9px;
-  width: fit-content;
-  font-size: 12px;
-  padding: 6px;
-  height: 30px;
-  color: var(--Paragraph01);
-  margin-top: 16px !important;
+.cardTitle {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
 }
 
-.eduHead {
-  font-size: 20px;
-  font-weight: 600;
+.cardSubtitle {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #4CAF50;
+}
+
+.cardText {
+  font-size: 0.9em;
+  color: #666;
+  margin: 10px 0;
+}
+
+.dateRange {
+  display: inline-block;
+  background-color: #ffffff;
   color: var(--primary);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  width: 50%;
 }
 
-.SchoolName {
-  font-size: 12px;
-  color: var(--secondary);
-  margin-top: 4px !important;
+@media (max-width: 575.98px) {
+  .card {
+    width: 96% ;
+    margin: 1rem;
+    
+  }
 }
-
-.description {
-  font-size: 12px;
-  color: var(--Paragraph01);
-  margin-top: 8px !important;
-}
-
-.card-title {
-  font-size: 1.2em;
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  background: white;
-  padding: 0 10px;
-  z-index: 1;
+@media (max-width: 767.98px) {
+  .card {
+    width: 90% ;
+    
+  }
 }

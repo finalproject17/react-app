@@ -11,7 +11,7 @@ import './AppliedJobs.css';
 const AppliedJobs = () => {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
   const dispatch = useDispatch();
-  const userId = '66659f993aa76347cff49653';
+  const userId = '6681e2ab75a50c5ecc4d8e02';
 
   useEffect(() => {
     dispatch(fetchAppliedJobsByJobSeeker({ userId }));
