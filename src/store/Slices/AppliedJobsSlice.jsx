@@ -73,7 +73,7 @@ const appliedJobsSlice = createSlice({
       })
       .addCase(applyForJob.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.appliedJobs.push(action.payload);
+        state.appliedJobs=action.payload;
       })
       .addCase(applyForJob.rejected, (state, action) => {
         state.status = 'failed';

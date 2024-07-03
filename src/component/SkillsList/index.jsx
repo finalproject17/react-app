@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card } from 'react-bootstrap';
-// import { fetchUser } from '../../store/Slices/usersSlice';
-import styles from './skillsList.module.css';
+import { Col, Form } from 'react-bootstrap';
 import { getAllUsersAction } from '../../store/Slices/usersSlice';
+import styles from './skillsList.module.css';
 
 const Skills = ({ userId }) => {
   const dispatch = useDispatch();
@@ -18,17 +17,26 @@ const Skills = ({ userId }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const placeholderText = user?.skills?.length > 0
+    ? user.skills.map((skill, index) => skill).join(', ')
+    : "No skills available";
+
   return (
-    <Card className={styles.card}>
-      <Card.Body className={styles['card-body']}>
-        <Card.Title className={styles['card-title']}>Skills</Card.Title>
-        <div className={styles.skills}>
-          {user?.skills?.map((skill, index) => (
-            <div key={index} className={styles.skill}>{skill}</div>
-          )) || "No skills available"}
-        </div>
-      </Card.Body>
-    </Card>
+    <Form>
+      <Form.Group className="mb-4 position-relative">
+        <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
+          Skills
+        </Form.Label>
+        <Col sm={11}>
+          <Form.Control
+            disabled
+            name="overview"
+            className={`${styles.jobSeekerInput} ${styles.inputField}`}
+            placeholder={placeholderText}
+          />
+        </Col>
+      </Form.Group>
+    </Form>
   );
 };
 

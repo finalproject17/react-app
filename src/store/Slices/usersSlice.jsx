@@ -59,7 +59,7 @@ export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
   async (userId) => {
     const res = await axiosInstance.get(`/users/${userId}`);
-    console.log(res);
+    console.log(res.data);
     return res.data;
   }
 );
@@ -67,20 +67,12 @@ export const fetchUserById = createAsyncThunk(
 // Update user
 export const updateUser = createAsyncThunk(
   "users/updateUser",
-  async (updatedUser) => {
-    const res = await axiosInstance.put(`/users/${updatedUser.id}`, updatedUser);
+  async ({ userId, updatedUser }) => {
+    const res = await axiosInstance.patch(`/users/${userId}`, updatedUser);
     return res.data;
   }
 );
 
-// Get all users
-export const getAllUsersAction = createAsyncThunk(
-  "users/getAllUsers",
-  async () => {
-    const res = await axiosInstance.get("/users");
-    return res.data;
-  }
-);
 
 // Fetch users (redundant with getAllUsersAction)
 export const fetchUsers = createAsyncThunk(
