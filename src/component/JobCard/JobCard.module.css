@@ -1,4 +1,4 @@
-.containerr {
+.container {
   width: 100%; /* 52.1875rem */
   border: 1px solid var(--border01);
   border-radius: 1rem; /* 16px */
@@ -7,7 +7,7 @@
   padding: 1rem;
   transition: background-color 0.3s ease, border 0.3s ease; 
 }
-.containerr:hover{
+.container:hover{
   background-color: var(--Fifth);
   border: 1px solid var(--secondary);
 
@@ -31,10 +31,8 @@
   color: var(--Paragraph01);
 }
 .subtext {
-  font-size: 0.8rem;
+  font-size: 0.75rem; /* 12px */
   color: var(--PlaceHolder);
-  padding-left: 2px;
-
 }
 
 .imgSize{

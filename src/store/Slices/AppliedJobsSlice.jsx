@@ -4,8 +4,8 @@ import axiosInstance from '../../axioseConfig/instance';
 export const fetchAppliedJobsByJobSeeker = createAsyncThunk(
   'appliedJobs/fetchAppliedJobsByJobSeeker',
   async ({ userId, page, limit }) => {
-      const response = await axiosInstance.get(`/appliedJobs/get/${userId}`, { params: { page, limit } });
-      return response.data.data;
+    const response = await axiosInstance.get(`/appliedJobs/get/${userId}`, { params: { page, limit } });
+    return response.data.data;
   }
 );
 
@@ -17,26 +17,31 @@ export const getAllAppliedJobsByJobId = createAsyncThunk(
   }
 );
 
+export const countAppliedJobsByUser = createAsyncThunk(
+  'appliedJobs/countAppliedJobsByUser',
+  async ({ userId }) => {
+    const response = await axiosInstance.get(`/appliedJobs/counts/${userId}`);
+    return response.data.count;
+  }
+);
+
 export const applyForJob = createAsyncThunk(
   'appliedJobs/applyForJob',
-  async ({userId, jobId, FirstAnswer, SecondAnswer, thirdAnswer, FourthAnswer  }, thunkAPI) => {
+  async ({ userId, jobId, FirstAnswer, SecondAnswer, thirdAnswer, FourthAnswer }, thunkAPI) => {
     try {
       const response = await axiosInstance.post('/appliedJobs', {
-        userId, jobId, FirstAnswer, SecondAnswer, thirdAnswer, FourthAnswer 
+        userId, jobId, FirstAnswer, SecondAnswer, thirdAnswer, FourthAnswer
       });
       console.log('Response:', response.data);
       return response.data.data._id;
     } catch (error) {
       if (error.response) {
-       
         console.error('Response error:', error.response.data);
         return thunkAPI.rejectWithValue(error.response.data);
       } else if (error.request) {
-        
         console.error('Request error:', error.request);
         return thunkAPI.rejectWithValue('No response received from server');
       } else {
-       
         console.error('Error:', error.message);
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -79,11 +84,11 @@ const appliedJobsSlice = createSlice({
       })
       .addCase(fetchAppliedJobsByJobSeeker.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.appliedJobs = action.payload; 
+        state.appliedJobs = action.payload;
       })
       .addCase(fetchAppliedJobsByJobSeeker.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message; 
+        state.error = action.error.message;
       })
       .addCase(deleteAppliedJob.pending, (state) => {
         state.status = 'loading';
@@ -108,8 +113,21 @@ const appliedJobsSlice = createSlice({
       .addCase(getAllAppliedJobsByJobId.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(countAppliedJobsByUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(countAppliedJobsByUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.jobs = action.payload;
+
+      })
+      .addCase(countAppliedJobsByUser.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });
 
 export default appliedJobsSlice.reducer;
+

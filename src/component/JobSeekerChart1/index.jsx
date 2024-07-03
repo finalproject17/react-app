@@ -50,7 +50,6 @@ export default function JobTrackingChart() {
 
         id: "applied-jobs",
         data: chartData.data,
-        label: "My Applied Jobs",
         highlightScope: {
           highlighted: "item",
         },

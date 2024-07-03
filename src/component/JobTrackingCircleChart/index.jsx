@@ -3,9 +3,9 @@ import Stack from '@mui/material/Stack';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { fetchAppliedJobsByJobSeeker } from '../../store/Slices/AppliedJobsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './JobSeekerChart2.module.css';
+import styles from './JobTrackingCircleChart.module.css';
 
-export default function JobTrackingChart2() {
+export default function JobTrackingCircleChart() {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs) || [];
   const dispatch = useDispatch();
   const userId = "66659f993aa76347cff49653";
@@ -69,10 +69,10 @@ export default function JobTrackingChart2() {
           legend={{ hidden: true }}
         />
       </Stack>
-      <div className='d-flex justify-content-center align-items-center pt-5'>
+      <div className={`d-flex justify-content-center align-items-center pt-5 ${styles.percentageContainer}`}>
      
 
-        <div className='d-flex justify-content-center align-items-baseline'>
+        <div className={`d-flex  justify-content-center align-items-baseline `}>
         <div style={{ width: "20px", height: "8px", backgroundColor: "#01A84D", borderRadius: "5px" }}></div>
         <div>
        <p className='m-0 mx-2'>Accepted </p>

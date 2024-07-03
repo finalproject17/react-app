@@ -23,3 +23,15 @@
     justify-content: center;
     overflow: hidden;
 }
+.percentageContainer{
+    display: flex !important;
+    }
+    
+    @media (max-width: 1399.98px) {
+        .percentageContainer{
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 1rem !important;
+    
+        }
+      }

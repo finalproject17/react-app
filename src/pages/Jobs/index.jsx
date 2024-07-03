@@ -46,7 +46,7 @@ export default function Jobs() {
         <Row>
           {filteredJobs && filteredJobs.length > 0 ? (
             filteredJobs.map((job) => (
-              <Col className='col-12' key={job._id} style={{ marginBottom: '20px' }}>
+              <Col key={job._id} style={{ marginBottom: '20px' }}>
                 <JobCard job={job} />
               </Col>
             ))

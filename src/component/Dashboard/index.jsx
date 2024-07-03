@@ -18,22 +18,47 @@ import { getAllJobs } from "../../store/Slices/FetchJobsSlice";
 import JobCard from "../JobCard";
 import JobInfoCard from "../JobInfoCard";
 import JobTrackingChart from "../JobSeekerChart1";
-import JobTrackingChart2 from "../JobSeekerChart2";
+import JobTrackingCircleChart from "../JobTrackingCircleChart";
+import { countAppliedJobsByUser } from "../../store/Slices/AppliedJobsSlice";
+import { countSavedJobsByUser } from "../../store/Slices/savedJobsSlice";
 
 export default function Dashboard() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [appliedJobsCount, setAppliedJobsCount] = useState(0);
+  const [savedJobsCount, setSavedJobsCount] = useState(0);
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
+  const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
+  const savedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
 
-  // console.log(jobs);
+  const userId = "66659f993aa76347cff49653";
 
   useEffect(() => {
     dispatch(getAllJobs());
-  }, [dispatch]);
+
+    const fetchAppliedJobsLength = async () => {
+      const { payload } = await dispatch(countAppliedJobsByUser({ userId }));
+      setAppliedJobsCount(payload); // Set the state with the fetched payload
+    };
+
+    fetchAppliedJobsLength();
+
+
+    const fetchSavedJobsLength = async () => {
+      const { payload } = await dispatch(countSavedJobsByUser({ userId }));
+      setSavedJobsCount(payload); // Set the state with the fetched payload
+    };
+
+    fetchSavedJobsLength();
+
+
+  }, [dispatch, userId]);
+
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 991.98);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -66,7 +91,10 @@ export default function Dashboard() {
   };
 
   const iconSize = isSmallScreen ? 50 : 70; // Set icon size based on screen width
-  if (!jobs) return <p>Loaidng...</p>;
+
+  if (!jobs) return <p>Loading...</p>;
+  if (!appliedJobs) return <p>Loading...</p>;
+
   return (
     <Container fluid>
       <Row>
@@ -86,7 +114,7 @@ export default function Dashboard() {
                       <UilFileCheckAlt size={iconSize} color="#01A84D" />
                     </div>
                     <div>
-                      <Card.Title style={{ fontSize: "2rem" }}>74</Card.Title>
+                      <Card.Title style={{ fontSize: "2rem" }}>{appliedJobsCount}</Card.Title>
                       <Card.Text
                         style={{ fontSize: "1rem", fontWeight: "500" }}
                         className="display-4"
@@ -126,7 +154,7 @@ export default function Dashboard() {
                       <UilBookmark size={iconSize} color="#01A84D" />
                     </div>
                     <div>
-                      <Card.Title style={{ fontSize: "2rem" }}>14</Card.Title>
+                      <Card.Title style={{ fontSize: "2rem" }}>{savedJobsCount}</Card.Title>
                       <Card.Text
                         style={{ fontSize: "1rem", fontWeight: "500" }}
                         className="display-4"
@@ -140,7 +168,7 @@ export default function Dashboard() {
             </Row>
 
             <Row className="my-4">
-            <Col md={8}>
+              <Col md={8}>
                 <Card>
                   <Card.Header>JobTracking</Card.Header>
                   <Card.Body>
@@ -149,62 +177,13 @@ export default function Dashboard() {
                 </Card>
               </Col>
               <Col md={4}>
-                {/* <Card className={`${styles.recentJobsCard}`}>
-                  <Card.Header>Recent Applied Job</Card.Header>
-                  <ListGroup variant="flush">
-                    {jobs.map((job) => (
-                      <ListGroupItem
-                        className={`${styles.listGroup}`}
-                        key={job._id}
-                      >
-                        <h5 className="m-0">{job.JobTitle}</h5>
-                        <div className="d-flex jus">
-                          <img src="/clock.svg" alt="Clock Icon" />
-                          <p className={`m-0 px-1  ${styles.clockText}`}>
-                            {formatRelativeDate(job.timeStamp)}
-                          </p>
-                        </div>
-
-                        <div className="d-flex mt-1">
-                          <JobInfoCard
-                            img="/office bag.svg"
-                            text={job.JobType}
-                            backgroundColor="var(--border02)"
-                          />
-                          <JobInfoCard
-                            img="/office bag.svg"
-                            text={job.JoblocationType}
-                            backgroundColor="var(--border02)"
-                          />
-
-                          <JobInfoCard
-                            img="/location2.svg"
-                            text={` ${job.jobLocation[0].State}, ${job.jobLocation[0].government}`}
-                            backgroundColor="var(--border02)"
-                          />
-                          <JobInfoCard
-                            img="/dollar coin.svg"
-                            text={`${job.salary.from} : ${job.salary.to}`}
-                            backgroundColor="var(--border02)"
-                          />
-                        </div>
-                        <hr className={`mt-2  ${styles.separator}`}></hr>
-
-                        <p className="m-0">
-                          {truncateDescription(job.description, 50)}
-                        </p>
-                      </ListGroupItem>
-                    ))}
-                  </ListGroup>
-                </Card> */}
-               <Card>
+                <Card>
                   <Card.Header>JobTracking</Card.Header>
                   <Card.Body>
-                    <JobTrackingChart2></JobTrackingChart2>
+                    <JobTrackingCircleChart></JobTrackingCircleChart>
                   </Card.Body>
                 </Card>
               </Col>
-             
             </Row>
           </Container>
         </Col>
