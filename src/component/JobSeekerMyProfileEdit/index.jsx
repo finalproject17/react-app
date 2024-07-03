@@ -27,6 +27,7 @@ const JobSeekerMyProfileEdit = () => {
     country: "",
     city: "",
     completeAddress: "",
+    
   });
 
   useEffect(() => {
