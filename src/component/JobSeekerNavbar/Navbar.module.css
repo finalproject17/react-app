@@ -138,3 +138,9 @@ a .active {
 .dropdown-toggle::after {
     opacity: 0 !important;
 }
+
+
+.active {
+    color: #01A84D; 
+    font-weight: bold; 
+}

@@ -31,19 +31,26 @@ import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
 import Dashboard from "./component/Dashboard";
 // import AppliedJobs from './component/AppliedJobs/index';
+import NotFound from './pages/NotFound/index'
+import AboutUsPage from './pages/About'
+import Contact from './pages/Contact/index';
+import './i18n.js';
+import { useTransition } from "react";
 export default function App() {
+  const {t} = useTransition()
   const [isSignUp, setIsSignUp] = useState("false");
   return (
     <>
       <AuthProvider>
         <Router>
-          
+            {/* <AboutUsPage />  */}
+         {/* <NotFound />   */}
           <JobSeekerNavbar></JobSeekerNavbar>
           {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>
             <ToastContainer theme="colored" />
             <Routes>
-              <Route path="/Home" element={<HomePage />} />
+              {/* <Route path="/Home" element={<HomePage />} /> */}
               <Route path="/SignUp" element={<SignUp />} />
               {/* -----------------------------protected--------------------------*/}
               {/* <Route element={<Guards />}>
@@ -60,15 +67,17 @@ export default function App() {
               />
               <Route path="/dashboard" element={<Dashboard></Dashboard>} />
               <Route path="/settings" element={<Setting></Setting>} />
+              <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
               <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
-
+              <Route path="/contact" element={<Contact></Contact>} />
               <Route path="/candidates" element={<Candidates></Candidates>} />
               
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
               <Route path="*" element={<HomePage></HomePage>} />
                <Route path="/applicationform/:jobId" element={<JobApplication/>}/>
               <Route path="/endemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
+              <Route path="*" element={<NotFound />} />
             </Routes>
             {/* <Footer /> */}
           </RegisterFormProvider>
