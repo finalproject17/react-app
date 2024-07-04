@@ -21,15 +21,14 @@ const JobsDetails = () => {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
   const [isApplied, setIsApplied] = useState(false);
   const [appliedJobId, setAppliedJobId] = useState(null);
+  const [visibleJobsCount, setVisibleJobsCount] = useState(3); // Number of jobs to display initially
 
-  // Fetch all jobs and specific job by ID
   useEffect(() => {
     dispatch(getAllJobs());
     dispatch(getJobById(id));
     dispatch(fetchAppliedJobsByJobSeeker({ userId }));
   }, [dispatch, id, userId]);
 
-  // Check if the job is already applied for
   useEffect(() => {
     if (appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
       setIsApplied(true);
@@ -42,35 +41,33 @@ const JobsDetails = () => {
   }, [appliedJobs, id]);
 
   const handleApplyNow = async (jobId) => {
-     
-      const resultAction = await dispatch(applyForJob({ userId, jobId })).unwrap();
-      console.log("Applied job ID:", resultAction);
-      await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
-      console.log("Posted");
-      setIsApplied(true);
-      setAppliedJobId(resultAction);
-
+    const resultAction = await dispatch(applyForJob({ userId, jobId })).unwrap();
+    await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
+    setIsApplied(true);
+    setAppliedJobId(resultAction);
   };
 
   const handleDeleteApplication = async () => {
-  
-      await dispatch(deleteAppliedJob(appliedJobId)).unwrap();
-      await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
-      console.log("Deleted");
-      setIsApplied(false);
-      setAppliedJobId(null);
- 
+    await dispatch(deleteAppliedJob(appliedJobId)).unwrap();
+    await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
+    setIsApplied(false);
+    setAppliedJobId(null);
+  };
+
+  const handleShowMore = () => {
+    setVisibleJobsCount(prevCount => prevCount + 3); // Increment the number of visible jobs by 5
   };
 
   return (
     <div className={styles.container}>
       <div className='row'>
         <div className={`${styles.title} col-lg-8 col-md-8 col-sm-12`}>
-          <div>
-            {/* <img src={job.companyId.companyLogo} alt='Employer Logo' /> */}
+          <div className={styles.companyImg}>
+            <img src={job.companyLogo} alt='Employer Logo' className={styles.theImg} />
           </div>
           <div className={styles.content}>
             <h5 className={styles.jobTitle}>{job.JobTitle}</h5>
+            <p className={styles.companyName}>{job.companyName}</p>
             <div className={styles.time}><img src="/Vector2.svg" alt="icon" /> 12 days ago</div>
           </div>
         </div>
@@ -122,7 +119,7 @@ const JobsDetails = () => {
           <p className={styles.OtherJobs}>Other Jobs</p>
           <div className={styles.parent}>
             <div className={styles.sideBarContent}>
-              {jobs.map((job) => (
+              {jobs.slice(0, visibleJobsCount).map((job) => (
                 <div key={job._id} className={styles.content}>
                   <div className={styles.companyLogo}>
                     <img src={job.companyId.companyLogo} alt='companyLogo' className={styles.logo} />
@@ -136,7 +133,11 @@ const JobsDetails = () => {
             </div>
           </div>
           <div className={styles.btn3}>
-            <PrimaryButton name={btns.primary2} />
+            <PrimaryButton
+              name={btns.primary2}
+              onClick={handleShowMore}
+              disabled={visibleJobsCount >= jobs.length}
+            />
           </div>
         </div>
       </div>

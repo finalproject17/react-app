@@ -81,3 +81,37 @@ css-1v603wu-MuiResponsiveChart-container{
   width: 100%;
   height: 100%;
 }
+
+.pagination{
+    margin-top: 30px;
+  }
+
+  .pagination a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+/* .pagination a.page {
+    border: 1px solid #ddd;
+
+} */
+
+.pagination a.prev,
+.pagination a.next {
+    background: linear-gradient(to right, #F9FFFE, #E7FFE0);
+
+}
+
+.pagination a.active {
+    background-color:var(--main-color);
+    color: white;
+    
+}
+
+.pagination a:hover {
+    background-color: #e0e0e0;
+}

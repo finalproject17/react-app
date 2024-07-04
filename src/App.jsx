@@ -72,6 +72,7 @@ export default function App() {
             </Routes>
             {/* <Footer /> */}
           </RegisterFormProvider>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </>
