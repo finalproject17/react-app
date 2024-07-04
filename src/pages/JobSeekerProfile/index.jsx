@@ -11,11 +11,6 @@ import SkillsList from '../../component/SkillsList';
 import styles from './style.module.css';
 
 const JobSeekerProfile = () => {
-
-
-
-
-
   return (
     <div>
       <header className={styles.header}></header>
