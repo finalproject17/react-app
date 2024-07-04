@@ -272,13 +272,14 @@ export default function SignUpStepOne() {
               <div className={styles.line}></div>
             </div>
 
-            <GoogleLogin
+            <GoogleLogin 
               onSuccess={(credentialResponse) => {
                 const credentialResponseDecoded = jwtDecode(
                   credentialResponse.credential
                 );
                 console.log(credentialResponse);
                 console.log(credentialResponseDecoded);
+                
               }}
               onError={() => {
                 console.log("Login Failed");

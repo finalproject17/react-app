@@ -1,4 +1,3 @@
-
 /* Navbar.module.css */
 
 .nav {
@@ -67,9 +66,10 @@ a .active {
     font-weight: bold;
 }
 
-.nav .logo{
+.nav .logo {
     width: 110px;
 }
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .menuIcon {
@@ -115,7 +115,8 @@ a .active {
         margin-top: 20px;
     }
 
-    .register-link, button {
+    .register-link,
+    button {
         width: auto;
         text-align: center;
         margin: 0 5px;
@@ -128,13 +129,27 @@ a .active {
 }
 
 
-.seekerImg{
+.seekerImg {
     width: 10%;
-    
+
     border-radius: 50%;
     padding: 0;
 }
 
+.dropdown-toggle {
+    position: relative;
+}
+
 .dropdown-toggle::after {
-    opacity: 0 !important;
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "\f078";
+    position: absolute;
+    /* border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0; */
+    /* border-left: .3em solid transparent; */
+    left: 117px;
+    bottom: 12px;
 }

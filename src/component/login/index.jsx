@@ -10,41 +10,71 @@ import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../contexts/authContext";
 import { GoRows } from "react-icons/go";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allUsers = useSelector((state) => state.users.users);
-    const { login } = useAuth();
+  const { login } = useAuth();
   useEffect(() => {
     dispatch(getAllUsersAction()); 
   }, [dispatch]);
 
-  const signIn = async (values) => {
-    try {
-      const { email, password } = values;
-
-      
-      const isUserFind = allUsers.find((user) => user.email === email);
-      console.log(isUserFind);
-      if (!isUserFind) {
-        toast.error("Email Not Found");
+const signIn = async (values) => {
+  try {
+    const isUserFind = allUsers.find((user) => user.email === values.email);
+    console.log(allUsers);
+    console.log(isUserFind);
+    if (!isUserFind) {
+      toast.error("Email Not Found");
+    } else {
+      const res = await dispatch(loginUser(values));
+      if (res.payload && res.payload.token) {
+        login(res.payload.token);
+        console.log("Token received", res.payload.token);
+        navigate("/home");
       } else {
-        const res = dispatch(loginUser({ email, password }));
-        console.log("wwwwwwwwww", res);
-        if (res.payload && res.payload.token) {
-          login(res.payload.token);
-          console.log(res.data.token);
-          navigate(`/home`);
-        } else {
-          toast.error("Login failed. Please check your credentials.");
-        }
+        toast.error("Login failed. Please check your credentials.");
       }
-    } catch (error) {
-      console.error("Error during sign-in process:", error);
-      toast.error("An error occurred. Please try again.");
     }
-  };
+  } catch (error) {
+    toast.error("An error occurred. Please try again.");
+    console.error("Error during sign-in process:", error);
+  }
+};
+
+  
+   const handleGoogleLogin = async (credentialResponse) => {
+     try {
+       const credentialResponseDecoded = jwtDecode(
+         credentialResponse.credential
+       );
+       console.log(credentialResponse);
+       console.log(credentialResponseDecoded);
+
+       const response = await fetch("http://localhost:3000/auth/google", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({ token: credentialResponse.credential }),
+       });
+
+       const data = await response.json();
+
+       if (response.ok) {
+         localStorage.setItem("token", data.token);
+         navigate("/home");
+       } else {
+         console.log("Login Failed:", data.message);
+         toast.error("Google login failed. Please try again.");
+       }
+     } catch (error) {
+       console.log("Login Failed:", error);
+       toast.error("An error occurred during Google login. Please try again.");
+     }
+   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -140,15 +170,10 @@ export default function Login() {
                 <div className={styles.line}></div>
                 <span className="p-2 bg-white">or</span>
                 <div className={styles.line}></div>
-                          
               </div>
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
-                  const credentialResponseDecoded = jwtDecode(
-                    credentialResponse.credential
-                  );
-                  console.log(credentialResponse);
-                  console.log(credentialResponseDecoded);
+                  handleGoogleLogin(credentialResponse);
                 }}
                 onError={() => {
                   console.log("Login Failed");

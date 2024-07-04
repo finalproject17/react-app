@@ -27,7 +27,9 @@ const JobSeekerNavbar = () => {
           className="justify-content-end"
         >
           <Nav className="ml-auto p-3">
-            <Link to="/home" className="nav-link text-success"> {/* Replace Nav.Link with Link */}
+            <Link to="/home" className="nav-link text-success">
+              {" "}
+              {/* Replace Nav.Link with Link */}
               Home
             </Link>
             <Link to="/jobs" className="nav-link">
@@ -37,12 +39,16 @@ const JobSeekerNavbar = () => {
               Saved Jobs
             </Link>
             <Link to="/candidates" className="nav-link">
-            candidates
+              candidates
             </Link>
             <Link to="/about-us" className="nav-link">
               About Us
             </Link>
-            <Link to="/contact" className="nav-link" style={{ paddingRight: "3rem" }}>
+            <Link
+              to="/contact"
+              className="nav-link"
+              style={{ paddingRight: "3rem" }}
+            >
               Contact
             </Link>
             {isLoggedIn ? (
@@ -57,7 +63,7 @@ const JobSeekerNavbar = () => {
                         width="40"
                         className="me-3"
                       />
-                      
+
                       <Col
                         className="applicantInfo"
                         style={{ fontSize: "10px" }}
@@ -77,30 +83,55 @@ const JobSeekerNavbar = () => {
                   <NavDropdown.Item onClick={() => logout()}>
                     Logout
                   </NavDropdown.Item>
-                  <NavDropdown.Item >
-                    Settings
-                  </NavDropdown.Item>
+                  <NavDropdown.Item>Settings</NavDropdown.Item>
                 </NavDropdown>
               </>
             ) : (
               <>
-                 <Link
-              to="/signUp"
-              className="nav-link"
-              style={{ color: "#01A84D", fontWeight: "bold", textDecoration: "underline" }}
-            >
-              Register
-            </Link>
-            <Link
-            to="/login"
-            variant="success"
-            className="nav-link"
-            style={{ color: "#01A84D", fontWeight: "bold", textDecoration: "underline" }}
-            >
+                <NavDropdown
+                  style={{ backgroundColor: "black" }}
+                  title={
+                    <div className="notifications">
+                      <i className="fa fa-solid fa-bible"></i>
+                      {notifications.length > 0 && (
+                        <span className="badge badge-danger">
+                          {notifications.length}
+                        </span>
+                      )}
+                    </div>
+                  }
+                  id="basic-nav-dropdown"
+                >
+                  
+                    <NavDropdown.Item key={}>
+                      madonna adel applied in FrontEnd job
+                    </NavDropdown.Item>
+                  
+                </NavDropdown>
 
-              
-              Sign In
-            </Link>
+                <Link
+                  to="/signUp"
+                  className="nav-link"
+                  style={{
+                    color: "#01A84D",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  variant="success"
+                  className="nav-link"
+                  style={{
+                    color: "#01A84D",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Sign In
+                </Link>
               </>
             )}
           </Nav>

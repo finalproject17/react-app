@@ -19,9 +19,11 @@ import JobSeekerProfile from "./pages/JobSeekerProfile";
 import Footer from "./component/Footer";
 import { RegisterFormProvider } from "./contexts/RegisterFormContext";
 import { ToastContainer } from "react-bootstrap";
-import { AuthProvider } from "./contexts/authContext";
+import { AuthProvider, useAuth } from "./contexts/authContext";
 import AppliedJobs from "./component/AppliedJobs";
+import "react-toastify/dist/ReactToastify.css";
 export default function App() {
+
   return (
     <>
       <AuthProvider>
