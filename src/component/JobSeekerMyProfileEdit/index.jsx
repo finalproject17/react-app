@@ -1,20 +1,20 @@
-// JobSeekerMyProfileEdit.js
-
 import React, { useEffect, useState } from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, InputGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import styles from "./JobSeekerMyProfileEdit.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsersAction, updateUser } from "../../store/Slices/usersSlice";
+import { fetchUserById, fetchUsers, updateUser } from "../../store/Slices/usersSlice";
 import JobSeekerSidebar from "../JobSeekerSidebar";
 
 const JobSeekerMyProfileEdit = () => {
-  const usersArr = useSelector((state) => state.users.users);
+  const [user, setUser] = useState({});
   const dispatch = useDispatch();
-
+  const userId = '6681e2ab75a50c5ecc4d8e02';
+  
   const [formData, setFormData] = useState({
     firstName: "",
+    lastName: "",
     overview: "",
     email: "",
     phone: "",
@@ -27,17 +27,24 @@ const JobSeekerMyProfileEdit = () => {
     country: "",
     city: "",
     completeAddress: "",
+    profilePhoto: null,
   });
 
   useEffect(() => {
-    dispatch(getAllUsersAction());
-  }, [dispatch]);
+    const getUser = async () => {
+      const { payload } = await dispatch(fetchUserById(userId));
+      setUser(payload);
+    };
+
+    dispatch(fetchUsers());
+    getUser();
+  }, [dispatch, userId]);
 
   useEffect(() => {
-    if (usersArr && usersArr.length > 0) {
-      const user = usersArr[0];
+    if (user) {
       setFormData({
         firstName: user.firstName || "",
+        lastName: user.lastName || "",
         overview: user.overview || "",
         email: user.email || "",
         phone: user.phone || "",
@@ -50,95 +57,99 @@ const JobSeekerMyProfileEdit = () => {
         country: user.country || "",
         city: user.city || "",
         completeAddress: user.completeAddress || "",
+        profilePhoto: null,
       });
     }
-  }, [usersArr]);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, profilePhoto: e.target.files[0] });
+  };
+
   const handleSaveChanges = () => {
-    dispatch(updateUser(formData));
+    const updatedUser = new FormData();
+    Object.keys(formData).forEach(key => {
+      updatedUser.append(key, formData[key]);
+    });
+
+    dispatch(updateUser({ userId: user._id, updatedUser }));
   };
 
   return (
     <Container fluid>
       <Row>
         <Col md={3}>
-
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>
-        <h4 className='mt-4 mb-5'>My Profile</h4>
-
-          <div className="d-flex align-items-center mb-5">
-            <img
-              src="logo-10.svg"
-              alt="Company Logo"
-              style={{ width: "50px", height: "50px", marginRight: "10px" }}
-            />
-            <Button className={`${styles.myButton}`} variant="success">
-              Upload new photo
-            </Button>
-            <Link className="ms-2 text-danger">Delete</Link>
-          </div>
-
+          <h4 className="mt-4 mb-5">My Profile</h4>
           <Form className={`${styles.formContainer}`}>
+            <InputGroup className="mb-4">
+              <Form.Control type="file" onChange={handleFileChange} />
+              <Button variant="outline-secondary">Upload</Button>
+            </InputGroup>
+
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 First Name
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.firstName
-                      ? "Enter your first name"
-                      : formData.firstName
+                    !formData.firstName ? "Enter your first name" : formData.firstName
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
+                Last Name
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className={`${styles.jobSeekerInput}`}
+                  placeholder={
+                    !formData.lastName ? "Enter your last name" : formData.lastName
+                  }
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group className="mb-4 position-relative">
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Overview
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="overview"
                   value={formData.overview}
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput} ${styles.inputField}`}
                   placeholder={
-                    !formData.overview ? "Tell us about you" : formData.category
+                    !formData.overview ? "Tell us about you" : formData.overview
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Email Address
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="email"
                   value={formData.email}
@@ -149,14 +160,10 @@ const JobSeekerMyProfileEdit = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Phone
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   type="tel"
                   name="phone"
@@ -164,23 +171,17 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.phone
-                      ? "Enter your phone number"
-                      : formData.phone
+                    !formData.phone ? "Enter your phone number" : formData.phone
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Category
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   as="select"
                   name="category"
@@ -200,14 +201,10 @@ const JobSeekerMyProfileEdit = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Experience Level
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   as="select"
                   name="experienceLevel"
@@ -215,9 +212,7 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.experienceLevel
-                      ? "Select Experience Level"
-                      : formData.experienceLevel
+                    !formData.experienceLevel ? "Select Experience Level" : formData.experienceLevel
                   }
                 >
                   <option>Junior</option>
@@ -233,14 +228,10 @@ const JobSeekerMyProfileEdit = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Desired Job Type
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   as="select"
                   name="desiredJobType"
@@ -248,9 +239,7 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.desiredJobType
-                      ? "Select Desired Job Type"
-                      : formData.desiredJobType
+                    !formData.desiredJobType ? "Select Desired Job Type" : formData.desiredJobType
                   }
                 >
                   <option>Full Time </option>
@@ -263,14 +252,10 @@ const JobSeekerMyProfileEdit = () => {
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Qualifications
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   as="select"
                   name="qualifications"
@@ -278,9 +263,7 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.qualifications
-                      ? "Select Qualifications"
-                      : formData.qualifications
+                    !formData.qualifications ? "Select Qualifications" : formData.qualifications
                   }
                 >
                   <option>Bachelor's Degree</option>
@@ -300,7 +283,7 @@ const JobSeekerMyProfileEdit = () => {
               >
                 Facebook
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="facebook"
                   value={formData.facebook}
@@ -323,7 +306,7 @@ const JobSeekerMyProfileEdit = () => {
               >
                 Linkedin
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="linkedin"
                   value={formData.linkedin}
@@ -346,7 +329,7 @@ const JobSeekerMyProfileEdit = () => {
               >
                 Country
               </Form.Label>
-              <Col sm={11}>
+              <Col>
                 <Form.Control
                   name="country"
                   value={formData.country}
@@ -369,7 +352,7 @@ const JobSeekerMyProfileEdit = () => {
               >
                 City
               </Form.Label>
-              <Col sm={11}>
+              <Col>
 
                 <Form.Control
                   name="city"
@@ -391,7 +374,7 @@ const JobSeekerMyProfileEdit = () => {
               >
                 Complete Address
               </Form.Label>
-              <Col sm={11}>
+              <Col>
 
                 <Form.Control
                   name="completeAddress"

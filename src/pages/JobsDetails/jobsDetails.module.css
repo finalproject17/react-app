@@ -39,15 +39,24 @@
     min-width: 100px;
   }
 /*  */
+.companyImg{
+  width: 150px;
+  height: 150px;
+}
+.companyImg .theImg{
+  width: 100%;
+}
 .btns{
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
 }
 .title{
   display: flex;
 }
 .content{
   margin-left: 0.938rem;
+  margin-top: 31px;
 }
 .content .jobTitle{
   color: var(--Paragraph01);
@@ -130,10 +139,7 @@
 .parent{
   display: flex;
 }
-.companyImg{
-  /* margin-bottom: 25px; */
-  margin-top: 16px;
-}
+
 .sideBarContent{
   margin-top: 10px;
 }
@@ -184,3 +190,16 @@
   display: flex;
 }
 
+
+
+.subtext {
+  font-size: 0.8rem;
+  color: var(--PlaceHolder);
+  padding-left: 2px;
+}
+
+.imgSize
+{
+    width: 70px;
+    height: 70px;
+}

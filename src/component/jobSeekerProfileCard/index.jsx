@@ -47,16 +47,16 @@ const JobSeekerProfileCard = () => {
                 <div><PrimaryButton name={'Download CV'} className={styles.btn} /></div>
             </div>
             <ul>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' backgroundColor={'var(--border02)'} content={`${user.country}, ${user.city}`} icon={SlLocationPin} /></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.category} backgroundColor={'var(--border03)'} icon={CgWorkAlt} /></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.experienceLevel} backgroundColor={'var(--border03)'} icon={CgProfile} /></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.qualifications} backgroundColor={'var(--border03)'} icon={BiBookmarkAlt} /></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.desiredJobType} backgroundColor={'var(--border03)'} icon={GoClock} /></li>
+                <li><JobSeekerProfileItem width='100%'  backgroundColor={'var(--border02)'} content={`${user.country}, ${user.city}`} icon={SlLocationPin} /></li>
+                <li><JobSeekerProfileItem width='100%'  content={user.category} backgroundColor={'var(--border03)'} icon={CgWorkAlt} /></li>
+                <li><JobSeekerProfileItem width='100%'  content={user.experienceLevel} backgroundColor={'var(--border03)'} icon={CgProfile} /></li>
+                <li><JobSeekerProfileItem width='100%' content={user.qualifications} backgroundColor={'var(--border03)'} icon={BiBookmarkAlt} /></li>
+                <li><JobSeekerProfileItem width='100%' content={user.desiredJobType} backgroundColor={'var(--border03)'} icon={GoClock} /></li>
             </ul>
             <ul >
                 <li><div className={styles.contact_section_text}>Contact Info</div></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.phone} backgroundColor={'var(--border03)'} icon={FiPhoneCall} /></li>
-                <li><JobSeekerProfileItem width='15.313rem' height='2.75rem' content={user.email} backgroundColor={'var(--border03)'} icon={TbMail} /></li>
+                <li><JobSeekerProfileItem width='100%' content={user.phone} backgroundColor={'var(--border03)'} icon={FiPhoneCall} /></li>
+                <li><JobSeekerProfileItem width='100%'content={user.email} backgroundColor={'var(--border03)'} icon={TbMail} /></li>
             </ul>
             <ul>
                 <li><div className={styles.contact_section_text}>Social Media</div></li>

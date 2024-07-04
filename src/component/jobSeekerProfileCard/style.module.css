@@ -1,11 +1,7 @@
 .mainCard{
     background-color: var(--background);
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--border02);
     border-radius: 16px;
-     margin-left: 2rem; 
-    margin-top: 2rem;
-    width: 17.813rem;
-    height:54.625rem;
     position:relative;
 }
 
@@ -26,28 +22,26 @@
 }
 
 .mainCard .userDetails{
-    background-color: var(--white);
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-top: 4.25rem;
-    background-color:var(--white);
-    width: 10.625rem;
-    margin-inline: auto;
-    height: 5rem;
+    margin-top: 3rem;
+
     text-align: center;
 
 }
 
 
 .mainCard .userDetails .userDetails_name{
-    margin-bottom: 6px;
-    font-size:27px;
+    margin-bottom: 2px;
+    font-size:1.5rem;
     font-weight: bold;
 }
 
 .mainCard .userDetails .userDetails_jobTitle{
-    font-size:16px;
+    font-size:1rem;
+    margin-bottom: 2px;
+
     font-weight: 400;
     color: var(--secondary);
 }
@@ -68,7 +62,7 @@ li{
 }
 .contact_section_text{
 
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
 }

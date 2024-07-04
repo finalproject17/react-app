@@ -1,8 +1,7 @@
-
 //import React from 'react';
 import styles from "./footer.module.css";
 import { Link } from "react-router-dom";
-import { UilEllipsisV } from "@iconscout/react-unicons";
+
 const Footer = () => {
   return (
     <>
@@ -10,18 +9,22 @@ const Footer = () => {
         <div className={styles.container}>
           <div className="row">
             <div className="col-lg-3 col-sm-12">
+              <div className={styles.photo}>
               <img
-                src="careers-logo.svg"
+                src="/careers-logo.svg"
                 alt="logo"
                 className={styles.logo}
               ></img>
+              </div>
             </div>
+             
             <div className="col-lg-2 col-md-6 col-sm-6">
               <p className={styles.title}>Services</p>
               <ul className={styles.list}>
                 <li>Browse Jobs</li>
                 <li>Candidates</li>
                 <li>Companies</li>
+                <li>Pricing</li>
               </ul>
             </div>
             <div className="col-lg-2 col-md-6 col-sm-6">
@@ -29,6 +32,7 @@ const Footer = () => {
               <ul className={styles.list}>
                 <li>About us</li>
                 <li>FAQ’s</li>
+                <li>Blogs</li>
                 <li>Contact</li>
               </ul>
             </div>
@@ -38,33 +42,34 @@ const Footer = () => {
                 <li>Terms of use</li>
                 <li>Privacy</li>
                 <li>Conditions</li>
+                <li>Cookie policy</li>
               </ul>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
               <p className={styles.title}>Newsletter</p>
               <ul className={styles.list}>
-                <li>Join & get news regularly</li>
+                <li>Join & get news regularly</li> 
               </ul>
-              <div>
+              <div className={`${styles.parent} col-lg-3 col-md-6 col-sm-6` }>
                 <input
                   className={styles.inputs}
                   type="email"
                   placeholder="Enter your email"
                 />
-                {/* <button className={styles.SendBtn}>Send</button> */}
+                <button className={styles.SendBtn}>Send</button>
               </div>
               <div className={styles.social}>
                 <Link to="" className={styles.link}>
-                  <img src="Twitter.svg" alt="Twitter" />
+                  <img src="/Twitter.svg" alt="Twitter" />
                 </Link>
                 <Link to="" className={styles.link}>
-                  <img src="Whatsapp.svg" alt="Whatsapp" />
+                  <img src="/Whatsapp.svg" alt="Whatsapp" />
                 </Link>
                 <Link to="" className={styles.link}>
-                  <img src="Vector.svg" alt="Instagram" />
+                  <img src="/Vector.svg" alt="Instagram" />
                 </Link>
                 <Link to="" className={styles.link}>
-                  <img src="linkedin.svg" alt="LinkedIn" />
+                  <img src="/linkedin.svg" alt="LinkedIn" />
                 </Link>
               </div>
             </div>
@@ -84,10 +89,9 @@ const Footer = () => {
             <span className={styles.privacy}>Security</span>
           </div>
         </div>
-
-        <UilEllipsisV></UilEllipsisV>
       </div>
     </>
   );
 };
+
 export default Footer;

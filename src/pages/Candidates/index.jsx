@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAction } from "../../store/Slices/usersSlice";
 import JobSeekersFilter from "../../component/JobSeekersFilter";
 
+
 const Candidates = () => {
   const dispatch = useDispatch();
   const candidates = useSelector((state) => state.users.users);
   const [filteredCandidates, setFilteredCandidates] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const candidatesPerPage = 9;
 
   useEffect(() => {
     dispatch(getAllUsersAction());
@@ -18,11 +21,20 @@ const Candidates = () => {
     setFilteredCandidates(candidates);
   }, [candidates]);
 
-  const handleFilter = (filteredCandidates) => 
-    {
+  const handleFilter = (filteredCandidates) => {
     setFilteredCandidates(filteredCandidates);
-  
-    };
+    setCurrentPage(1); // Reset to first page after filtering
+  };
+
+  const indexOfLastCandidate = currentPage * candidatesPerPage;
+  const indexOfFirstCandidate = indexOfLastCandidate - candidatesPerPage;
+  const currentCandidates = filteredCandidates.slice(indexOfFirstCandidate, indexOfLastCandidate);
+
+  const totalPages = Math.ceil(filteredCandidates.length / candidatesPerPage);
+
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <>
@@ -40,27 +52,51 @@ const Candidates = () => {
       </div>
       <Container>
         <Row>
-          {/* Sidebar */}
           <Col md={3}>
             <JobSeekersFilter candidates={candidates} onFilter={handleFilter} />
           </Col>
-
-          {/* Main Content */}
           <Col md={9}>
             <Row>
-              <p>All {filteredCandidates.length} candidates found</p>
-              {filteredCandidates.map((candidate, index) => (
+              <p>All {filteredCandidates.length} candidates found</p>
+              {currentCandidates.map((candidate, index) => (
                 <Col
                   key={index}
-                  md={6} // For larger screens, we set md={6}
+                  md={6}
                   lg={4}
-                   // For extra large screens, we set lg={4}
                   className="d-flex align-items-center justify-content-center flex-wrap"
                 >
                   <JobSeekerCard candidate={candidate} />
                 </Col>
               ))}
             </Row>
+            <div className="pagination">
+              <a
+                href="#"
+                onClick={() => handleClick(currentPage - 1)}
+                className="prev"
+                style={{ pointerEvents: currentPage === 1 ? 'none' : 'auto' }}
+              >
+                &lt;
+              </a>
+              {[...Array(totalPages)].map((_, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  onClick={() => handleClick(index + 1)}
+                  className={`page ${index + 1 === currentPage ? 'active' : ''}`}
+                >
+                  {index + 1}
+                </a>
+              ))}
+              <a
+                href="#"
+                onClick={() => handleClick(currentPage + 1)}
+                className="next"
+                style={{ pointerEvents: currentPage === totalPages ? 'none' : 'auto' }}
+              >
+                &gt;
+              </a>
+            </div>
           </Col>
         </Row>
       </Container>
