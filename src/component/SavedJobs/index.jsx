@@ -7,7 +7,7 @@ import JobSeekerSidebar from '../JobSeekerSidebar';
 
 const SavedJobs = () => {
   const dispatch = useDispatch();
-  const userId = '66659f993aa76347cff49653'; // Replace with actual user ID from your authentication context or state
+  const userId = '6681e2ab75a50c5ecc4d8e02'; // Replace with actual user ID from your authentication context or state
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
     const jobs = useSelector((state) => state.jobs.jobs);
   // console.log(jobs);

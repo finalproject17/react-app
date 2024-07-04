@@ -15,7 +15,7 @@ const JobsDetails = () => {
   };
 
   const { id } = useParams();
-  const userId = "66659f993aa76347cff49653"; 
+  const userId = "6681e2ab75a50c5ecc4d8e02"; 
   const dispatch = useDispatch();
   const { jobs, job} = useSelector((state) => state.jobs);
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
@@ -45,6 +45,8 @@ const JobsDetails = () => {
     await dispatch(fetchAppliedJobsByJobSeeker({ userId })).unwrap();
     setIsApplied(true);
     setAppliedJobId(resultAction);
+     
+   
   };
 
   const handleDeleteApplication = async () => {

@@ -30,11 +30,27 @@ import AppliedJobs from "./component/AppliedJobs";
 import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
 import Dashboard from "./component/Dashboard";
+import axios from "axios";
 // import AppliedJobs from './component/AppliedJobs/index';
 export default function App() {
+
+const [file,setFile]=useState()
+const handleUpload =(e)=>{
+  const formdata=new FormData()
+  formdata.append('image',file)
+axios.post('http://localhost:3001/upload',formdata)
+.then (res => console.log(res))
+.catch(err => console.log(err))
+}
+
+
+
   const [isSignUp, setIsSignUp] = useState("false");
   return (
     <>
+    <div><input type="file" onChange={e=>setFile (e.target.files[0])} />
+    <button onClick={handleUpload}>upload</button>
+    </div>
       <AuthProvider>
         <Router>
           
