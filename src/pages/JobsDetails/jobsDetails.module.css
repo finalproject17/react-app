@@ -190,3 +190,16 @@
   display: flex;
 }
 
+
+
+.subtext {
+  font-size: 0.8rem;
+  color: var(--PlaceHolder);
+  padding-left: 2px;
+}
+
+.imgSize
+{
+    width: 70px;
+    height: 70px;
+}

@@ -15,7 +15,6 @@ const JobApplication = () => {
   const error = useSelector((state) => state.appliedJobs.error);
   const { jobId } = useParams();
   const Navigate=useNavigate();
-
   const [firstAnswer, setFirstAnswer] = useState('');
   const [SecondAnswer, setSecondAnswer] = useState('');
   const [thirdAnswer, setThirdAnswer] = useState('');
@@ -32,6 +31,7 @@ const JobApplication = () => {
     return `${day}/${month}/${year}`;
   };
 
+  
   const formatRelativeDate = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
@@ -86,7 +86,7 @@ const JobApplication = () => {
       setAlertType('success');
       Navigate('/jobs')
     } catch (error) {
-      setMessage('An error occurred while applying for the job. Please try again.');
+      setMessage('you have already applied to this job !');
       setAlertType('error');
     }
 

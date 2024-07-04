@@ -10,7 +10,6 @@ import { getAllJobs } from '../../store/Slices/FetchJobsSlice';
 import {DebounceInput} from 'react-debounce-input';
 import ReactDOM from 'react-dom';
 const BrowseJobs = () => {
-    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -25,7 +24,6 @@ const BrowseJobs = () => {
     const loading = useSelector((state) => state.jobs.loading);
     const error = useSelector((state) => state.jobs.error);
      
- 
 
     const handleCategoryChange = (e) => {
         const value = e.target.value;
@@ -293,9 +291,9 @@ const BrowseJobs = () => {
                                     JobType={job.JobType}
                                     description={job.description}
                                     JobHours={job.JobHours}
-                                    JoblocationType={job.JoblocationType}
+                                    // JoblocationType={job.JoblocationType}
                                     jobLevel={job.jobLevel}
-                                    jobLocation={job.jobLocation}
+                                    // jobLocation={job.jobLocation}
                                     jobRequirements={job.jobRequirements}
                                     skills={job.skills}
                                     timeStamp={job.timeStamp}

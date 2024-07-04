@@ -31,6 +31,7 @@ import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
 import Dashboard from "./component/Dashboard";
 import axios from "axios";
+import BrowseJobs from "./pages/BrowseJobs";
 // import AppliedJobs from './component/AppliedJobs/index';
 export default function App() {
 
@@ -77,14 +78,13 @@ axios.post('http://localhost:3001/upload',formdata)
               <Route path="/dashboard" element={<Dashboard></Dashboard>} />
               <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
-              <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
+              <Route path="/manage-cv" element={<ManageCV></ManageCV>}/>
 
               <Route path="/candidates" element={<Candidates></Candidates>} />
-              
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
-              <Route path="*" element={<HomePage></HomePage>} />
                <Route path="/applicationform/:jobId" element={<JobApplication/>}/>
-              <Route path="/endemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
+              <Route path="/sendemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
+              <Route path="*" element={<HomePage></HomePage>} />
             </Routes>
             {/* <Footer /> */}
           </RegisterFormProvider>
