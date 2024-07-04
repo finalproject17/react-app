@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./JobInfoCard.module.css";
 
 const JobInfoCard = ({ img, text, backgroundColor = "var(--border03)" }) => {
-  const bgColor = text === "Part-Time" ? "#FEF2D9" : backgroundColor;
+  const bgColor = text === "Part Time" ? "#FEF2D9" : backgroundColor;
 
   return (
     <div 

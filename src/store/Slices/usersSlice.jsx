@@ -1,9 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../axioseConfig/instance";
 
+
+
+// Change Password
+export const changePassword = createAsyncThunk(
+  "users/changePassword",
+  async ({ oldPassword, newPassword, confirmPassword }, { rejectWithValue }) => {
+    if (newPassword !== confirmPassword) {
+      return rejectWithValue("Passwords do not match");
+    }
+
+    try {
+      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'User-Id': userId
+        }
+      };
+
+      const response = await axiosInstance.post('/users/change-password', { currentPassword: oldPassword, newPassword }, config);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 // Register user
 export const registerUser = createAsyncThunk(
-  "/users/registerUser",
+  "users/registerUser",
   async (user) => {
     const res = await axiosInstance.post("/users/register", user);
     return res.data;
@@ -12,7 +42,7 @@ export const registerUser = createAsyncThunk(
 
 // Login user
 export const loginUser = createAsyncThunk(
-  "/users/loginUser",
+  "users/loginUser",
   async (userData) => {
     try {
       const res = await axiosInstance.post("/users/login", userData);
@@ -24,43 +54,78 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-//get User ByI d
+// Get user by ID
 export const fetchUserById = createAsyncThunk(
-  "/users/fetchUserById",
+  "users/fetchUserById",
   async (userId) => {
     const res = await axiosInstance.get(`/users/${userId}`);
-    console.log(res);
+    console.log(res.data);
     return res.data;
   }
 );
 
 // Update user
 export const updateUser = createAsyncThunk(
-  "users/updateUser", // Action type string
-  async (updatedUser) => {
-    const res = await axiosInstance.put(
-      `/users/66659f993aa76347cff49653`,
-      updatedUser
-    );
+  "users/updateUser",
+  async ({ userId, updatedUser }) => {
+    const res = await axiosInstance.patch(`/users/${userId}`, updatedUser);
     return res.data;
   }
 );
 
-// Get all users
-export const getAllUsersAction = createAsyncThunk(
-  "/users/getAllUsers",
+
+// Fetch users (redundant with getAllUsersAction)
+export const fetchUsers = createAsyncThunk(
+  "users/fetchUsers",
   async () => {
     const res = await axiosInstance.get("/users");
+    console.log(res);
+    return res.data;
+  }
+);
+export const getAllUsersAction = createAsyncThunk(
+  "users/getAllUsersAction",
+  async () => {
+    const res = await axiosInstance.get("/users");
+    console.log(res);
     return res.data;
   }
 );
 
-//safy
-export const fetchUsers = createAsyncThunk("/users/fetchUsers", async () => {
-  const res = await axiosInstance.get("/users");
-  console.log(res);
-  return res.data;
-});
+export const requestOTP = createAsyncThunk(
+  "users/requestotp",
+  async ({ email }) => {
+    const res = await axiosInstance.post("/users/requestotp", { email });
+    return res.data;
+  }
+);
+
+// Verify OTP
+export const verifyOTP = createAsyncThunk(
+  "users/verifyOTP",
+  async ({ otp, email }) => {
+    try {
+      console.log("Verify OTP Payload:", { otp, email });
+      const res = await axiosInstance.post("/users/verifyotp", { otp, email });
+      console.log("Verify OTP Response:", res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Verify OTP Error:", error.message);
+      throw error;
+    }
+  }
+);
+
+
+
+// Reset Password
+export const resetPassword = createAsyncThunk(
+  "users/resetpassword",
+  async ({ email, newPassword }) => {
+    const res = await axiosInstance.post("/users/resetpassword", { email, newPassword });
+    return res.data;
+  }
+);
 
 const userSlice = createSlice({
   name: "users",
@@ -68,10 +133,26 @@ const userSlice = createSlice({
     users: [],
     loading: false,
     error: null,
+    otp: null,
+    user: null,
+    otpVerified: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
+    //handle change password
+    .addCase(changePassword.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    })
+    .addCase(changePassword.fulfilled, (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    })
+    .addCase(changePassword.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
       // Handle registerUser
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -92,11 +173,23 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        // Assuming action.payload contains the token
         localStorage.setItem("token", action.payload.token); // Store token in local storage or state
         state.users = [action.payload]; // Update state as needed
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Handle fetchUserById
+      .addCase(fetchUserById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchUserById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
@@ -131,20 +224,60 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(fetchUserById.pending, (state) => {
+      // Handle fetchUsers
+      .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchUserById.fulfilled, (state, action) => {
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Handle requestOTP
+      .addCase(requestOTP.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(requestOTP.fulfilled, (state, action) => {
+        state.loading = false;
+        state.otp = action.payload;
+      })
+      .addCase(requestOTP.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(verifyOTP.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(verifyOTP.fulfilled, (state, action) => {
+        state.loading = false;
+        state.otpVerified = true;
+      })
+     
+.addCase(verifyOTP.rejected, (state, action) => {
+  state.loading = false;
+  state.error = action.error.message;
+})
+
+     
+      .addCase(resetPassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
       })
-      .addCase(fetchUserById.rejected, (state, action) => {
+      .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
   },
-
 });
 
 export default userSlice.reducer;

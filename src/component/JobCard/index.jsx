@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { UilBookmark } from '@iconscout/react-unicons';
 import { UisBookmark } from '@iconscout/react-unicons-solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/savedJobsSlice'; // Assuming you have a getSavedJobs action
+import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/savedJobsSlice';
 import JobInfoCard from '../JobInfoCard';
 import styles from './JobCard.module.css';
 
 const JobCard = ({ job, id, onRemove }) => {
   const dispatch = useDispatch();
-  const userId = '66659f993aa76347cff49653';
+  const userId = '6681e2ab75a50c5ecc4d8e02';
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
   const [isFav, setIsFav] = useState(false);
 
@@ -23,15 +23,14 @@ const JobCard = ({ job, id, onRemove }) => {
 
   const handleFavIcon = (jobId) => {
     const savedJob = savedJobs.find((savedJob) => savedJob.jobId && savedJob.jobId._id === jobId);
-  
+
     if (savedJob) {
       dispatch(deleteSavedJob(savedJob._id))
         .then(() => {
-          dispatch(getSavedJobs(userId)).then(() => 
-            {
-              setIsFav(false);
-              onRemove(jobId);
-            }); 
+          dispatch(getSavedJobs(userId)).then(() => {
+            setIsFav(false);
+            onRemove(jobId);
+          });
         })
         .catch((error) => {
           console.error('Error deleting saved job:', error);
@@ -49,6 +48,13 @@ const JobCard = ({ job, id, onRemove }) => {
           console.error('Error saving job:', error);
         });
     }
+  };
+
+  const truncateDescription = (description, maxLength) => {
+    if (description.length <= maxLength) {
+      return description;
+    }
+    return description.slice(0, maxLength) + '...';
   };
 
   if (!job) return null;
@@ -77,7 +83,7 @@ const JobCard = ({ job, id, onRemove }) => {
           <JobInfoCard img="/dollar coin.svg" text={job.salary && `${job.salary.from} : ${job.salary.to}`} />
         </div>
         <hr className={styles.separator} />
-        <p className={styles.jobDescription}>{job.description}</p>
+        <p className={styles.jobDescription}>{truncateDescription(job.description, 100)}</p> {/* Adjust max length here */}
       </div>
       <div className={styles.container2}>
         {isFav ? (

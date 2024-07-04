@@ -6,6 +6,7 @@ export const getSavedJobs = createAsyncThunk(
   'savedJobs/getSavedJobs',
   async (userId) => {
     const res = await axiosInstance.get(`/savedJobs/${userId}`);
+    console.log(res.data);
     return res.data;
   }
 );
@@ -14,14 +15,12 @@ export const getSavedJobs = createAsyncThunk(
 export const postSavedJob = createAsyncThunk(
   'savedJobs/postSavedJob',
   async ({ userId, jobId }) => {
-      const res = await axiosInstance.post(`/savedJobs`, { userId, jobId });
-      return res.data;
-    
+    const res = await axiosInstance.post(`/savedJobs`, { userId, jobId });
+    return res.data;
   }
 );
 
-// Delete a saved job bu saved job id
-
+// Delete a saved job
 export const deleteSavedJob = createAsyncThunk(
   'savedJobs/deleteSavedJob',
   async (savedJobId) => {
@@ -30,11 +29,20 @@ export const deleteSavedJob = createAsyncThunk(
   }
 );
 
+// Count saved jobs by user
+export const countSavedJobsByUser = createAsyncThunk(
+  'savedJobs/countSavedJobsByUser',
+  async ({userId}) => {
+    const res = await axiosInstance.get(`/savedJobs/count/${userId}`);
+    return res.data.count;
+  }
+);
 
 const savedJobsSlice = createSlice({
   name: 'savedJobs',
   initialState: {
     savedJobs: [],
+    count: 0,
     status: 'idle',
     error: null,
   },
@@ -55,15 +63,24 @@ const savedJobsSlice = createSlice({
       .addCase(postSavedJob.fulfilled, (state, action) => {
         state.savedJobs.push(action.payload);
       })
-      
       .addCase(postSavedJob.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
       .addCase(deleteSavedJob.fulfilled, (state, action) => {
-        state.savedJobs = state.savedJobs.filter(id => id !== action.payload.jobId);
+        state.savedJobs = state.savedJobs.filter(job => job.id !== action.payload.jobId);
       })
       .addCase(deleteSavedJob.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(countSavedJobsByUser.fulfilled, (state, action) => {
+        state.count = action.payload;
+      })
+      .addCase(countSavedJobsByUser.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(countSavedJobsByUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

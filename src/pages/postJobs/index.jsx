@@ -13,16 +13,7 @@ const Postjobs = () => {
     return (
         <>
       <div className={classNames(styles.mainContent,'row','d-flex')}>
-        {/* <div className={classNames(styles.sideMenu,'col-md-4')}>
-          <SideMenuItem icon={faChartLine} label="Dashboard"/>
-          <SideMenuItem icon={faUser} label="My Profile"/>
-          <SideMenuItem icon={faPenToSquare} label="Post Job"/>
-          <SideMenuItem icon={faBriefcase} label="My Jobs" />
-          <SideMenuItem icon={faNewspaper} label="Applications"/>
-          <SideMenuItem icon={faBookmark} label="Saved Jobs" />
-          <SideMenuItem icon={faGear} label="Settings"/>
-          <SideMenuItem icon={faArrowRightFromBracket} label="Log Out"/>
-        </div> */}
+       
   
         <div className={classNames(styles.rightSection,'col-md-8', 'm-2','m-auto')}>
           <h3 className={classNames(styles.formTitle, 'mt-4')}>Post Job</h3>

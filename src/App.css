@@ -20,6 +20,10 @@
     --gradient02: linear-gradient(#F9FFFE, #E7FFE0);
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
+.form-control:disabled {
+  background-color: white !important;
+  opacity: 1;
+}
 
 
 
@@ -62,4 +66,56 @@ h5{
 }
 .custmBorder{
     border: 1.5px solid var(--border01);
+}
+/* .row>* {
+ 
+  padding-left: 0 !important;
+  padding-right: 3rem !important;
+} */
+
+.table>:not(caption)>*>* {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+  padding-right: 0.5rem !important;
+  padding-left: 1rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+}
+css-1v603wu-MuiResponsiveChart-container{
+  width: 100%;
+  height: 100%;
+}
+
+.pagination{
+    margin-top: 30px;
+  }
+
+  .pagination a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+/* .pagination a.page {
+    border: 1px solid #ddd;
+
+} */
+
+.pagination a.prev,
+.pagination a.next {
+    background: linear-gradient(to right, #F9FFFE, #E7FFE0);
+
+}
+
+.pagination a.active {
+    background-color:var(--main-color);
+    color: white;
+    
+}
+
+.pagination a:hover {
+    background-color: #e0e0e0;
 }
