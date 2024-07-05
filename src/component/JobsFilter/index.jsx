@@ -76,7 +76,7 @@ export default function JobsFilter({ jobs, onFilter }) {
         backgroundColor: "#FAFCF8",
         borderRadius: "10px",
         width: "100%",
-        maxWidth: "300px",
+        
         border: "1px solid #B4E0D3",
       }}
     >

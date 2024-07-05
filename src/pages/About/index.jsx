@@ -102,7 +102,7 @@ const AboutUsPage = () => {
       </Col>
     </Row>
     <Container fluid>
-      <section className={styles.descriptionSection}>
+      <section className={`${styles.descriptionSection} `}>
         <div className={styles.caresrs}>
         
        

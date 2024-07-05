@@ -57,17 +57,17 @@ export default function SignUpStepTwo() {
       const isEmailExist = allUsers.find((user) => user.email === User.email);
       const isPhoneExist = allUsers.find((user) => user.phone === User.phone);
       console.log(isEmailExist);
-      // if (isEmailExist) {
-      //   toast.error("Email already exists");
-      //   return;
-      // } else if (isPhoneExist) {
-      //   toast.error("phone already exists");
-      //   return;
-      // } else {
+      if (isEmailExist) {
+        toast.error("Email already exists");
+        return;
+      } else if (isPhoneExist) {
+        toast.error("phone already exists");
+        return;
+      } else {
         dispatch(registerUser(User));
         console.log("llllllllllooooooo",User);
         navigate("/login");
-      // }
+      }
     } catch (err) {
       toast.error(err);
     }
@@ -432,7 +432,12 @@ export default function SignUpStepTwo() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            <GoogleRegister></GoogleRegister>
+            <NavLink
+              to="/companyRegister"
+              className=" text-decoration-none text-center btn-outline-success border border-1 border-success rounded-2 p-2 m-2"
+            >
+              Register As a<span className="text-success"> Company</span>
+            </NavLink>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

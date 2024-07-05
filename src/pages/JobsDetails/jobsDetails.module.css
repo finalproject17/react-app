@@ -124,6 +124,8 @@
 
 .othersJobsSideBar {
   margin-top: 48px;
+  overflow-y: auto;
+  max-height: 500px;
 }
 .Requirements{
  text-align: center;

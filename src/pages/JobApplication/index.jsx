@@ -31,7 +31,6 @@ const JobApplication = () => {
     return `${day}/${month}/${year}`;
   };
 
-  
   const formatRelativeDate = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
@@ -149,7 +148,7 @@ const JobApplication = () => {
         <section className={styles.form}>
           <div className={`container ${styles.formContain}`}>
             <div className={`row ${styles.formContent}`}>
-              <div className={`col-12 p-4`}>
+              <div className={`col-12 p-4 m-5`}>
                 <form onSubmit={applyNow}>
                   <div className="form-group input-component mt-4">
                     <div className="position-relative">

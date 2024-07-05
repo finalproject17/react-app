@@ -58,7 +58,7 @@ const Footer = () => {
                 />
                 <button className={styles.SendBtn}>Send</button>
               </div>
-              <div className={styles.social}>
+              <div className={`${styles.social} d-flex`}>
                 <Link to="" className={styles.link}>
                   <img src="/Twitter.svg" alt="Twitter" />
                 </Link>

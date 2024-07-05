@@ -1,0 +1,12 @@
+.filterButton{
+    display: none;
+    margin: 10px 0;
+}
+@media (max-width: 770px) {
+  .filterButton {
+    display: block !important;
+  }
+  .filter {
+    display: none !important;
+  }
+}
