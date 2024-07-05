@@ -13,13 +13,17 @@ export const AuthProvider = ({ children }) => {
        if (token) {
          setIsLoggedIn(true);
        }
+       console.log("madonnaaaaa",token);
+       console.log("madonnaaaaa",isLoggedIn);
+
+
      }, []);
     
     const login = (token) => {
         // const isToken = localStorage.getItem('token');
         localStorage.setItem("token", token);
          setIsLoggedIn(true);
-    }
+            }
     const logout = () => {
         localStorage.removeItem("token");
         setIsLoggedIn(false);

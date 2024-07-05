@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,7 +27,7 @@ import AppliedJobsSlice from "./store/Slices/AppliedJobsSlice";
 import ManageCV from "./component/ManageCV/index ";
 import Dashboard from "./component/Dashboard";
 import axios from "axios";
-// import AppliedJobs from './component/AppliedJobs/index';
+
 export default function App() {
 
 const [file,setFile]=useState()
@@ -53,18 +49,13 @@ axios.post('http://localhost:3001/upload',formdata)
     </div>
       <AuthProvider>
         <Router>
-          
           <JobSeekerNavbar></JobSeekerNavbar>
-          {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>
             <ToastContainer theme="colored" />
             <Routes>
+            <Route path="/" element={<HomePage />} />
               <Route path="/Home" element={<HomePage />} />
               <Route path="/SignUp" element={<SignUp />} />
-              {/* -----------------------------protected--------------------------*/}
-              {/* <Route element={<Guards />}>
-                <Route path="/step-two" element={<SignUpStepTwo />} />
-              </Route> */}
               <Route path="/jobseeker" element={<JobSeekerSidebar />} />
               <Route path="/JobsDetails/:id" element={<JobsDetails />} />
               <Route path="/jobs" element={<Jobs />} />
@@ -78,9 +69,7 @@ axios.post('http://localhost:3001/upload',formdata)
               <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
               <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
-
-              <Route path="/candidates" element={<Candidates></Candidates>} />
-              
+              <Route path="/candidates" element={<Candidates></Candidates>} />  
               <Route path="/profile/:userId" element={<JobSeekerProfile />} />
               <Route path="*" element={<HomePage></HomePage>} />
                <Route path="/applicationform/:jobId" element={<JobApplication/>}/>

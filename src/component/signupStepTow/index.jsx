@@ -20,7 +20,7 @@ export default function SignUpStepTwo() {
   const [inputValue, setInputValue] = useState("");
   const allUsers = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
-
+  
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
