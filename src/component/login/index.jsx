@@ -33,7 +33,7 @@ export default function Login() {
         if (res.payload && res.payload.token) {
           login(res.payload.token, res.payload.user);
           console.log("Token receivedddddddddddddd", res.payload.token);
-          navigate("/home");
+          navigate("/jobs");
         } else {
           toast.error("Login failed. Please check your credentials.");
         }
