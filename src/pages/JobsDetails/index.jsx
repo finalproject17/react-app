@@ -62,17 +62,28 @@ const JobsDetails = () => {
     dispatch(fetchAppliedJobsByJobSeeker({ userId }));
   }, [dispatch, id, userId]);
 
+  // useEffect(() => {
+  //   if (appliedJobs.find(appliedJob => appliedJob.jobId == id && appliedJob.userId == userId)) {
+  //     setIsApplied(true);
+  //     const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId == id);
+  //     setAppliedJobId(appliedJob._id);
+  //   } else {
+  //     setIsApplied(false);
+  //     setAppliedJobId(null);
+  //   }
+  // }, [appliedJobs, id, userId]);
+  
   useEffect(() => {
-    if (appliedJobs.find(appliedJob => appliedJob.jobId == id && appliedJob.userId == userId)) {
+    if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
       setIsApplied(true);
-      const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId == id);
+      const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId === id);
       setAppliedJobId(appliedJob._id);
     } else {
       setIsApplied(false);
       setAppliedJobId(null);
     }
-  }, [appliedJobs, id, userId]);
-
+  }, [appliedJobs, id]);
+  
   const handleApplyNow = async (jobId) => {
     const existingApplication = appliedJobs.find(
       (appliedJob) => appliedJob.jobId._id == id && appliedJob.userId == userId

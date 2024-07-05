@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, getAllUsersAction } from "../../store/Slices/usersSlice";
+import { loginUser, getAllUsersAction, loginUserWithGoogle } from "../../store/Slices/usersSlice";
 import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../contexts/authContext";
@@ -18,63 +18,63 @@ export default function Login() {
   const allUsers = useSelector((state) => state.users.users);
   const { login } = useAuth();
   useEffect(() => {
-    dispatch(getAllUsersAction()); 
+    dispatch(getAllUsersAction());
   }, [dispatch]);
 
-const signIn = async (values) => {
-  try {
-    const isUserFind = allUsers.find((user) => user.email === values.email);
-    console.log(allUsers);
-    console.log(isUserFind);
-    if (!isUserFind) {
-      toast.error("Email Not Found");
-    } else {
-      const res = await dispatch(loginUser(values));
-      if (res.payload && res.payload.token) {
-        login(res.payload.token);
-        console.log("Token received", res.payload.token);
-        navigate("/home");
+  const signIn = async (values) => {
+    try {
+      const isUserFind = allUsers.find((user) => user.email === values.email);
+      console.log(allUsers);
+      console.log(isUserFind);
+      if (!isUserFind) {
+        toast.error("Email Not Found");
       } else {
-        toast.error("Login failed. Please check your credentials.");
+        const res = await dispatch(loginUser(values));
+        if (res.payload && res.payload.token) {
+          login(res.payload.token, res.payload.user);
+          console.log("Token receivedddddddddddddd", res.payload.token);
+          navigate("/home");
+        } else {
+          toast.error("Login failed. Please check your credentials.");
+        }
       }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+      console.error("Error during sign-in process:", error);
     }
-  } catch (error) {
-    toast.error("An error occurred. Please try again.");
-    console.error("Error during sign-in process:", error);
-  }
-};
+  };
 
-  
-   const handleGoogleLogin = async (credentialResponse) => {
-     try {
-       const credentialResponseDecoded = jwtDecode(
-         credentialResponse.credential
-       );
-       console.log(credentialResponse);
-       console.log(credentialResponseDecoded);
 
-       const response = await fetch("http://localhost:3000/auth/google", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({ token: credentialResponse.credential }),
-       });
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
 
-       const data = await response.json();
-
-       if (response.ok) {
-         localStorage.setItem("token", data.token);
-         navigate("/home");
-       } else {
-         console.log("Login Failed:", data.message);
-         toast.error("Google login failed. Please try again.");
-       }
-     } catch (error) {
-       console.log("Login Failed:", error);
-       toast.error("An error occurred during Google login. Please try again.");
-     }
-   };
+      const User = {
+        email: decoded.email,
+      };
+      const isUserFind = allUsers.find((user) => user.email === User.email);
+   
+      if (!isUserFind) {
+        toast.error("Email Not Found");
+      } else {
+        const res = await dispatch(loginUserWithGoogle(User));
+        if (res.payload && res.payload.token) {
+          login(res.payload.token,
+            res.payload.user)
+          console.log("Token receivedddddddddddddddddddd", res.payload.token, [
+            res.payload.user,
+            decoded,
+          ]);
+          navigate("/home");
+        } else {
+          toast.error("Login failed. Please check your credentials.");
+        }
+      }
+    } catch (error) {
+      console.log("Login Failed:", error);
+      toast.error("An error occurred during Google login. Please try again.");
+    }
+  };
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -156,16 +156,24 @@ const signIn = async (values) => {
                   Login
                 </button>
               </form>
-
-              <p>
-                Don't have an account?
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="d-flex mt-2">
+                  Don't have an account?
+                  <NavLink
+                    to="/signUp"
+                    className="text-success text-decoration-none"
+                  >
+                    Sign Up
+                  </NavLink>
+                </p>
                 <NavLink
-                  to="/signUp"
+                  to="/endemailtoforgetpass"
                   className="text-success text-decoration-none"
                 >
-                  Sign Up
+                  Forget Password?
                 </NavLink>
-              </p>
+              </div>
+
               <div className="d-flex justify-content-center align-items-center">
                 <div className={styles.line}></div>
                 <span className="p-2 bg-white">or</span>
@@ -180,79 +188,7 @@ const signIn = async (values) => {
                 }}
               />
             </div>
-            <form onSubmit={formik.handleSubmit}>
-              <div className="form-group position-relative input-component mt-4">
-                <label
-                  htmlFor="email"
-                  className={`position-absolute bg-white ${styles.label}`}
-                >
-                  Email Address
-                </label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  className="mt-4 form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur}
-                />
-                {formik.errors.email && formik.touched.email && (
-                  <span className="text-danger">{formik.errors.email}</span>
-                )}
-              </div>
-
-              <div className="form-group input-component mt-4">
-                <label
-                  htmlFor="password"
-                  className={`position-absolute bg-white ${styles.label}`}
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="mt-4 form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                  onBlur={formik.handleBlur}
-                />
-                {formik.errors.password && formik.touched.password && (
-                  <span className="text-danger">{formik.errors.password}</span>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-success w-100 mt-3"
-                disabled={formik.isSubmitting}
-              >
-                Login
-              </button>
-            </form>
-         <div className="d-flex justify-content-between">
-            <p>
-              Don't have an account?
-              <NavLink
-                to="/signUp"
-                className="text-success text-decoration-none"
-              >
-                Sign Up
-              </NavLink>
-            </p>
-
-            <NavLink
-                to="/endemailtoforgetpass"
-                className="text-success text-decoration-none"
-              >
-               Forget Password?
-              </NavLink>
-              </div>
-        
-        
-          </div >
-
+          </div>
           <div className={`${styles.sectionRigth} col-5 `}>
             <div className="rigth-title mt-4">
               <h2>Get The Right Job You Deserve</h2>

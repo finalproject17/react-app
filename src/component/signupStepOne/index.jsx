@@ -10,9 +10,15 @@ import { toast } from "react-toastify";
 import GoogleRegister from "../GoogleAuth";
 import { GoogleLogin } from "@react-oauth/google";
 import {jwtDecode} from 'jwt-decode'
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser, registerUserWithGoogle } from "../../store/Slices/usersSlice";
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
-
+  
+    const navigate = useNavigate(); 
+    const allUsers = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
+  
   const [isSinUp, setIsSinUp] = useState("false");
   const [comfirmPassVal, setComfirmPassword] = useState("");
 
@@ -56,6 +62,43 @@ export default function SignUpStepOne() {
       nextStep();
     },
   });
+
+
+
+
+
+
+
+    const handleGoogleSuccess = async (credentialResponse) => {
+      try {
+        const decoded = jwtDecode(credentialResponse.credential);
+        console.log("hellllo",decoded);
+        const User = {
+          firstName: decoded.given_name,
+          lastName: decoded.family_name,
+          email: decoded.email,
+          googleId: decoded.sub,
+          phone:"",
+          password:'',
+        };
+         const isEmailExist = allUsers.find(
+           (user) => user.email === User.email
+        );
+        if (isEmailExist) {
+          toast.error("Email already exists");
+          return;
+        } else {
+          // dispatch(registerUserWithGoogle(User));
+          updateFormData(User);
+           console.log(User);
+           nextStep();
+          //  navigate("/home");
+        }
+      } catch (error) {
+        console.error("Error during Google login", error);
+        toast.error("Error during Google login");
+      }
+    };
 
   return (
     <section className={styles.register}>
@@ -257,7 +300,7 @@ export default function SignUpStepOne() {
                 Next
               </button>
             </form>
-            <p>
+            <p className="d-flex ">
               Already have an account?
               <NavLink
                 to="/login"
@@ -274,15 +317,7 @@ export default function SignUpStepOne() {
 
             <GoogleLogin 
               onSuccess={(credentialResponse) => {
-                const credentialResponseDecoded = jwtDecode(
-                  credentialResponse.credential
-                );
-                console.log(credentialResponse);
-                console.log(credentialResponseDecoded);
-                
-              }}
-              onError={() => {
-                console.log("Login Failed");
+                handleGoogleSuccess(credentialResponse)
               }}
             />
           </div>
