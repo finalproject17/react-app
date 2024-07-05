@@ -72,7 +72,7 @@ export default function App() {
               <Route path="/contact" element={<Contact></Contact>} />
 
               {/* -----------------------------protected--------------------------*/}
-              <Route element={<Guards />}>
+{/*               <Route element={<Guards />}> */}
                 <Route path="/step-two" element={<SignUpStepTwo />} />
 
                 <Route path="/jobseeker" element={<JobSeekerSidebar />} />
@@ -101,7 +101,7 @@ export default function App() {
                   path="/endemailtoforgetpass"
                   element={<SendEmailToForgetPassword />}
                 />
-              </Route>
+{/*               </Route> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             {/* <Footer /> */}
