@@ -35,63 +35,74 @@ import Contact from './pages/Contact/index';
 import './i18n.js';
 import "react-toastify/dist/ReactToastify.css";
 import { useTransition } from "react";
+import Guards from "./Guards/index.jsx";
 export default function App() {
   const {t} = useTransition()
 
-const [file,setFile]=useState()
-const handleUpload =(e)=>{
-  const formdata=new FormData()
-  formdata.append('image',file)
-axios.post('http://localhost:3001/upload',formdata)
-.then (res => console.log(res))
-.catch(err => console.log(err))
-}
+// const [file,setFile]=useState()
+// const handleUpload =(e)=>{
+//   const formdata=new FormData()
+//   formdata.append('image',file)
+// axios.post('http://localhost:3001/upload',formdata)
+// .then (res => console.log(res))
+// .catch(err => console.log(err))
+// }
 
 
 
   const [isSignUp, setIsSignUp] = useState("false");
   return (
     <>
-    <div><input type="file" onChange={e=>setFile (e.target.files[0])} />
+      {/* <div><input type="file" onChange={e=>setFile (e.target.files[0])} />
     <button onClick={handleUpload}>upload</button>
-    </div>
+    </div> */}
       <AuthProvider>
         <Router>
-            {/* <AboutUsPage />  */}
-         {/* <NotFound />   */}
+          {/* <AboutUsPage />  */}
+          {/* <NotFound />   */}
           <JobSeekerNavbar></JobSeekerNavbar>
           {/* <AppliedJobs></AppliedJobs> */}
           <RegisterFormProvider>
             <ToastContainer theme="colored" />
             <Routes>
-              {/* <Route path="/Home" element={<HomePage />} /> */}
+              <Route path="/Home" element={<HomePage />} />
               <Route path="/SignUp" element={<SignUp />} />
-              {/* -----------------------------protected--------------------------*/}
-              {/* <Route element={<Guards />}> */}
-              <Route path="/step-two" element={<SignUpStepTwo />} />
-              {/* </Route> */}
-              <Route path="/jobseeker" element={<JobSeekerSidebar />} />
-              <Route path="/JobsDetails/:id" element={<JobsDetails />} />
-              <Route path="/jobs" element={<Jobs />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/applied-jobs" element={<AppliedJobs></AppliedJobs>}/>
-              <Route
-                path="/myProfile"
-                element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}
-              />
-              <Route path="/dashboard" element={<Dashboard></Dashboard>} />
-              <Route path="/settings" element={<Setting></Setting>} />
               <Route path="/aboutus" element={<AboutUsPage></AboutUsPage>} />
-              <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
-              <Route path="manage-cv" element={<ManageCV></ManageCV>}/>
               <Route path="/contact" element={<Contact></Contact>} />
-              <Route path="/candidates" element={<Candidates></Candidates>} />
-              <Route path="/profile/:userId" element={<JobSeekerProfile />} />
-               <Route path="/applicationform/:jobId" element={<JobApplication/>}/>
-              <Route path="/endemailtoforgetpass" element={<SendEmailToForgetPassword/>}/>
-              <Route path="*" element={<HomePage></HomePage>} /> 
+
+              {/* -----------------------------protected--------------------------*/}
+              <Route element={<Guards />}>
+                <Route path="/step-two" element={<SignUpStepTwo />} />
+
+                <Route path="/jobseeker" element={<JobSeekerSidebar />} />
+                <Route path="/JobsDetails/:id" element={<JobsDetails />} />
+                <Route path="/jobs" element={<Jobs />} />
+
+                <Route
+                  path="/applied-jobs"
+                  element={<AppliedJobs></AppliedJobs>}
+                />
+                <Route
+                  path="/myProfile"
+                  element={<JobSeekerMyProfileEdit></JobSeekerMyProfileEdit>}
+                />
+                <Route path="/dashboard" element={<Dashboard></Dashboard>} />
+                <Route path="/settings" element={<Setting></Setting>} />
+                <Route path="/savedjobs" element={<SavedJobs></SavedJobs>} />
+                <Route path="manage-cv" element={<ManageCV></ManageCV>} />
+                <Route path="/candidates" element={<Candidates></Candidates>} />
+                <Route path="/profile/:userId" element={<JobSeekerProfile />} />
+                <Route
+                  path="/applicationform/:jobId"
+                  element={<JobApplication />}
+                />
+                <Route
+                  path="/endemailtoforgetpass"
+                  element={<SendEmailToForgetPassword />}
+                />
+              </Route>
               <Route path="*" element={<NotFound />} />
-            
             </Routes>
             {/* <Footer /> */}
           </RegisterFormProvider>

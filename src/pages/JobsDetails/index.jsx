@@ -162,38 +162,45 @@ const JobsDetails = () => {
 
   return (
     <div className={styles.container}>
-      {alertVisible && (
-        <Alert
-          type={alertType}
-          message={alertMessage}
-        />
-      )}
-      <div className='row'>
+      {alertVisible && <Alert type={alertType} message={alertMessage} />}
+      <div className="row">
         <div className={`${styles.title} col-lg-8 col-md-8 col-sm-12`}>
           <div>
-            <img src={job?.companyId?.companyLogo} alt='Employer Logo' className={styles.imgSize} />
+            <img
+              src={job?.companyId?.companyLogo}
+              alt="Employer Logo"
+              className={styles.imgSize}
+            />
           </div>
           <div className={styles.content}>
             <h5 className={styles.jobTitle}>{job?.JobTitle}</h5>
             <div className={`d-flex`}>
               <img src="/clock.svg" alt="Clock Icon" />
-              <p className={`m-0 ${styles.subtext}`}>{formatRelativeDate(job?.timeStamp)}</p>
+              <p className={`m-0 ${styles.subtext}`}>
+                {formatRelativeDate(job?.timeStamp)}
+              </p>
             </div>
           </div>
         </div>
-        <div className='col-lg-4 col-md-4 col-sm-12'>
+        <div className="col-lg-4 col-md-4 col-sm-12">
           <div className={styles.btns}>
             {isApplied ? (
-              <PrimaryButton onClick={handleDeleteApplication} name="Delete Application" />
+              <PrimaryButton
+                onClick={handleDeleteApplication}
+                name="Delete Application"
+              />
             ) : (
-              <PrimaryButton onClick={() => handleApplyNow(job._id)} name={btns.primary} />
+              <PrimaryButton
+                onClick={() => handleApplyNow(job._id)}
+                name={btns.primary}
+              />
             )}
             <SecondaryButton name={btns.secondary} />
           </div>
         </div>
       </div>
       <hr className={styles.breakLine}></hr>
-      <div className='row'>
+      <div className="row">
         <div className={`${styles.description} col-lg-8 col-md-6 col-sm-12`}>
           <div>
             <p className={styles.par1}>Job Description</p>
@@ -203,40 +210,56 @@ const JobsDetails = () => {
             <p className={styles.par1}>Required Skills:</p>
             <ul className={styles.skillsList}>
               {job?.skills && job.skills.length > 0 ? (
-                job.skills.map((skill, index) => <li key={index} className={styles.listItem}>{skill}</li>)
+                job.skills.map((skill, index) => (
+                  <li key={index} className={styles.listItem}>
+                    {skill}
+                  </li>
+                ))
               ) : (
                 <li>No specific skills mentioned</li>
               )}
             </ul>
           </div>
         </div>
-        <div className='col-lg-1 col-md-1 col-sm-1'></div>
+        <div className="col-lg-1 col-md-1 col-sm-1"></div>
         <div className={`${styles.sideBar} col-lg-3 col-md-4 col-sm-6`}>
           <p className={styles.Requirements}>Requirements</p>
           <ul className={styles.requirementsList}>
             {job?.jobRequirements && job.jobRequirements.length > 0 ? (
-              job.jobRequirements.map((Requirement, index) => <li key={index} className={styles.listItem}>{Requirement}</li>)
+              job.jobRequirements.map((Requirement, index) => (
+                <li key={index} className={styles.listItem}>
+                  {Requirement}
+                </li>
+              ))
             ) : (
               <li>No specific requirements mentioned</li>
             )}
           </ul>
         </div>
       </div>
-      <div className='row'>
-        <div className='col-lg-8 col-md-8 col-sm-12'></div>
-        <div className='col-lg-1 col-md-1 col-sm-1'></div>
-        <div className={`${styles.othersJobsSideBar} col-lg-3 col-md-4 col-sm-6`}>
+      <div className="row">
+        <div className="col-lg-8 col-md-8 col-sm-12"></div>
+        <div className="col-lg-1 col-md-1 col-sm-1"></div>
+        <div
+          className={`${styles.othersJobsSideBar} col-lg-3 col-md-4 col-sm-6 p-2`}
+        >
           <p className={styles.OtherJobs}>Other Jobs</p>
           <div className={styles.parent}>
             <div className={styles.sideBarContent}>
-              {jobs.slice(0,count).map((job) => (
+              {jobs.slice(0, count).map((job) => (
                 <div key={job._id} className={styles.content}>
                   <div className={styles.companyLogo}>
-                    <img src={job.companyId.companyLogo} alt='companyLogo' className={styles.logo} />
+                    <img
+                      src={job.companyId.companyLogo}
+                      alt="companyLogo"
+                      className={styles.logo}
+                    />
                   </div>
                   <div className={styles.text}>
                     <h5 className={styles.jobTitleSideBar}>{job.JobTitle}</h5>
-                    <p className={styles.companyNameSideBar}>{job.companyId.companyName}</p>
+                    <p className={styles.companyNameSideBar}>
+                      {job.companyId.companyName}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -314,12 +314,20 @@ export default function SignUpStepOne() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-
-            <GoogleLogin 
-              onSuccess={(credentialResponse) => {
-                handleGoogleSuccess(credentialResponse)
-              }}
-            />
+            <div >
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  handleGoogleSuccess(credentialResponse);
+                }}
+              />
+            </div>
+         
+            <NavLink
+              to="/companyRegister"
+              className={`text-decoration-none text-center btn-outline-success border border-1 border-success rounded-2 p-2 m-2`}
+            >
+              Register As a<span className="text-success"> Company</span>
+            </NavLink>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

@@ -6,6 +6,7 @@ import styles from "./JobSeekerMyProfileEdit.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserById, fetchUsers, updateUser } from "../../store/Slices/usersSlice";
 import JobSeekerSidebar from "../JobSeekerSidebar";
+import { toast } from "react-toastify";
 
 const JobSeekerMyProfileEdit = () => {
   const [user, setUser] = useState({});
@@ -71,19 +72,21 @@ const JobSeekerMyProfileEdit = () => {
     setFormData({ ...formData, profilePhoto: e.target.files[0] });
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = async() => {
+     
     const updatedUser = new FormData();
     Object.keys(formData).forEach(key => {
       updatedUser.append(key, formData[key]);
     });
 
-    dispatch(updateUser({ userId: user._id, updatedUser }));
+    await dispatch(updateUser({ userId: user._id, updatedUser }));
+   toast.success("Your Changes Saved Successfully");
   };
 
   return (
     <Container fluid>
       <Row>
-        <Col md={3}>
+        <Col className="p-0" md={3}>
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>
