@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import JobSeekerProfileCard from '../../component/jobSeekerProfileCard';
 import Overview from '../../component/overviewC';
@@ -7,13 +7,27 @@ import Work from '../../component/EduCard';
 import SkillsList from '../../component/SkillsList';
 import styles from './style.module.css';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserById } from '../../store/Slices/usersSlice';
 
 const JobSeekerProfile = () => {
+  // const [userr , setUserr] = useState({})
   const user = useSelector((state)=>state.users.user)
-  console.log(user.education[0].title);
-  const {userId} = useParams();
+  // const dispatch = useDispatch()
+  const {userId} = useParams()
   console.log(userId);
+  
+
+
+  // useEffect(()=>{
+  //  async function getUser(){
+  //  const {payload} = await dispatch(fetchUserById(userId))
+  //  console.log(payload);
+  //  setUserr(payload)
+  //   }
+  //   getUser()
+  // },[userId])
+  if(!user) return <p>Load</p>
   return (
     <>
       <div>
