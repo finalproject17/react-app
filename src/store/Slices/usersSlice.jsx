@@ -105,6 +105,8 @@ export const fetchUsers = createAsyncThunk(
     return res.data;
   }
 );
+
+
 export const getAllUsersAction = createAsyncThunk(
   "users/getAllUsersAction",
   async () => {
@@ -113,6 +115,7 @@ export const getAllUsersAction = createAsyncThunk(
     return res.data;
   }
 );
+
 
 export const requestOTP = createAsyncThunk(
   "users/requestotp",

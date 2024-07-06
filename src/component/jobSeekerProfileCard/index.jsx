@@ -47,6 +47,7 @@ const JobSeekerProfileCard = () => {
                 <div><PrimaryButton name={'Download CV'} className={styles.btn} /></div>
             </div>
             <ul>
+               
                 <li><JobSeekerProfileItem width='100%'  backgroundColor={'var(--border02)'} content={`${user.country}, ${user.city}`} icon={SlLocationPin} /></li>
                 <li><JobSeekerProfileItem width='100%'  content={user.category} backgroundColor={'var(--border03)'} icon={CgWorkAlt} /></li>
                 <li><JobSeekerProfileItem width='100%'  content={user.experienceLevel} backgroundColor={'var(--border03)'} icon={CgProfile} /></li>
@@ -64,9 +65,7 @@ const JobSeekerProfileCard = () => {
                     <div className={styles.socialMedia_icon}><GrFacebookOption /></div>
                     <div className={styles.socialMedia_icon}><BiLogoLinkedin /></div>
                 </li>
-                {/* <li>
-    <EduCard qualifications={user.qualifications} name="Qualifications" />
-</li> */}
+                {/* <li><EduCard qualifications={user.qualifications} name="Qualifications" /> </li> */}
             </ul>
         </div>
     );
