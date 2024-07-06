@@ -68,7 +68,8 @@ const JobSeekerMyProfileEdit = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, profilePhoto: e.target.files[0] });
+    setFormData({ ...formData, profilePhoto
+      : e.target.files[0] });
   };
 
   const handleSaveChanges = () => {

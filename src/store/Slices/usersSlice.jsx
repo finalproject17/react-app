@@ -68,7 +68,15 @@ export const fetchUserById = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "users/updateUser",
   async ({ userId, updatedUser }) => {
-    const res = await axiosInstance.patch(`/users/${userId}`, updatedUser);
+    const res = await axiosInstance.put(`/users/${userId}`, updatedUser);
+    return res.data;
+  }
+);
+export const getAllUsersAction = createAsyncThunk(
+  "users/getAllUsersAction",
+  async () => {
+    const res = await axiosInstance.get("/users");
+    console.log(res);
     return res.data;
   }
 );

@@ -31,7 +31,7 @@ export default function Dashboard() {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
   const savedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
 
-  const userId = "66659f993aa76347cff49653";
+  const userId = "6681e2ab75a50c5ecc4d8e02";
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -39,6 +39,7 @@ export default function Dashboard() {
     const fetchAppliedJobsLength = async () => {
       const { payload } = await dispatch(countAppliedJobsByUser({ userId }));
       setAppliedJobsCount(payload); // Set the state with the fetched payload
+      console.log();
     };
 
     fetchAppliedJobsLength();
