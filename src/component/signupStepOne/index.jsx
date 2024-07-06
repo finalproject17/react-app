@@ -8,10 +8,17 @@ import { useFormContext } from "../../contexts/RegisterFormContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import GoogleRegister from "../GoogleAuth";
-
+import { GoogleLogin } from "@react-oauth/google";
+import {jwtDecode} from 'jwt-decode'
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser, registerUserWithGoogle } from "../../store/Slices/usersSlice";
 export default function SignUpStepOne() {
   const { formData, updateFormData, nextStep } = useFormContext();
-
+  
+    const navigate = useNavigate(); 
+    const allUsers = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
+  
   const [isSinUp, setIsSinUp] = useState("false");
   const [comfirmPassVal, setComfirmPassword] = useState("");
 
@@ -55,6 +62,43 @@ export default function SignUpStepOne() {
       nextStep();
     },
   });
+
+
+
+
+
+
+
+    const handleGoogleSuccess = async (credentialResponse) => {
+      try {
+        const decoded = jwtDecode(credentialResponse.credential);
+        console.log("hellllo",decoded);
+        const User = {
+          firstName: decoded.given_name,
+          lastName: decoded.family_name,
+          email: decoded.email,
+          googleId: decoded.sub,
+          phone:"",
+          password:'',
+        };
+         const isEmailExist = allUsers.find(
+           (user) => user.email === User.email
+        );
+        if (isEmailExist) {
+          toast.error("Email already exists");
+          return;
+        } else {
+          // dispatch(registerUserWithGoogle(User));
+          updateFormData(User);
+           console.log(User);
+           nextStep();
+          //  navigate("/home");
+        }
+      } catch (error) {
+        console.error("Error during Google login", error);
+        toast.error("Error during Google login");
+      }
+    };
 
   return (
     <section className={styles.register}>
@@ -256,7 +300,7 @@ export default function SignUpStepOne() {
                 Next
               </button>
             </form>
-            <p>
+            <p className="d-flex ">
               Already have an account?
               <NavLink
                 to="/login"
@@ -270,13 +314,20 @@ export default function SignUpStepOne() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            {/* <div className="pt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Github
+            <div >
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  handleGoogleSuccess(credentialResponse);
+                }}
+              />
             </div>
-            <div className="pt-2 mt-2 w-100 btn m-auto d-flex align-items-center justify-content-center btn-outline-success">
-              Google
-            </div> */}
-            <GoogleRegister></GoogleRegister>
+         
+            <NavLink
+              to="/companyRegister"
+              className={`text-decoration-none text-center btn-outline-success border border-1 border-success rounded-2 p-2 m-2`}
+            >
+              Register As a<span className="text-success"> Company</span>
+            </NavLink>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

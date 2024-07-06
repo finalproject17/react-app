@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col ,Button,Modal} from "react-bootstrap";
 import JobSeekerCard from "./../../component/JobSeekerCard/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAction } from "../../store/Slices/usersSlice";
 import JobSeekersFilter from "../../component/JobSeekersFilter";
+import styles from "./candidate.module.css";
 
 
 const Candidates = () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
   const dispatch = useDispatch();
   const candidates = useSelector((state) => state.users.users);
   const [filteredCandidates, setFilteredCandidates] = useState([]);
@@ -23,7 +27,7 @@ const Candidates = () => {
 
   const handleFilter = (filteredCandidates) => {
     setFilteredCandidates(filteredCandidates);
-    setCurrentPage(1); // Reset to first page after filtering
+    setCurrentPage(1);
   };
 
   const indexOfLastCandidate = currentPage * candidatesPerPage;
@@ -53,7 +57,19 @@ const Candidates = () => {
       <Container>
         <Row>
           <Col md={3}>
-            <JobSeekersFilter candidates={candidates} onFilter={handleFilter} />
+            <Button
+              variant="success"
+              className={`${styles.filterButton} `}
+              onClick={handleShow}
+            >
+              Filter
+            </Button>
+            <div className={styles.filter}>
+              <JobSeekersFilter
+                candidates={candidates}
+                onFilter={handleFilter}
+              />
+            </div>
           </Col>
           <Col md={9}>
             <Row>
@@ -74,7 +90,7 @@ const Candidates = () => {
                 href="#"
                 onClick={() => handleClick(currentPage - 1)}
                 className="prev"
-                style={{ pointerEvents: currentPage === 1 ? 'none' : 'auto' }}
+                style={{ pointerEvents: currentPage === 1 ? "none" : "auto" }}
               >
                 &lt;
               </a>
@@ -83,7 +99,9 @@ const Candidates = () => {
                   key={index}
                   href="#"
                   onClick={() => handleClick(index + 1)}
-                  className={`page ${index + 1 === currentPage ? 'active' : ''}`}
+                  className={`page ${
+                    index + 1 === currentPage ? "active" : ""
+                  }`}
                 >
                   {index + 1}
                 </a>
@@ -92,7 +110,9 @@ const Candidates = () => {
                 href="#"
                 onClick={() => handleClick(currentPage + 1)}
                 className="next"
-                style={{ pointerEvents: currentPage === totalPages ? 'none' : 'auto' }}
+                style={{
+                  pointerEvents: currentPage === totalPages ? "none" : "auto",
+                }}
               >
                 &gt;
               </a>
@@ -100,6 +120,12 @@ const Candidates = () => {
           </Col>
         </Row>
       </Container>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <JobSeekersFilter candidates={candidates} onFilter={handleFilter} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

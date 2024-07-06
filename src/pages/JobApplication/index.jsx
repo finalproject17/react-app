@@ -15,7 +15,6 @@ const JobApplication = () => {
   const error = useSelector((state) => state.appliedJobs.error);
   const { jobId } = useParams();
   const Navigate=useNavigate();
-
   const [firstAnswer, setFirstAnswer] = useState('');
   const [SecondAnswer, setSecondAnswer] = useState('');
   const [thirdAnswer, setThirdAnswer] = useState('');
@@ -86,7 +85,7 @@ const JobApplication = () => {
       setAlertType('success');
       Navigate('/jobs')
     } catch (error) {
-      setMessage('An error occurred while applying for the job. Please try again.');
+      setMessage('you have already applied to this job !');
       setAlertType('error');
     }
 
@@ -149,7 +148,7 @@ const JobApplication = () => {
         <section className={styles.form}>
           <div className={`container ${styles.formContain}`}>
             <div className={`row ${styles.formContent}`}>
-              <div className={`col-12 p-4`}>
+              <div className={`col-12 p-4 m-5`}>
                 <form onSubmit={applyNow}>
                   <div className="form-group input-component mt-4">
                     <div className="position-relative">

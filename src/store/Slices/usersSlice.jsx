@@ -39,6 +39,15 @@ export const registerUser = createAsyncThunk(
     return res.data;
   }
 );
+// Register user with google
+export const registerUserWithGoogle = createAsyncThunk(
+  "users/registerUser/google",
+  async (user) => {
+    const res = await axiosInstance.post("/users/register/google", user);
+    console.log("this slice",res);
+    return res.data;
+  }
+);
 
 // Login user
 export const loginUser = createAsyncThunk(
@@ -46,6 +55,19 @@ export const loginUser = createAsyncThunk(
   async (userData) => {
     try {
       const res = await axiosInstance.post("/users/login", userData);
+      console.log(res);
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+// Login user with google
+export const loginUserWithGoogle = createAsyncThunk(
+  "users/loginUser/google",
+  async (userData) => {
+    try {
+      const res = await axiosInstance.post("/users/login/google", userData);
       console.log(res);
       return res.data;
     } catch (error) {
@@ -83,6 +105,7 @@ export const fetchUsers = createAsyncThunk(
     return res.data;
   }
 );
+
 
 export const getAllUsersAction = createAsyncThunk(
   "users/getAllUsersAction",

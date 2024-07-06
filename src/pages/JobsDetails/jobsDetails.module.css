@@ -124,6 +124,8 @@
 
 .othersJobsSideBar {
   margin-top: 48px;
+  overflow-y: auto;
+  max-height: 500px;
 }
 .Requirements{
  text-align: center;
@@ -190,3 +192,16 @@
   display: flex;
 }
 
+
+
+.subtext {
+  font-size: 0.8rem;
+  color: var(--PlaceHolder);
+  padding-left: 2px;
+}
+
+.imgSize
+{
+    width: 70px;
+    height: 70px;
+}

@@ -62,38 +62,59 @@ const JobCard = ({ job, id, onRemove }) => {
   const jobLocation = job.jobLocation || {};
 
   return (
-    <div className={`d-flex align-items-center ${styles.container}`}>
-      <div className={styles.detailsContainer}>
-        <div className={`d-flex align-items-center ${styles.padding2}`}>
-          <img src={job.companyId.companyLogo} alt="Employer Logo" className={styles.imgSize} />
-          <div className={`d-flex flex-column ${styles.marginLeft}`}>
-            <Link to={`/JobsDetails/${job._id}`} className={styles.titleLink}>
-              <h5 className={`m-0 ${styles.title}`}>{job.JobTitle}</h5>
-            </Link>
-            <div className="d-flex">
-              <img src="/clock.svg" alt="Clock Icon" />
-              <p className={`m-0 ${styles.subtext}`}>{job.timeStamp}</p>
+    <Link to={`/JobsDetails/${job._id}`}>
+      <div className={`d-flex align-items-center ${styles.container}`}>
+        <div className={styles.detailsContainer}>
+          <div className={`d-flex align-items-center ${styles.padding2}`}>
+            <img
+              src={job.companyId.companyLogo}
+              alt="Employer Logo"
+              className={styles.imgSize}
+            />
+            <div className={`d-flex flex-column ${styles.marginLeft}`}>
+              <Link to={`/CompanyProfile/${job._id}`} className={styles.titleLink}>
+                <h5 className={`m-0 ${styles.title}`}>{job.JobTitle}</h5>
+              </Link>
+              <div className="d-flex">
+                <img src="/clock.svg" alt="Clock Icon" />
+                <p className={`m-0 ${styles.subtext}`}>{job.timeStamp}</p>
+              </div>
             </div>
           </div>
+          <div className={`d-flex ${styles.padding}`}>
+            <JobInfoCard
+              img="/office bag.svg"
+              text={job.JobType}
+              backgroundColor="var(--border02)"
+            />
+            <JobInfoCard img="/Building.svg" text={job.JoblocationType} />
+            <JobInfoCard
+              img="/location2.svg"
+              text={`${jobLocation.State}, ${jobLocation.government}`}
+            />
+            <JobInfoCard
+              img="/dollar coin.svg"
+              text={job.salary && `${job.salary.from} : ${job.salary.to}`}
+            />
+          </div>
+          <hr className={styles.separator} />
+          <p className={styles.jobDescription}>
+            {truncateDescription(job.description, 100)}
+          </p>{" "}
+          {/* Adjust max length here */}
         </div>
-        <div className={`d-flex ${styles.padding}`}>
-          <JobInfoCard img="/office bag.svg" text={job.JobType} backgroundColor="var(--border02)" />
-          <JobInfoCard img="/Building.svg" text={job.JoblocationType} />
-          <JobInfoCard img="/location2.svg" text={`${jobLocation.State}, ${jobLocation.government}`} />
-          <JobInfoCard img="/dollar coin.svg" text={job.salary && `${job.salary.from} : ${job.salary.to}`} />
+        <div className={styles.container2}>
+          {isFav ? (
+            <UisBookmark onClick={() => handleFavIcon(job._id)} />
+          ) : (
+            <UilBookmark onClick={() => handleFavIcon(job._id)} />
+          )}
+          <button className={`${styles.button} btn btn-success`}>
+            Details
+          </button>
         </div>
-        <hr className={styles.separator} />
-        <p className={styles.jobDescription}>{truncateDescription(job.description, 100)}</p> {/* Adjust max length here */}
       </div>
-      <div className={styles.container2}>
-        {isFav ? (
-          <UisBookmark onClick={() => handleFavIcon(job._id)} />
-        ) : (
-          <UilBookmark onClick={() => handleFavIcon(job._id)} />
-        )}
-        <button className={`${styles.button} btn btn-success`}>Details</button>
-      </div>
-    </div>
+    </Link>
   );
 };
 

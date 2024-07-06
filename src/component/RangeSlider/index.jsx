@@ -21,7 +21,7 @@ export const Horizontal = ({ values, onChange }) => {
       />
       <div className='value'>
        <pre> <span>{range[0]}                 </span>    
-                                       <span>{range[1]}             </span></pre>
+    <span>{range[1]}             </span></pre>
       </div>
     </div>
   );

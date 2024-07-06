@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { json } from 'react-router-dom';
 
 const AuthContext = createContext();
 export const useAuth = () => {
@@ -7,25 +8,28 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+   const [token, setToken] = useState('');
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsLoggedIn(true);
 
-     useEffect(() => {
-       const token = localStorage.getItem("token");
-       if (token) {
-         setIsLoggedIn(true);
-       }
-       console.log("madonnaaaaa",token);
-       console.log("madonnaaaaa",isLoggedIn);
+        }
+        console.log("madonnnnna"+token);
+        console.log("madonnnnna"+isLoggedIn);
+    }, []);
 
-
-     }, []);
-    
-    const login = (token) => {
-        // const isToken = localStorage.getItem('token');
+    const login = (token, user) => {
         localStorage.setItem("token", token);
-         setIsLoggedIn(true);
-            }
+        localStorage.setItem("userId", user?._id);
+        localStorage.setItem("user", user);
+        setToken(token);
+        setIsLoggedIn(true);
+    }
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("user");
         setIsLoggedIn(false);
     }
 

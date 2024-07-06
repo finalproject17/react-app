@@ -53,6 +53,7 @@ export default function SignUpStepTwo() {
     try {
       updateFormData(val);
       const User = { ...formData, ...val };
+      console.log(User);
       const isEmailExist = allUsers.find((user) => user.email === User.email);
       const isPhoneExist = allUsers.find((user) => user.phone === User.phone);
       console.log(isEmailExist);
@@ -64,14 +65,14 @@ export default function SignUpStepTwo() {
         return;
       } else {
         dispatch(registerUser(User));
-        console.log(User);
-        nextStep();
+        console.log("llllllllllooooooo",User);
         navigate("/login");
       }
     } catch (err) {
       toast.error(err);
     }
   }
+ 
 
   const validationSchema = Yup.object({
     city: Yup.string().required("The city is required"),
@@ -417,7 +418,7 @@ export default function SignUpStepTwo() {
                 </button>
               </div>
             </form>
-            <p>
+            <p className="d-flex ">
               Already have an account?
               <NavLink
                 to="/signin"
@@ -431,7 +432,12 @@ export default function SignUpStepTwo() {
               <span className="p-2 bg-white">or</span>
               <div className={styles.line}></div>
             </div>
-            <GoogleRegister></GoogleRegister>
+            <NavLink
+              to="/companyRegister"
+              className=" text-decoration-none text-center btn-outline-success border border-1 border-success rounded-2 p-2 m-2"
+            >
+              Register As a<span className="text-success"> Company</span>
+            </NavLink>
           </div>
           <div className={`${styles.sectionRigth} col-5`}>
             <div className="rigth-title">

@@ -1,68 +1,66 @@
+import React from "react";
+import { useTranslation } from 'react-i18next';
 import AccordionItem from "../../component/AccordionItem/index";
 import styles from "./style.module.css";
+
 const WhyChooseUs = () => {
+  const { t,i18n } = useTranslation();
+
   return (
     <>
-    
-      <div className={styles.glassy}>
+      <div className={styles.glassy} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
         <div className={styles.container}>
           <div className="row mt-4">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h2 className={styles.mainTitle}> How it works?</h2>
+              <h2 className={styles.mainTitle}>{t('How it works?')}</h2>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-3 col-xs-3">
               <img src="account.svg" alt="icons"></img>
-              <h6 className={styles.subTitle}>Create Account</h6>
+              <h6 className={styles.subTitle}>{t('Create Account')}</h6>
               <p className={styles.paragraph}>
-                It’s very easy to open an account and start <br></br>your
-                journey.
+                {t("It’s very easy to open an account and start your journey.")}
               </p>
             </div>
-
             <div className="col-lg-4 col-md-4 col-sm-3 col-xs-3">
               <img src="editFile.svg" alt="icons"></img>
-              <h6 className={styles.subTitle}>Complete your profile</h6>
+              <h6 className={styles.subTitle}>{t('Complete your profile')}</h6>
               <p className={styles.paragraph}>
-                Complete your profile with all the info to get <br></br>{" "}
-                attention of client.
+                {t("Complete your profile with all the info to get attention of client.")}
               </p>
             </div>
-
             <div className="col-lg-4 col-md-4 col-sm-3 col-xs-3">
               <img src="Edit.svg" alt="icons"></img>
-              <h6 className={styles.subTitle}>Apply job or hire</h6>
+              <h6 className={styles.subTitle}>{t('Apply job or hire')}</h6>
               <p className={styles.paragraph}>
-                Apply & get your preferable jobs with all the <br></br>{" "}
-                requirements and get it.
+                {t("Apply & get your preferable jobs with all the requirements and get it.")}
               </p>
             </div>
           </div>
         </div>
       </div>
-
       <div className={styles.container}>
         <div className="row">
           <div className="col-lg-6 col-md-4 col-sm-12">
             <div className={styles.parent}>
-              <p className={styles.par}>Why choose us?</p>
-              <h2>World of talent at your fingertips</h2>
+              <p className={styles.par}>{t('Why choose us?')}</p>
+              <h2>{t('World of talent at your fingertips')}</h2>
               <div className="accordion">
                 <AccordionItem
-                  title="Who we are?"
-                  content="Our founders Dustin Moskovitz and Justin Rosenstein met while leading Engineering teams at Facebook quesi. Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                  title={t('Who we are?')}
+                  content={t('Our founders Dustin Moskovitz and Justin Rosenstein met while leading Engineering teams at Facebook quesi. Lorem ipsum dolor sit, amet consectetur adipisicing elit.')}
                 />
                 <AccordionItem
-                  title="What's our goal"
-                  content="Content for our goal goes here."
+                  title={t("What's our goal")}
+                  content={t('Content for our goal goes here.')}
                 />
                 <AccordionItem
-                  title="Our vision"
-                  content="Content for our vision goes here."
+                  title={t('Our vision')}
+                  content={t('Content for our vision goes here.')}
                 />
               </div>
-              <button className={styles.btn1}>Learn More</button>
+              <button className={styles.btn1}>{t('Learn More')}</button>
             </div>
           </div>
           <div className="col-lg-6 col-md-4 col-sm-12">
@@ -72,8 +70,6 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-
-      
     </>
   );
 };
