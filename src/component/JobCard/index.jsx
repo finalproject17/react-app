@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import useLocation hook
 import { UilBookmark } from '@iconscout/react-unicons';
 import { UisBookmark } from '@iconscout/react-unicons-solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { postSavedJob, deleteSavedJob, getSavedJobs } from '../../store/Slices/savedJobsSlice';
 import JobInfoCard from '../JobInfoCard';
 import styles from './JobCard.module.css';
+import { format, formatDistanceToNow } from 'date-fns';
+
+// Function to format timestamp to a specific format
 
 const JobCard = ({ job, id, onRemove }) => {
   const dispatch = useDispatch();
   const userId = '6681e2ab75a50c5ecc4d8e02';
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
   const [isFav, setIsFav] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation(); // Get current location
 
   useEffect(() => {
     if (job && savedJobs.some((savedJob) => savedJob.jobId && savedJob.jobId._id === job._id)) {
@@ -57,64 +62,74 @@ const JobCard = ({ job, id, onRemove }) => {
     return description.slice(0, maxLength) + '...';
   };
 
+  const formatJobTimestamp = (timestamp) => {
+    return formatDistanceToNow(new Date(timestamp), { addSuffix: true });
+  };
   if (!job) return null;
 
   const jobLocation = job.jobLocation || {};
 
+  // Condition to hide image based on path
+  const shouldHideImage = location.pathname === '/savedjobs';
+
   return (
-    <Link to={`/JobsDetails/${job._id}`}>
-      <div className={`d-flex align-items-center ${styles.container}`}>
-        <div className={styles.detailsContainer}>
-          <div className={`d-flex align-items-center ${styles.padding2}`}>
+    <div className={`d-flex align-items-center ${styles.container}`}>
+      <div className={styles.detailsContainer}>
+        <div className={`d-flex align-items-center ${styles.padding2}`}>
+          {!shouldHideImage && (
             <img
               src={job.companyId.companyLogo}
               alt="Employer Logo"
               className={styles.imgSize}
             />
-            <div className={`d-flex flex-column ${styles.marginLeft}`}>
-              <Link to={`/CompanyProfile/${job._id}`} className={styles.titleLink}>
-                <h5 className={`m-0 ${styles.title}`}>{job.JobTitle}</h5>
-              </Link>
-              <div className="d-flex">
-                <img src="/clock.svg" alt="Clock Icon" />
-                <p className={`m-0 ${styles.subtext}`}>{job.timeStamp}</p>
-              </div>
+          )}
+          <div className={`d-flex flex-column ${styles.marginLeft}`}>
+            <Link to={`/JobsDetails/${job._id}`} className={styles.titleLink}>
+              <h5 className={`m-0 ${styles.title}`}>{job.JobTitle}</h5>
+            </Link>
+            <div className="d-flex">
+              <img src="/clock.svg" alt="Clock Icon" />
+              <p className={`m-0 ${styles.subtext}`}>
+                {formatJobTimestamp(job.timeStamp)}
+              </p>
             </div>
           </div>
-          <div className={`d-flex ${styles.padding}`}>
-            <JobInfoCard
-              img="/office bag.svg"
-              text={job.JobType}
-              backgroundColor="var(--border02)"
-            />
-            <JobInfoCard img="/Building.svg" text={job.JoblocationType} />
-            <JobInfoCard
-              img="/location2.svg"
-              text={`${jobLocation.State}, ${jobLocation.government}`}
-            />
-            <JobInfoCard
-              img="/dollar coin.svg"
-              text={job.salary && `${job.salary.from} : ${job.salary.to}`}
-            />
-          </div>
-          <hr className={styles.separator} />
-          <p className={styles.jobDescription}>
-            {truncateDescription(job.description, 100)}
-          </p>{" "}
-          {/* Adjust max length here */}
         </div>
-        <div className={styles.container2}>
-          {isFav ? (
-            <UisBookmark onClick={() => handleFavIcon(job._id)} />
-          ) : (
-            <UilBookmark onClick={() => handleFavIcon(job._id)} />
-          )}
-          <button className={`${styles.button} btn btn-success`}>
-            Details
-          </button>
+        <div className={`d-flex ${styles.padding}`}>
+          <JobInfoCard
+            img="/office bag.svg"
+            text={job.JobType}
+            backgroundColor="var(--border02)"
+          />
+          <JobInfoCard img="/Building.svg" text={job.JoblocationType} />
+          <JobInfoCard
+            img="/location2.svg"
+            text={`${jobLocation.State}, ${jobLocation.government}`}
+          />
+          <JobInfoCard
+            img="/dollar coin.svg"
+            text={job.salary && `${job.salary.from} : ${job.salary.to}`}
+          />
         </div>
+        <hr className={styles.separator} />
+        <p className={styles.jobDescription}>
+          {truncateDescription(job.description, 100)}
+        </p>
       </div>
-    </Link>
+      <div className={styles.container2}>
+        {isFav ? (
+          <UisBookmark onClick={() => handleFavIcon(job._id)} />
+        ) : (
+          <UilBookmark onClick={() => handleFavIcon(job._id)} />
+        )}
+        <button
+          className={`${styles.button} btn btn-success`}
+          onClick={() => navigate(`/JobsDetails/${job._id}`)} // Navigate to details page
+        >
+          Details
+        </button>
+      </div>
+    </div>
   );
 };
 

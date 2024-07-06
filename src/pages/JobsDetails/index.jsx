@@ -48,6 +48,7 @@ const JobsDetails = () => {
   const dispatch = useDispatch();
   const { jobs, job } = useSelector((state) => state.jobs);
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
+
   const [isApplied, setIsApplied] = useState(false);
   const [appliedJobId, setAppliedJobId] = useState(null);
   const [alertVisible, setAlertVisible] = useState(false);
@@ -62,6 +63,7 @@ const JobsDetails = () => {
     dispatch(fetchAppliedJobsByJobSeeker({ userId }));
   }, [dispatch, id, userId]);
 
+
   // useEffect(() => {
   //   if (appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
   //     setIsApplied(true);
@@ -71,10 +73,15 @@ const JobsDetails = () => {
   //     setIsApplied(false);
   //     setAppliedJobId(null);
   //   }
-  // }, [appliedJobs, id]);
+  // }, [appliedJobs, id, userId]);
+  
+
 
   useEffect(() => {
-    if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+    // if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+
+    if (appliedJobs && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+
       setIsApplied(true);
       const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId === id);
       setAppliedJobId(appliedJob._id);
@@ -83,7 +90,20 @@ const JobsDetails = () => {
       setAppliedJobId(null);
     }
   }, [appliedJobs, id]);
+
   
+
+  // useEffect(() => {
+  //   if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+  //     setIsApplied(true);
+  //     const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId === id);
+  //     setAppliedJobId(appliedJob._id);
+  //   } else {
+  //     setIsApplied(false);
+  //     setAppliedJobId(null);
+  //   }
+  // }, [appliedJobs, id]);
+
   const handleApplyNow = async (jobId) => {
     const existingApplication = appliedJobs.find(
       (appliedJob) => appliedJob.jobId._id == id && appliedJob.userId == userId

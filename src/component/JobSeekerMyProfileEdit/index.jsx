@@ -86,10 +86,10 @@ const JobSeekerMyProfileEdit = () => {
   return (
     <Container fluid>
       <Row>
-        <Col className="p-0" md={3}>
-          <JobSeekerSidebar />
+        <Col  md={3}>
+        <JobSeekerSidebar activee="profile" />
         </Col>
-        <Col md={9}>
+        <Col  md={9}>
           <h4 className="mt-4 mb-5">My Profile</h4>
           <Form className={`${styles.formContainer}`}>
             <InputGroup className="mb-4">
