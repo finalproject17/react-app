@@ -100,7 +100,7 @@ export default function Dashboard() {
     <Container fluid>
       <Row>
         <Col md={3}>
-          <JobSeekerSidebar />
+          <JobSeekerSidebar activee={"dashboard"} />
         </Col>
         <Col md={9}>
           <h4 className="mt-4 mb-5">Dashboard</h4>

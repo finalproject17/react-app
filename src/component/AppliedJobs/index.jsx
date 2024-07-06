@@ -49,7 +49,7 @@ const AppliedJobs = () => {
     <Container fluid>
       <Row>
         <Col md={3}>
-          <JobSeekerSidebar />
+          <JobSeekerSidebar activee={"applied-jobs"} />
         </Col>
         <Col md={9}>
           <h4 className="mt-4 mb-5">Applied Jobs</h4>

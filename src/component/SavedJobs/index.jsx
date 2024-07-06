@@ -4,7 +4,7 @@ import { getSavedJobs, deleteSavedJob } from '../../store/Slices/savedJobsSlice'
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import JobCard from '../JobCard';
 import JobSeekerSidebar from '../JobSeekerSidebar';
-import styles from "./savedJob.module.css"; 
+
 const SavedJobs = () => {
   const dispatch = useDispatch();
   const userId = '6681e2ab75a50c5ecc4d8e02'; // Replace with actual user ID from your authentication context or state
@@ -31,8 +31,8 @@ const SavedJobs = () => {
 
   return (
     <Container fluid>
-      <Row className={`${styles.equalHeight}`}>
-        <Col className='p-0' md={3}>
+      <Row>
+        <Col className='py-0' md={3}>
           <JobSeekerSidebar />
         </Col>
         <Col md={9}>

@@ -45,7 +45,7 @@ const JobSeekerNavbar = () => {
       <Navbar
         collapseOnSelect
         expand="lg"
-        style={{ boxShadow: "0 0px 16px rgba(0,0,0,0.1)" }}
+        style={{ position : "sticky" ,zIndex:"99" ,boxShadow: "0 0px 16px rgba(0,0,0,0.1)" }}
         dir={i18n.language === "ar" ? "rtl" : "ltr"}
         className={`${styles.navBarRes}`}
       

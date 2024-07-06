@@ -26,7 +26,7 @@ const ManageCV = () => {
         <Container fluid>
             <Row>
                 <Col md={3}>
-                    <JobSeekerSidebar />
+                    <JobSeekerSidebar activee={"manage-cv"} />
                 </Col>
                 <Col md={9}>
                     <h4 className="mt-4 mb-5">Manage CV</h4>
@@ -54,6 +54,7 @@ const Education = ({ educationData }) => {
     });
 
     const addEducation = () => {
+        
         setEducationList([...educationList, { ...newEducation }]);
         setNewEducation({
             title: '',
