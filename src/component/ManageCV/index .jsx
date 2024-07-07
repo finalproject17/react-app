@@ -9,7 +9,7 @@ import { UilUserSquare } from '@iconscout/react-unicons'
 import EduCard from '../EduCard';
 
 const ManageCV = () => {
-    const userId = '6681e2ab75a50c5ecc4d8e02';
+    const userId = localStorage.getItem('userId');
     const user = useSelector((state) => state.users.user);
     const dispatch = useDispatch();
 

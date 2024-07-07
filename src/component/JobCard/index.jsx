@@ -12,7 +12,7 @@ import { format, formatDistanceToNow } from 'date-fns';
 
 const JobCard = ({ job, id, onRemove }) => {
   const dispatch = useDispatch();
-  const userId = '6681e2ab75a50c5ecc4d8e02';
+  const userId = localStorage.getItem('userId');
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
   const [isFav, setIsFav] = useState(false);
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import styles from './JobTrackingCircleChart.module.css';
 export default function JobTrackingCircleChart() {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs) || [];
   const dispatch = useDispatch();
-  const userId = "6681e2ab75a50c5ecc4d8e02";
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     // Fetch the applied jobs when the component mounts

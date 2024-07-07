@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const JobSeekerMyProfileEdit = () => {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
-  const userId = '6681e2ab75a50c5ecc4d8e02';
+  const userId = localStorage.getItem('userId');
   
   const [formData, setFormData] = useState({
     firstName: "",

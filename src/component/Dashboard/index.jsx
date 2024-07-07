@@ -31,8 +31,7 @@ export default function Dashboard() {
   const appliedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
   const savedJobs = useSelector((state) => state.appliedJobs.appliedJobs);
 
-  const userId = "6681e2ab75a50c5ecc4d8e02";
-
+  const userId = localStorage.getItem('userId');
   useEffect(() => {
     dispatch(getAllJobs());
 

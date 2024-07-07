@@ -7,16 +7,15 @@ import JobSeekerSidebar from '../JobSeekerSidebar';
 
 const SavedJobs = () => {
   const dispatch = useDispatch();
-  const userId = '6681e2ab75a50c5ecc4d8e02'; // Replace with actual user ID from your authentication context or state
+  const userId = localStorage.getItem('userId')
+  console.log(userId);
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
-    const jobs = useSelector((state) => state.jobs.jobs);
-  // console.log(jobs);
+  const jobs = useSelector((state) => state.jobs.jobs);
   const [localSavedJobs, setLocalSavedJobs] = useState([]);
 
 
   useEffect(() => {
     dispatch(getSavedJobs(userId));
-    // console.log(savedJobs);
   }, [dispatch, userId]);
 
   useEffect(() => {

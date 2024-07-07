@@ -171,3 +171,8 @@ css-1v603wu-MuiResponsiveChart-container{
 .slider-values span {
   font-size: 0.75rem;
 } 
+
+.form-control:disabled {
+  background-color: #ffffff !important;
+  opacity: 1;
+}
