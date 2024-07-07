@@ -6,12 +6,18 @@ import styles from "./JobSeekerMyProfileEdit.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserById, fetchUsers, updateUser } from "../../store/Slices/usersSlice";
 import JobSeekerSidebar from "../JobSeekerSidebar";
+import Loader from '../../component/Loader'; 
+import axios from "axios";
+
 import { toast } from "react-toastify";
 
 const JobSeekerMyProfileEdit = () => {
+  const [file,setFile]=useState()
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true); 
   const dispatch = useDispatch();
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('userId'); 
+  console.log(userId);
   
   const [formData, setFormData] = useState({
     firstName: "",
@@ -31,10 +37,20 @@ const JobSeekerMyProfileEdit = () => {
     profilePhoto: null,
   });
 
+const handleUpload =(e)=>{
+  const formdata=new FormData()
+  formdata.append('image',file)
+axios.post('http://localhost:3001/upload',formdata)
+.then (res => console.log(res))
+.catch(err => console.log(err))
+}
+
+
   useEffect(() => {
     const getUser = async () => {
       const { payload } = await dispatch(fetchUserById(userId));
       setUser(payload);
+      setLoading(false); 
     };
 
     dispatch(fetchUsers());
@@ -83,6 +99,10 @@ const JobSeekerMyProfileEdit = () => {
    toast.success("Your Changes Saved Successfully");
   };
 
+  if (loading) {
+    return <Loader />; 
+  }
+
   return (
     <Container fluid>
       <Row>
@@ -93,8 +113,8 @@ const JobSeekerMyProfileEdit = () => {
           <h4 className="mt-4 mb-5">My Profile</h4>
           <Form className={`${styles.formContainer}`}>
             <InputGroup className="mb-4">
-              <Form.Control type="file" onChange={handleFileChange} />
-              <Button variant="outline-secondary">Upload</Button>
+              <Form.Control type="file" onChange={e=>setFile (e.target.files[0])} />
+              <Button variant="outline-secondary"  onClick={handleUpload}>Upload</Button>
             </InputGroup>
 
             <Form.Group className="mb-4 position-relative">
@@ -266,24 +286,21 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.qualifications ? "Select Qualifications" : formData.qualifications
+                    !formData.qualifications ? "Select Qualification" : formData.qualifications
                   }
                 >
-                  <option>Bachelor's Degree</option>
-                  <option>Master's Degree</option>
-                  <option>Doctoral Degree</option>
+                  <option>Bachelors</option>
+                  <option>Masters</option>
+                  <option>PhD</option>
+                  <option>Diploma</option>
+                  <option>Self-Taught</option>
+                  <option>Training</option>
                 </Form.Control>
               </Col>
             </Form.Group>
 
-            <h5 className="mt-4 mb-4">Social Media</h5>
-
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Facebook
               </Form.Label>
               <Col>
@@ -293,20 +310,14 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.facebook
-                      ? "Enter your facebook profile link"
-                      : formData.facebook
+                    !formData.facebook ? "Enter your facebook URL" : formData.facebook
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Linkedin
               </Form.Label>
               <Col>
@@ -316,88 +327,79 @@ const JobSeekerMyProfileEdit = () => {
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.linkedin
-                      ? "Enter your linkedin profile link"
-                      : formData.linkedin
+                    !formData.linkedin ? "Enter your linkedin URL" : formData.linkedin
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Country
               </Form.Label>
               <Col>
                 <Form.Control
+                  as="select"
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.country
-                      ? "Enter your country name"
-                      : formData.country
+                    !formData.country ? "Select Country" : formData.country
                   }
-                />
+                >
+                  <option>Bangladesh</option>
+                  <option>Pakistan</option>
+                  <option>UAE</option>
+                  <option>UK</option>
+                  <option>USA</option>
+                </Form.Control>
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 City
               </Form.Label>
               <Col>
-
                 <Form.Control
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.city ? "Enter your city name" : formData.city
+                    !formData.city ? "Select City" : formData.city
                   }
                 />
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-4 position-relative">
-              <Form.Label
-                className={`position-absolute bg-white ${styles.inputLabel}`}
-                column
-                sm={2}
-              >
+              <Form.Label className={`position-absolute bg-white ${styles.inputLabel}`} column sm={2}>
                 Complete Address
               </Form.Label>
               <Col>
-
                 <Form.Control
                   name="completeAddress"
                   value={formData.completeAddress}
                   onChange={handleChange}
                   className={`${styles.jobSeekerInput}`}
                   placeholder={
-                    !formData.completeAddress
-                      ? "Enter your complete address"
-                      : formData.completeAddress
+                    !formData.completeAddress ? "Enter your address" : formData.completeAddress
                   }
                 />
               </Col>
             </Form.Group>
 
-            <div className="d-flex justify-content-end">
-              <Button onClick={handleSaveChanges} variant="success">
+            <Form.Group className="text-center">
+              <Button
+                className="rounded-2 mb-3 mb-sm-0"
+                variant="success"
+                onClick={handleSaveChanges}
+              >
                 Save Changes
               </Button>
-            </div>
+            </Form.Group>
           </Form>
         </Col>
       </Row>

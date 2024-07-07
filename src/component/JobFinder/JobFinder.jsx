@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import styles from './JobFinder.module.css';
 import { FaCheck } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { Fade } from 'react-awesome-reveal';
 import { useNavigate } from 'react-router-dom';
 
 const JobFinder = () => {
@@ -12,10 +13,9 @@ const JobFinder = () => {
     navigate("/jobs");
   };
   return (
-    <Container
-      className={styles.container}
-      dir={i18n.language === "ar" ? "rtl" : "ltr"}
-    >
+    
+    <Fade direction={i18n.language === 'ar' ? 'right' : 'left'} cascade triggerOnce>
+    <Container className={styles.container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       <Row className={styles.row}>
         <Col md={6} className={styles.imageCol}>
           <img src="work.JPG" alt="Job Search" className={styles.image} />
@@ -53,6 +53,7 @@ const JobFinder = () => {
         </Col>
       </Row>
     </Container>
+        </Fade>
   );
 }
 

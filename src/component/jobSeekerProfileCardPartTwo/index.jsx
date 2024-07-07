@@ -5,6 +5,7 @@ import SmallJobSeekerProfileCard from '../SmallJobSeekerProfileCard';
 import PrimaryButton from '../../component/primaryButton';
 import styles from './style.module.css';
 import { getAllUsersAction } from '../../store/Slices/usersSlice';
+import Loader from '../Loader';
 
 const JobSeekerProfileCardPartTwo = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const JobSeekerProfileCardPartTwo = () => {
   };
 
   if (status === true) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (status === false && error) {

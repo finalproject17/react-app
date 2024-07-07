@@ -3,6 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 import styles from './JobCategories.module.css';
 import { FaBullhorn, FaLock, FaUserTie, FaPenFancy, FaChartLine, FaHeadset } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { Fade } from 'react-awesome-reveal';
 
 const categories = [
   { name: 'Markting', icon: <FaBullhorn />, highlight: true },
@@ -17,6 +18,8 @@ const JobCategories = () => {
   const { t,i18n } = useTranslation();
 
   return (
+     
+    <Fade direction={i18n.language === 'ar' ? 'right' : 'left'} cascade triggerOnce>
     <Container className={styles.container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       <h2 className={styles.header}>{t('Popular Job Categories')}</h2>
       <p className={styles.paragraph}>
@@ -37,6 +40,7 @@ const JobCategories = () => {
       </div>
       <Button variant="success" className={styles.allCategoriesButton}>{t('All Categories')}</Button>
     </Container>
+    </Fade>
   );
 };
 

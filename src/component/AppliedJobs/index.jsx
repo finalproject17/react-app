@@ -66,9 +66,8 @@ const AppliedJobs = () => {
                 </tr>
               </thead>
               <tbody>
-                {appliedJobs.map((job) => {
+              {Array.isArray(appliedJobs) && appliedJobs.map((job) => {
                   const jobLocation = job.jobId.jobLocation && job.jobId.jobLocation.length > 0 ? job.jobId.jobLocation[0] : {};
-
                   return (
                     <tr key={job._id}>
                       <td style={{ backgroundColor: '#FFFFFF' }}>

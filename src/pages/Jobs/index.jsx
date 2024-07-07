@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllJobs } from "../../store/Slices/FetchJobsSlice";
-import JobCard from "../../component/JobCard";
-import JobsFilter from "../../component/JobsFilter";
-import { Row, Col, Container, Button, Modal } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllJobs } from '../../store/Slices/FetchJobsSlice';
+import JobCard from '../../component/JobCard';
+import JobsFilter from '../../component/JobsFilter';
+import { Row, Col, Container ,Button, Modal } from 'react-bootstrap';
+import Loader from "../../component/Loader"; 
 import styles from "./jobs.module.css"; // Import the CSS module
+
+
 
 export default function Jobs() {
   const [show, setShow] = useState(false);
@@ -13,12 +16,15 @@ export default function Jobs() {
   const jobs = useSelector((state) => state.jobs.jobs);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true); 
   const jobsPerPage = 9;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading(true); 
     dispatch(getAllJobs());
+    setLoading(false);
   }, [dispatch]);
 
   useEffect(() => {
@@ -40,6 +46,9 @@ export default function Jobs() {
     e.preventDefault();
     setCurrentPage(pageNumber);
   };
+  if (loading) {
+    return <Loader />; 
+  }
 
   return (
     <>

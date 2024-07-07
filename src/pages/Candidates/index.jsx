@@ -4,6 +4,7 @@ import JobSeekerCard from "./../../component/JobSeekerCard/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAction } from "../../store/Slices/usersSlice";
 import JobSeekersFilter from "../../component/JobSeekersFilter";
+import Loader from "../../component/Loader"; 
 import styles from "./candidate.module.css";
 
 
@@ -15,10 +16,16 @@ const Candidates = () => {
   const candidates = useSelector((state) => state.users.users);
   const [filteredCandidates, setFilteredCandidates] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true); 
   const candidatesPerPage = 9;
 
   useEffect(() => {
-    dispatch(getAllUsersAction());
+    const fetchCandidates = async () => {
+      setLoading(true); 
+      await dispatch(getAllUsersAction());
+      setLoading(false);
+    };
+    fetchCandidates();
   }, [dispatch]);
 
   useEffect(() => {
@@ -39,6 +46,10 @@ const Candidates = () => {
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  if (loading) {
+    return <Loader />; 
+  }
 
   return (
     <>

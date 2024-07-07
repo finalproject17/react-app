@@ -113,7 +113,7 @@ const AboutUsPage = () => {
  <div className={styles.caresrs1}>Key features include detailed personal profiles, resume uploads, and the ability to make profiles public or private to enhance visibility to potential employers.</div>
         </div>
        <div>
-        <img src="../../../public/Job hunt-amico 1.png" alt="" />
+        <img src="Job hunt-amico 1.png" alt="" />
        </div>
       </section>
       <section className={styles.leadersSection}>

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import styles from "./JobSeeker.module.css";
 import { Col, Container, Row, Card } from "react-bootstrap";
 import { UilBag, UilMapMarker, UilSearch } from "@iconscout/react-unicons";
+import { Fade } from 'react-awesome-reveal';
+
 
 const JobSeeker = () => {
   const { t, i18n } = useTranslation();
@@ -54,8 +56,11 @@ const JobSeeker = () => {
               <img className="w-100" src="Card.svg" alt="Job Search" />
             </div>
           </div>
+            
+    <Fade direction={i18n.language === 'ar' ? 'right' : 'left'} cascade triggerOnce>
           <Row className="mt-5">
             <Col md={4} className="mb-3">
+            
               <Card className={`${styles.myShadow} text-center`}>
                 <Card.Body>
                   <Card.Title className={styles.cardTitle}>{t("30k+")}</Card.Title>
@@ -95,6 +100,7 @@ const JobSeeker = () => {
               </Card>
             </Col>
           </Row>
+          </Fade>
         </Container>
       </div>
     </>

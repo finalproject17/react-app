@@ -14,7 +14,7 @@ export const changePassword = createAsyncThunk(
     try {
       const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
-
+console.log(userId,token);
       const config = {
         headers: {
           'Content-Type': 'application/json',
