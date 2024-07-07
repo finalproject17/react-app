@@ -101,8 +101,8 @@ const AboutUsPage = () => {
         </p>
       </Col>
     </Row>
-    <Container fluid>
-      <section className={`${styles.descriptionSection} `}>
+    <Container>
+      <section className={`${styles.descriptionSection} container`}>
         <div className={styles.caresrs}>
         
        
