@@ -148,7 +148,7 @@ const JobApplication = () => {
         <section className={styles.form}>
           <div className={`container ${styles.formContain}`}>
             <div className={`row ${styles.formContent}`}>
-              <div className={`col-12 p-4 m-5`}>
+              <div className={`col-11 p-4 m-5`}>
                 <form onSubmit={applyNow}>
                   <div className="form-group input-component mt-4">
                     <div className="position-relative">

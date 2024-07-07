@@ -39,15 +39,6 @@ import Guards from "./Guards/index.jsx";
 export default function App() {
   const {t} = useTransition()
 
-// const [file,setFile]=useState()
-// const handleUpload =(e)=>{
-//   const formdata=new FormData()
-//   formdata.append('image',file)
-// axios.post('http://localhost:3001/upload',formdata)
-// .then (res => console.log(res))
-// .catch(err => console.log(err))
-// }
-
 
 
   const [isSignUp, setIsSignUp] = useState("false");
@@ -72,7 +63,7 @@ export default function App() {
               <Route path="/contact" element={<Contact></Contact>} />
 
               {/* -----------------------------protected--------------------------*/}
-              <Route element={<Guards />}>
+              {/* <Route element={<Guards />}> */}
                 <Route path="/step-two" element={<SignUpStepTwo />} />
 
                 <Route path="/jobseeker" element={<JobSeekerSidebar />} />
@@ -101,7 +92,7 @@ export default function App() {
                   path="/endemailtoforgetpass"
                   element={<SendEmailToForgetPassword />}
                 />
-              </Route>
+              {/* </Route> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             {/* <Footer /> */}

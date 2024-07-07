@@ -78,10 +78,9 @@ const JobsDetails = () => {
 
 
   useEffect(() => {
-    // if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
+     if (Array.isArray(appliedJobs) && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
 
-    if (appliedJobs && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
-
+   // if (appliedJobs && appliedJobs.some(appliedJob => appliedJob.jobId === id)) {
       setIsApplied(true);
       const appliedJob = appliedJobs.find(appliedJob => appliedJob.jobId === id);
       setAppliedJobId(appliedJob._id);

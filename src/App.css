@@ -20,10 +20,6 @@
     --gradient02: linear-gradient(#F9FFFE, #E7FFE0);
     --gradient03: linear-gradient(#FAFBFA, #E5EEDD);
 }
-.form-control:disabled {
-  background-color: white !important;
-  opacity: 1;
-}
 
 
 
@@ -174,4 +170,4 @@ css-1v603wu-MuiResponsiveChart-container{
 
 .slider-values span {
   font-size: 0.75rem;
-}
+} 

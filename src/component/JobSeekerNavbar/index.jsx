@@ -141,15 +141,15 @@ const JobSeekerNavbar = () => {
                     }
                     id="basic-nav-dropdown"
                   >
-                    <NavDropdown.Item href={`/profile/${User?._id}`}>
+                    <Link to={`/profile/${User?._id}`}>
                       {t("My Account")}
-                    </NavDropdown.Item>
-                    <NavDropdown.Item onClick={handleShow}>
+                    </Link>
+                    <Link onClick={handleShow}>
                       {t("Logout")}
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href={`/settings`}>
+                    </Link>
+                    <Link to={`/settings`}>
                       {t("Settings")}
-                    </NavDropdown.Item>
+                    </Link>
                   </NavDropdown>
                 </>
               ) : (

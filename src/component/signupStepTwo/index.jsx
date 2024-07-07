@@ -60,9 +60,6 @@ export default function SignUpStepTwo() {
       if (isEmailExist) {
         toast.error("Email already exists");
         return;
-      } else if (isPhoneExist) {
-        toast.error("phone already exists");
-        return;
       } else {
         dispatch(registerUser(User));
         console.log("llllllllllooooooo",User);
