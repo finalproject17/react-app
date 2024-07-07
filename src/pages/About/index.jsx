@@ -66,7 +66,7 @@ const AboutUsPage = () => {
       id: 4,
       name: 'Salma Hammad',
       position: 'Full Stack Developer',
-      photo: 'public/Mark (6).png',
+      photo: 'Mark (6).png',
       twitter: 'https://twitter.com/salmahamad',
       facebook: 'https://www.facebook.com/mariam.hammad.56',
       instagram: 'https://www.instagram.com/salma.hammad.98/'
@@ -75,7 +75,7 @@ const AboutUsPage = () => {
       id: 5,
       name: 'Madonna Adel',
       position: 'Full Stack Developer',
-      photo: 'public/Mark (7).png',
+      photo: 'Mark (7).png',
       twitter: 'https://twitter.com/madonnaadel',
       facebook: 'https://www.facebook.com/madonna.adel.9026',
       instagram: 'https://www.instagram.com/madonna._adel/'
@@ -84,7 +84,7 @@ const AboutUsPage = () => {
       id: 6,
       name: 'Safynaz Abdelraheem',
       position: 'Full Stack Developer',
-      photo: 'public/Mark (8).png',
+      photo: 'Mark (8).png',
       twitter: 'https://twitter.com/safyabdelrehim',
       facebook: 'https://www.facebook.com/safy.abdelraheem.1/',
       instagram: 'https://www.instagram.com/safynazabdelraheem/'
