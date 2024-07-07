@@ -25,7 +25,7 @@ const AboutUsPage = () => {
     },
     {
       id: 3,
-      name: 'Abanoub',
+      name: 'Abanoub Nabil',
       position: 'Supervisor',
       photo: 'Mark (2).png',
       twitter: 'https://twitter.com/abanoub',
