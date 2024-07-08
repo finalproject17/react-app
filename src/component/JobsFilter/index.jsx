@@ -1,178 +1,156 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllJobs } from '../../store/Slices/FetchJobsSlice';
+import JobCard from '../../component/JobCard';
+import JobsFilter from '../../component/JobsFilter';
+import { Row, Col, Container ,Button, Modal } from 'react-bootstrap';
+import Loader from "../../component/Loader";
+import styles from "./jobs.module.css"; // Import the CSS module
 
-export default function JobsFilter({ jobs, onFilter }) {
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedExperienceLevels, setSelectedExperienceLevels] = useState([]);
-  const [selectedJobTypes, setSelectedJobTypes] = useState([]);
-  const [selectedJobLevels, setSelectedJobLevels] = useState([]);
-  const [selectedJoblocationType, setSelectedJoblocationType] = useState([]);
-  const [selectedState, setSelectedState] = useState("");
-  const [salaryRange, setSalaryRange] = useState([0, 10000]);
 
-  const updateFilter = (prevSelected, value) =>
-    prevSelected.includes(value) ? prevSelected.filter((v) => v !== value) : [...prevSelected, value];
 
-  const handleFilterChange = (filterType, value) => {
-    switch (filterType) {
-      case "JobCategory":
-        setSelectedCategories((prev) => updateFilter(prev, value));
-        break;
-      case "jobLevel":
-        setSelectedJobLevels((prev) => updateFilter(prev, value));
-        break;
-      case "JobType":
-        setSelectedJobTypes((prev) => updateFilter(prev, value));
-        break;
-      case "JoblocationType":
-        setSelectedJoblocationType((prev) => updateFilter(prev, value));
-        break;
-      case "State":
-        setSelectedState(value);
-        break;
-      case "Salary":
-        setSalaryRange(value);
-        break;
-      default:
-        break;
-    }
-  };
+export default function Jobs() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const jobs = useSelector((state) => state.jobs.jobs);
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const jobsPerPage = 9;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (jobs) {
-      const filteredJobs = jobs.filter((job) => {
-        const matchesCategory =
-          selectedCategories.length === 0 ||
-          selectedCategories.includes(job.JobCategory);
+    setLoading(true);
+    dispatch(getAllJobs());
+    setLoading(false);
+  }, [dispatch]);
 
-        const matchesJobLevel =
-          selectedJobLevels.length === 0 ||
-          selectedJobLevels.includes(job.jobLevel);
+  useEffect(() => {
+    setFilteredJobs(jobs);
+  }, [jobs]);
 
-        const matchesJobType =
-          selectedJobTypes.length === 0 ||
-          selectedJobTypes.includes(job.JobType);
-
-        const matchesJoblocationType =
-          selectedJoblocationType.length === 0 ||
-          selectedJoblocationType.includes(job.JoblocationType);
-
-        const matchesState = selectedState === "" || (job.jobLocation && job.jobLocation.State === selectedState);
-
-        const matchesSalary = (job.salary.from >= salaryRange[0]) && (job.salary.to <= salaryRange[1]);
-
-        return matchesCategory && matchesJobLevel && matchesJobType && matchesState && matchesJoblocationType && matchesSalary;
-      });
-      onFilter(filteredJobs);
-    }
-  }, [jobs, selectedCategories, selectedJobLevels, selectedJobTypes, selectedState, selectedJoblocationType, salaryRange]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFilter = (filteredJobs) => {
+    setFilteredJobs(filteredJobs);
+    setCurrentPage(1); // Reset to the first page after filtering
   };
 
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+
+  const handleClick = (e, pageNumber) => {
+    e.preventDefault();
+    setCurrentPage(pageNumber);
+  };
+  if (loading) {
+    return <Loader />;
+  }
   return (
-    <div className="p-3"
-      style={{
-        backgroundColor: "#FAFCF8",
-        borderRadius: "10px",
-        width: "100%",
-        
-        border: "1px solid #B4E0D3",
-      }}
-    >
-      <Form onSubmit={handleSubmit}>
-        {/* Location Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>City</Form.Label>
-          <Form.Select
-            value={selectedState}
-            onChange={(e) => handleFilterChange("State", e.target.value)}
-          >
-            <option value="">All</option>
-            {[
-              "Aswan", "Luxor", "Sharm El Sheikh", "Giza", "Alexandria",
-              "Cairo", "Hurghada", "Helwan", "Quesna", "Al Khankah",
-              "el-Arab", "Badr", "Sadat City", "Obour", "New Cairo",
-              "6th of October City", "Banha", "Shibin El Kom", "Qalyub",
-              "Marsa Matruh", "Arish", "Kafr El Sheikh", "El-Mahalla El-Kubra",
-              "Damietta", "Assiut", "Qena", "Sohag", "Minya", "Beni Suef", "Faiyum"
-            ].map((city) => (
-              <option key={city}>{city}</option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        <hr />
-        {/* Category Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>Category</Form.Label>
-          {["Programming", "Health Care", "Finance", "Accounting"].map((jobCategory) => (
-            <Form.Check
-              key={jobCategory}
-              type="checkbox"
-              label={jobCategory}
-              onChange={() => handleFilterChange("JobCategory", jobCategory)}
-            />
-          ))}
-        </Form.Group>
-        <hr />
-        {/* Experience Level Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>Experience Level</Form.Label>
-          {["Fresh", "Junior", "Senior", "Expert", "MidLevel"].map((level) => (
-            <Form.Check
-              key={level}
-              type="checkbox"
-              label={level}
-              onChange={() => handleFilterChange("jobLevel", level)}
-            />
-          ))}
-        </Form.Group>
-        <hr />
-        {/* Job Type Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>Job Type</Form.Label>
-          {["Full-Time", "Part-Time", "Internship", "Freelance"].map((jobType) => (
-            <Form.Check
-              key={jobType}
-              type="checkbox"
-              label={jobType}
-              onChange={() => handleFilterChange("JobType", jobType)}
-            />
-          ))}
-        </Form.Group>
-        <hr />
-        {/* Salary Range Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>Salary Range: {`${salaryRange[0]} - ${salaryRange[1]}`}</Form.Label>
-          <Slider
-            min={0}
-            max={10000}
-            value={salaryRange}
-            onChange={(value) => setSalaryRange(value)}
-            range
-          />
-        </Form.Group>
-        <hr />
-        {/* Job Location Type Filter */}
-        <Form.Group className="mb-3">
-          <Form.Label>Job Location Type</Form.Label>
-          {["OnSite", "Remote", "Hybrid"].map((jobLocationType) => (
-            <Form.Check
-              key={jobLocationType}
-              type="checkbox"
-              label={jobLocationType}
-              onChange={() => handleFilterChange("JoblocationType", jobLocationType)}
-            />
-          ))}
-        </Form.Group>
-        <hr />
-        <Button type="submit" variant="success" className="w-100 m-0">
-          Filter Now
-        </Button>
-      </Form>
-    </div>
+      <>
+        <div
+            style={{
+              width: "100%",
+              height: "240px",
+              backgroundColor: "#FAFCF8",
+              marginBottom: "2rem",
+            }}
+            className="d-flex justify-content-center align-items-center flex-column"
+        >
+          <h4>Browse jobs</h4>
+          <p>Home / jobs</p>
+        </div>
+        <Container>
+          <Row>
+            {/* Filter Section */}
+            <Col md={3}>
+              <Button
+                  variant="success"
+                  className={`${styles.filterButton} `}
+                  onClick={handleShow}
+              >
+                Filter
+              </Button>
+              <div className={styles.filter}>
+                {jobs ? (
+                    <JobsFilter jobs={jobs} onFilter={handleFilter} />
+                ) : (
+                    <div>No jobs found</div>
+                )}
+              </div>
+            </Col>
+            {/* Jobs Cards Section */}
+            <Col md={9}>
+              <Row>
+                {currentJobs !== null ? (
+                    currentJobs.length > 0 ? (
+                        currentJobs.map((job) => (
+                            <Col
+                                className="col-12"
+                                key={job._id}
+                                style={{ marginBottom: "20px" }}
+                            >
+                              <JobCard job={job} />
+                            </Col>
+                        ))
+                    ) : (
+                        <Col>
+                          <div>No jobs found</div>
+                        </Col>
+                    )
+                ) : (
+                    <Col>
+                      <div>
+                        Loading...<i className="fa-solid fa-spinner"></i>
+                      </div>
+                    </Col>
+                )}
+              </Row>
+              {/* Pagination Section */}
+              {filteredJobs.length > jobsPerPage && (
+                  <div className="pagination">
+                    <a
+                        href="#"
+                        onClick={(e) => handleClick(e, currentPage - 1)}
+                        className="prev"
+                        style={{ pointerEvents: currentPage === 1 ? "none" : "auto" }}
+                    >
+                      &lt;
+                    </a>
+                    {[...Array(totalPages)].map((_, index) => (
+                        <a
+                            key={index}
+                            href="#"
+                            onClick={(e) => handleClick(e, index + 1)}
+                            className={`page ${index + 1 === currentPage ? "active" : ""}`}
+                        >
+                          {index + 1}
+                        </a>
+                    ))}
+                    <a
+                        href="#"
+                        onClick={(e) => handleClick(e, currentPage + 1)}
+                        className="next"
+                        style={{
+                          pointerEvents: currentPage === totalPages ? "none" : "auto",
+                        }}
+                    >
+                      &gt;
+                    </a>
+                  </div>
+              )}
+            </Col>
+          </Row>
+        </Container>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            {jobs && <JobsFilter jobs={jobs} onFilter={handleFilter} />}
+          </Modal.Body>
+        </Modal>
+      </>
   );
 }
