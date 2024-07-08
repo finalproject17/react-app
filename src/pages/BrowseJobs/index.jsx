@@ -62,7 +62,7 @@ const BrowseJobs = () => {
             filtered = filtered.filter(job => jobTypes.includes(job.JoblocationType));
         }
 
-        if (Range.mn !== 0 || Range.mx !== 10000) {
+        if (Range.mn !== 0 || Range.mx !== 100000) {
             filtered = filtered.filter(job => job.salary.from >= Range.mn && job.salary.to <= Range.mx);
         }
 
