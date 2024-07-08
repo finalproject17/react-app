@@ -10,7 +10,7 @@ export default function JobsFilter({ jobs, onFilter }) {
   const [selectedJobLevels, setSelectedJobLevels] = useState([]);
   const [selectedJoblocationType, setSelectedJoblocationType] = useState([]);
   const [selectedState, setSelectedState] = useState("");
-  const [salaryRange, setSalaryRange] = useState([0, 10000]);
+  const [salaryRange, setSalaryRange] = useState([0, 100000]);
 
   const updateFilter = (prevSelected, value) =>
     prevSelected.includes(value) ? prevSelected.filter((v) => v !== value) : [...prevSelected, value];
@@ -39,37 +39,54 @@ export default function JobsFilter({ jobs, onFilter }) {
         break;
     }
   };
+    useEffect(() => {
+        console.log("Jobs:", jobs);
+        console.log("Selected Categories:", selectedCategories);
+        console.log("Selected Job Levels:", selectedJobLevels);
+        console.log("Selected Job Types:", selectedJobTypes);
+        console.log("Selected State:", selectedState);
+        console.log("Selected Joblocation Type:", selectedJoblocationType);
+        console.log("Salary Range:", salaryRange);
 
-  useEffect(() => {
-    if (jobs) {
-      const filteredJobs = jobs.filter((job) => {
-        const matchesCategory =
-          selectedCategories.length === 0 ||
-          selectedCategories.includes(job.JobCategory);
+        if (jobs) {
+            const filteredJobs = jobs.filter((job) => {
+                const matchesCategory =
+                    selectedCategories.length === 0 ||
+                    selectedCategories.includes(job.JobCategory);
 
-        const matchesJobLevel =
-          selectedJobLevels.length === 0 ||
-          selectedJobLevels.includes(job.jobLevel);
+                const matchesJobLevel =
+                    selectedJobLevels.length === 0 ||
+                    selectedJobLevels.includes(job.jobLevel);
 
-        const matchesJobType =
-          selectedJobTypes.length === 0 ||
-          selectedJobTypes.includes(job.JobType);
+                const matchesJobType =
+                    selectedJobTypes.length === 0 ||
+                    selectedJobTypes.includes(job.JobType);
 
-        const matchesJoblocationType =
-          selectedJoblocationType.length === 0 ||
-          selectedJoblocationType.includes(job.JoblocationType);
+                const matchesJoblocationType =
+                    selectedJoblocationType.length === 0 ||
+                    selectedJoblocationType.includes(job.JoblocationType);
 
-        const matchesState = selectedState === "" || (job.jobLocation && job.jobLocation.State === selectedState);
+                const matchesState = selectedState === "" || (job.jobLocation && job.jobLocation.State === selectedState);
+                let matchesSalary = false;
 
-        const matchesSalary = (job.salary.from >= salaryRange[0]) && (job.salary.to <= salaryRange[1]);
+                // Check if salaryRange[0] is greater than 0 to apply salary range filter
 
-        return matchesCategory && matchesJobLevel && matchesJobType && matchesState && matchesJoblocationType && matchesSalary;
-      });
-      onFilter(filteredJobs);
-    }
-  }, [jobs, selectedCategories, selectedJobLevels, selectedJobTypes, selectedState, selectedJoblocationType, salaryRange]);
+                if (
+                    (job.salary.from <= salaryRange[1] && job.salary.to >= salaryRange[0]) || // Partial overlap
+                    (job.salary.from >= salaryRange[0] && job.salary.to <= salaryRange[1])   // Complete containment
+                ) {
+                    matchesSalary = true;
+                }
 
-  const handleSubmit = (e) => {
+                return matchesCategory && matchesJobLevel && matchesJobType && matchesState && matchesJoblocationType && matchesSalary;
+            });
+
+            console.log("Jobs:", jobs);
+            onFilter(filteredJobs); // Assuming `onFilter` expects the filtered jobs array
+        }
+    }, [jobs, selectedCategories, selectedJobLevels, selectedJobTypes, selectedState, selectedJoblocationType, salaryRange]);
+
+    const handleSubmit = (e) => {
     e.preventDefault();
   };
 
@@ -79,7 +96,7 @@ export default function JobsFilter({ jobs, onFilter }) {
         backgroundColor: "#FAFCF8",
         borderRadius: "10px",
         width: "100%",
-        
+
         border: "1px solid #B4E0D3",
       }}
     >
@@ -149,7 +166,7 @@ export default function JobsFilter({ jobs, onFilter }) {
           <Form.Label>Salary Range: {`${salaryRange[0]} - ${salaryRange[1]}`}</Form.Label>
           <Slider
             min={0}
-            max={10000}
+            max={100000}
             value={salaryRange}
             onChange={(value) => setSalaryRange(value)}
             range

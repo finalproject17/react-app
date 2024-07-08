@@ -46,6 +46,7 @@ const AppliedJobs = () => {
   };
 
   return (
+    
     <Container fluid>
       <Row>
         <Col md={3}>
@@ -63,6 +64,7 @@ const AppliedJobs = () => {
                   <th className="headBg">Tracking</th>
                   <th className="headBg">Status</th>
                   <th className="headBg headBorderRaduisActions">Actions</th>
+                  
                 </tr>
               </thead>
               <tbody>

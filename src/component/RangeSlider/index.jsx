@@ -15,7 +15,7 @@ export const Horizontal = ({ values, onChange }) => {
       <Slider
         range
         min={0}
-        max={10000}
+        max={100000}
         value={range}
         onChange={handleChange}
       />
