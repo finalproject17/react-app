@@ -116,8 +116,7 @@ const JobSeekerNavbar = () => {
                       <div className="d-flex align-items-center ">
                         <Image
                           src={
-                            `${User.img}` ||
-                            "../../../src/assets/images/userAvtar.svg"
+                            `${User.img}`
                           }
                           roundedCircle
                           width="40"
