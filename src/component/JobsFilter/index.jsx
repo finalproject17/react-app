@@ -40,13 +40,13 @@ export default function JobsFilter({ jobs, onFilter }) {
     }
   };
     useEffect(() => {
-        console.log("Jobs:", jobs);
-        console.log("Selected Categories:", selectedCategories);
-        console.log("Selected Job Levels:", selectedJobLevels);
-        console.log("Selected Job Types:", selectedJobTypes);
-        console.log("Selected State:", selectedState);
-        console.log("Selected Joblocation Type:", selectedJoblocationType);
-        console.log("Salary Range:", salaryRange);
+        // console.log("Jobs:", jobs);
+        // console.log("Selected Categories:", selectedCategories);
+        // console.log("Selected Job Levels:", selectedJobLevels);
+        // console.log("Selected Job Types:", selectedJobTypes);
+        // console.log("Selected State:", selectedState);
+        // console.log("Selected Joblocation Type:", selectedJoblocationType);
+        // console.log("Salary Range:", salaryRange);
 
         if (jobs) {
             const filteredJobs = jobs.filter((job) => {

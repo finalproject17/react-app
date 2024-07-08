@@ -114,15 +114,14 @@ const JobSeekerNavbar = () => {
                     style={{}}
                     title={
                       <div className="d-flex align-items-center ">
-                        <Image
+{/*                         <Image
                           src={
-                            `${User.img}` ||
-                            "../../../src/assets/images/userAvtar.svg"
+                            `${User.img}`
                           }
                           roundedCircle
                           width="40"
                           className="me-3"
-                        />
+                        /> */}
 
                         <Col
                           className="applicantInfo"
